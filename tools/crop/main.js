@@ -1,24 +1,50 @@
-var CONFIG = {};
-var imageFormats = [
+var VIEWPORT_MARGIN = 100;
+
+var IMAGE_FORMATS = [
 	{
-		name: 'Medium Rectangle',
-		id: 'medium-rectangle',
+		name: 'Leaderboard',
+		id: 'leaderboard',
+		width: 728,
+		height: 90,
+	},
+	{
+		name: 'Content Ad',
+		id: 'content-ad',
 		width: 300,
 		height: 250,
 	},
-  {
-    name: 'Skyscraper',
-    id: 'skyscraper',
-    width: 160,
-    height: 600,
-  },
-  {
-    name: 'Leaderboard',
-    id: 'leaderboard',
-    width: 728,
-    height: 90,
-  },
+	{
+		name: 'Skyscraper',
+		id: 'skyscraper',
+		width: 160,
+		height: 600,
+	},
+	{
+		name: 'Halfpage Ad',
+		id: 'halfpage-ad',
+		width: 300,
+		height: 600,
+	},
+	{
+		name: 'Billboard',
+		id: 'billboard',
+		width: 800,
+		height: 250,
+	},
+	{
+		name: '3:1 Rectangle',
+		id: '3-1-rectangle',
+		width: 300,
+		height: 100,
+	},
+	{
+		name: 'Mobile Leaderboard',
+		id: 'mobile-leaderboard',
+		width: 300,
+		height: 50,
+	},
 ];
+
 
 _.templateSettings.variable = "tpl";
 var htmlTemplate = `
@@ -35,7 +61,6 @@ var htmlTemplate = `
 	</div>
 `;
 
-var VIEWPORT_MARGIN = 100;
 
 // Reads a field uploaded to <uploadField> and calls <callback> when done.
 // The <callback> is passed the FileReader’s result object, a data url.
@@ -70,17 +95,13 @@ function renderImageFormatNode(format) {
 	$('.wrap-center').append( tpl(format) );
 }
 
-// Adds a single image format
-// 	* Creates required DOM nodes
-//  * Creates a Croppie object
-//  * Binds event for upload field
 function addImageFormat(format) {
 		renderImageFormatNode( format );
 		var croppie = new Croppie( document.getElementById(format.id), {
 				viewport: {
-			    width: format.width,
-			  	height: format.height,
-			  },
+					width: format.width,
+					height: format.height,
+				},
 				boundary: {
 					width: format.width + VIEWPORT_MARGIN,
 					height: format.height + VIEWPORT_MARGIN,
@@ -103,7 +124,6 @@ function addImageFormat(format) {
 		});
 }
 
-// Adds all image formats specified in <imageFormats>
 function addImageFormats(config) {
 	var format;
 	for (var i = 0; i < config.length; i++) {
@@ -116,7 +136,10 @@ function addImageFormats(config) {
 	}
 }
 
-// medium-rectangle,300,250;skyscaper,120,700
+/**
+ * Parse a configuration string specified as document hash.
+ * Example: #medium-rectangle,300,250;skyscaper,120,700
+ */
 function getConfigFromHash() {
 	var hash = document.location.hash.slice(1); // Remove # character
 	var split = hash.split(';');
@@ -166,7 +189,7 @@ $(document).ready(function() {
 	var config = getConfigFromHash();
 
 	if(!config) {
-		config = imageFormats;
+		config = IMAGE_FORMATS;
 	}
 
 	console.log('Using config', config);
