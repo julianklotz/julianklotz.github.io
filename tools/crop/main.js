@@ -49,7 +49,7 @@ var IMAGE_FORMATS = [
 _.templateSettings.variable = "tpl";
 var htmlTemplate = `
 	<div class="image-format">
-		<h2><%= tpl.name %></h2>
+		<h2><%= tpl.name %>, <%= tpl.width %>×<%= tpl.height %></h2>
 		<h4>1. Datei auswählen</h4>
 		<input type="file" id="upload-<%= tpl.id %>" />
 		<h4>2. Bildausschnitt einstellen</h4>
