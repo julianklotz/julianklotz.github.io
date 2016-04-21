@@ -139,7 +139,7 @@ function addImageFormats(config) {
  * Example: #medium-rectangle,300,250;skyscaper,120,700
  */
 function getConfigFromHash() {
-	if(document.location.hash.length < 2) { // Hash consists of at least two chars
+	if(document.location.hash.length < 1) { // Hash consists of at least two chars
 		return undefined
 	}
 
