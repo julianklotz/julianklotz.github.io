@@ -47,19 +47,17 @@ var IMAGE_FORMATS = [
 
 
 _.templateSettings.variable = "tpl";
-var htmlTemplate = `
-	<div class="image-format">
-		<h2><%= tpl.name %>, <%= tpl.width %>×<%= tpl.height %></h2>
-		<h4>1. Datei auswählen</h4>
-		<input type="file" id="upload-<%= tpl.id %>" />
-		<h4>2. Bildausschnitt einstellen</h4>
-		<div class="" id="<%= tpl.id %>">
-		</div>
+var htmlTemplate = '<div class="image-format">' +
+		'<h2><%= tpl.name %>, <%= tpl.width %>×<%= tpl.height %></h2>' +
+		'<h4>1. Datei auswählen</h4>' +
+		'<input type="file" id="upload-<%= tpl.id %>" />' +
+		'<h4>2. Bildausschnitt einstellen</h4>' +
+		'<div class="" id="<%= tpl.id %>">' +
+		'</div>' +
 
-		<h4>3. Bild speichern</h4>
-		<a href="#" download="<%= tpl.id + '.png' %>" id="download-<%= tpl.id %>" >Speichern</a>
-	</div>
-`;
+		'<h4>3. Bild speichern</h4>' +
+		'<a href="#" download="<%= tpl.id %>_<%= tpl.width %>_<%= tpl.height %>.png" id="download-<%= tpl.id %>" >Speichern</a>' +
+	'</div>';
 
 
 // Reads a field uploaded to <uploadField> and calls <callback> when done.
@@ -141,6 +139,10 @@ function addImageFormats(config) {
  * Example: #medium-rectangle,300,250;skyscaper,120,700
  */
 function getConfigFromHash() {
+	if(document.location.hash.length < 2) { // Hash consists of at least two chars
+		return undefined
+	}
+
 	var hash = document.location.hash.slice(1); // Remove # character
 	var split = hash.split(';');
 	var formats = [];
