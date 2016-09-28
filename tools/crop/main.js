@@ -48,14 +48,14 @@ var IMAGE_FORMATS = [
 
 _.templateSettings.variable = "tpl";
 var htmlTemplate = '<div class="image-format">' +
-		'<h2><%= tpl.name %>, <%= tpl.width %>×<%= tpl.height %></h2>' +
-		'<h4>1. Datei auswählen</h4>' +
+		'<h2><%= tpl.name %>, <%= tpl.width %>&times;<%= tpl.height %></h2>' +
+		'<h4>1. Datei ausw&auml;hlen</h4>' +
 		'<input type="file" id="upload-<%= tpl.id %>" />' +
 		'<h4>2. Bildausschnitt einstellen</h4>' +
 		'<div class="" id="<%= tpl.id %>">' +
 		'</div>' +
 
-		'<h4>3. Bild speichern</h4>' +
+		'<h4>3. Vorschau herunterladen</h4>' + '<p>Heruntergeladene Bilder sind nur als Vorschau geeignet.</p>' +
 		'<a href="#" download="<%= tpl.id %>_<%= tpl.width %>_<%= tpl.height %>.png" id="download-<%= tpl.id %>" >Speichern</a>' +
 	'</div>';
 
