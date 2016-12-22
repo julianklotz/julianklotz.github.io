@@ -145,6 +145,7 @@ label {
 
 button {
   padding: 0.6875rem 1rem;
+  margin: 0;
   background-color: #c0cc56;
   border-radius: 3px;
   border: none; }
