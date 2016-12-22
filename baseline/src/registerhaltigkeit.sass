@@ -1,16 +1,12 @@
-$base-font-size: 16px
-$base-line-height: 22px
+$base-font-size: 1em
+$base-line-height: 1.375rem
 
-/* --- DEBUGGING --- */
-
-.show-left-lines
-  h1,h2,h3,h4,h5,h6,li,p,dd,dt, small, blockquote, ul, ol, div, section, article
-    border-left: 1px dotted rgba( 134, 0, 0, .8)
-    padding-left: 1px
+@import 'debug'
+@import 'layout'
 
 
-/* --- TAG LEVEL STYLING --- */
-html, input, option, select, textarea
+
+html, input, option, select, textarea, button
   font-size: $base-font-size
   line-height: $base-line-height
 
@@ -105,6 +101,28 @@ label
   font-size: 0.8888888889 * $base-font-size
   line-height: $base-line-height
 
+button
+  $pad: $base-line-height / 2
+  padding: $pad 1rem
+  background-color: #c0cc56
+  border-radius: 3px
+  border: none
+
+button::-moz-focus-inner
+  border: 0
+  padding: 0
+
+button
+  &.medium
+    $pad: $base-line-height / 3
+    padding: $pad 1rem
+    margin: (1 / 6 * $base-line-height) 0
+
+  &.small
+    $pad: 0
+    padding: $pad 1rem
+
+
 fieldset
   border: 0
   margin: 0
@@ -134,64 +152,6 @@ input
   padding-left: $base-font-size / 2
   padding-right: $base-font-size / 2
 
-
-
 textarea.form-control
   height: 4 * ($base-line-height)
-
-/* --- LAYOUT --- */
-
-.bar
-  background-color: rgba( 220, 220, 220, .6 )
-  text-align: right
-  border-radius: 4px
-
-.bar, .bar-item
-  padding-top: $base-line-height / 2
-  padding-bottom: $base-line-height / 2
-
-.bar-item
-  padding: $base-line-height/2 .5rem
-
-.attribute
-  @extend .incredibly-small
-  border-width: 1px
-  border-style: solid
-  padding: .1rem .3rem
-
-.attribute-item
-  @extend .tabular
-  @extend .small
-  margin-right: .5rem
-  display: block
-  float: left
-  min-width: 5rem
-
-.difficulty-medium
-  border-color: #e30613
-  color: #e30613
-
-.oax-icon-star
-  color: #cfcfcf
-
-  &.active
-    color: #a6b339
-
-.cat-icon
-  vertical-align: middle
-  margin: -12px 0 0 0
-
-.short-description
-
-
-.author-recommends-label
-  font-weight: bold
-
-
-.clearfix
-  clear: both
-
-
-
-
 

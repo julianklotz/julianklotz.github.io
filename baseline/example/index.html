@@ -8,7 +8,7 @@
 
 		<style>
 			body { margin: 0; padding: 0; }
-#wrapper { margin: 0 auto; max-width: 700px; padding: 0 22px 22px 22px; }
+			#wrapper { margin: 0 auto 0 auto; max-width: 700px; padding: 22px 22px 22px 22px; }
 
 			.show-grid #wrapper{
 				background-image: url('img/bg.png');
@@ -16,17 +16,15 @@
 				background-color: #ffffd9;
 			}
 
-			#wrapper
-				padding-top: 22px;
-
 		</style>
 	</head>
 <body>
-<p>
-	<button id="btn-grid-toggle">Grundlinien</button>
-	<button id="btn-left-line-toggle">Randlinien</button>
-</p>
 <div id="wrapper">
+	<div class="bar">
+		<button id="btn-grid-toggle">Grundlinien</button>
+		<button class="medium" id="btn-left-line-toggle">Randlinien</button>
+		<button class="small" id="">Small button</button>
+	</div>
 	<div class="bar">
 		<a class="bar-item" href="#">Drucken</a>
 		<a class="bar-item" href="#">Teilen</a>
@@ -61,8 +59,11 @@
 
 	<p class="short-description">This is an essential walk for any photographer as it passes though some of the most spectacular landscapes in Scotland. As part of the Trotternish ridge it has been formed by a massive landslip which has created high cliffs, hidden plateaus and pinnacles of rock. Choose a clear day and bring your camera.</p>
 	<p>The Quiraing walk is a loop, returning you to the same point (the carpark). It covers a distance of 6.8km, with the average time to complete the walk being 2 hours (with no stops). We have classed this walk as ‘Medium’ in length and ‘Hard’ for difficulty, check the rating guide for details.</p>
+	<p><button class="medium">Drück mich!</button> Auf diesem Weg ist es möglich, Buttons frei mit Text zu kombinieren </p>
 	<small class="author-recommends-label">Editorial Advice</small>
 	<blockquote>Don’t forget to bring an umbrella and a towel.</blockquote>
+
+
 
 	<h2>Rate and comment</h2>
 

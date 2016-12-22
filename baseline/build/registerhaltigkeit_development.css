@@ -3,141 +3,19 @@
   border-left: 1px dotted rgba(134, 0, 0, 0.8);
   padding-left: 1px; }
 
-/* --- TAG LEVEL STYLING --- */
-html, input, option, select, textarea {
-  font-size: 16px;
-  line-height: 22px;
-  font-family: "Alto Pro", Helvetica, Arial, sans-serif;
-  color: #3f3f3f;
-  -webkit-font-smoothing: subpixel-antialiased;
-  font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -o-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto; }
-
-input {
-  vertical-align: middle; }
-
-h1, .fake-h1 {
-  font-size: 32px;
-  line-height: 44px;
-  margin: 44px 0 22px 0; }
-
-h2, .fake-2 {
-  font-size: 21.33333px;
-  line-height: 44px;
-  margin: 22px 0; }
-
-h3, .fake-h3 {
-  font-size: 19.2px;
-  line-height: 22px;
-  margin: 22px 0; }
-
-h4, .fake-h4 {
-  font-size: 16px;
-  line-height: 22px;
-  margin: 22px 0 0 0; }
-
-h5, .fake-h5, small, .small, .attribute-item {
-  font-size: 14.22222px;
-  line-height: 22px; }
-
-h5, .fake-h5 {
-  margin: 22px 0 0 0; }
-
-sup {
-  font-size: 12.44444px; }
-
-h6, .fake-h6, .incredibly-small, .attribute {
-  font-size: 12.44444px;
-  line-height: 22px;
-  margin: 22px 0 0 0; }
-
-code {
-  font-family: "Menlo", "Andale Mono", monospace;
-  font-size: 14.22222px;
-  line-height: 22px;
-  background-color: #f3f3f3; }
-
-blockquote {
-  padding-left: 11px;
-  border-left: 4px solid #e7e7e7;
-  margin: 0 0 22px 0; }
-
-p {
-  margin: 22px 0; }
-
-ul, ol {
-  padding: 0 0 0 1rem;
-  list-style-position: outside; }
-
-li {
-  margin: 0;
-  padding-left: 8px; }
-
-li + li {
-  margin-top: 11px; }
-
-ul, ol {
-  margin: 11px 0 11px 0; }
-
-label {
-  /*margin:  0 0 $base-line-height / 2 0 */
-  display: inline-block;
-  max-width: 100%;
-  font-weight: 700;
-  font-size: 14.22222px;
-  line-height: 22px; }
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0; }
-
-.tabular, .attribute-item {
-  font-feature-settings: "tnum"; }
-
-.form-group + .form-group {
-  margin-top: 33px; }
-
-.form-group {
-  margin: 22px 0; }
-
-.form-control {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: 33px;
-  border-radius: 3px;
-  border: 1px solid #cfcfcf; }
-
-textarea {
-  padding: 11px; }
-
-input {
-  padding-left: 8px;
-  padding-right: 8px; }
-
-textarea.form-control {
-  height: 88px; }
-
 /* --- LAYOUT --- */
 .bar {
   background-color: rgba(220, 220, 220, 0.6);
   text-align: right;
-  border-radius: 4px; }
+  border-radius: 4px;
+  margin: 1.375rem 0; }
 
 .bar, .bar-item {
-  padding-top: 11px;
-  padding-bottom: 11px; }
+  padding-top: 0.6875rem;
+  padding-bottom: 0.6875rem; }
 
 .bar-item {
-  padding: 11px 0.5rem; }
+  padding: 0.6875rem 0.5rem; }
 
 .attribute {
   border-width: 1px;
@@ -168,5 +46,149 @@ textarea.form-control {
 
 .clearfix {
   clear: both; }
+
+body {
+  background-color: #e7e7e7; }
+
+#wrapper {
+  background-color: white; }
+
+html, input, option, select, textarea, button {
+  font-size: 1em;
+  line-height: 1.375rem;
+  font-family: "Alto Pro", Helvetica, Arial, sans-serif;
+  color: #3f3f3f;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -o-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
+
+input {
+  vertical-align: middle; }
+
+h1, .fake-h1 {
+  font-size: 2em;
+  line-height: 2.75rem;
+  margin: 2.75rem 0 1.375rem 0; }
+
+h2, .fake-2 {
+  font-size: 1.33333em;
+  line-height: 2.75rem;
+  margin: 1.375rem 0; }
+
+h3, .fake-h3 {
+  font-size: 1.2em;
+  line-height: 1.375rem;
+  margin: 1.375rem 0; }
+
+h4, .fake-h4 {
+  font-size: 1em;
+  line-height: 1.375rem;
+  margin: 1.375rem 0 0 0; }
+
+h5, .fake-h5, small, .small, .attribute-item {
+  font-size: 0.88889em;
+  line-height: 1.375rem; }
+
+h5, .fake-h5 {
+  margin: 1.375rem 0 0 0; }
+
+sup {
+  font-size: 0.77778em; }
+
+h6, .fake-h6, .incredibly-small, .attribute {
+  font-size: 0.77778em;
+  line-height: 1.375rem;
+  margin: 1.375rem 0 0 0; }
+
+code {
+  font-family: "Menlo", "Andale Mono", monospace;
+  font-size: 0.88889em;
+  line-height: 1.375rem;
+  background-color: #f3f3f3; }
+
+blockquote {
+  padding-left: 0.6875rem;
+  border-left: 4px solid #e7e7e7;
+  margin: 0 0 1.375rem 0; }
+
+p {
+  margin: 1.375rem 0; }
+
+ul, ol {
+  padding: 0 0 0 1rem;
+  list-style-position: outside; }
+
+li {
+  margin: 0;
+  padding-left: 0.5em; }
+
+li + li {
+  margin-top: 0.6875rem; }
+
+ul, ol {
+  margin: 0.6875rem 0 0.6875rem 0; }
+
+label {
+  /*margin:  0 0 $base-line-height / 2 0 */
+  display: inline-block;
+  max-width: 100%;
+  font-weight: 700;
+  font-size: 0.88889em;
+  line-height: 1.375rem; }
+
+button {
+  padding: 0.6875rem 1rem;
+  background-color: #c0cc56;
+  border-radius: 3px;
+  border: none; }
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+button.medium {
+  padding: 0.45833rem 1rem;
+  margin: 0.22917rem 0; }
+button.small, button.attribute-item {
+  padding: 0 1rem; }
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+.tabular, .attribute-item {
+  font-feature-settings: "tnum"; }
+
+.form-group + .form-group {
+  margin-top: 2.0625rem; }
+
+.form-group {
+  margin: 1.375rem 0; }
+
+.form-control {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 2.0625rem;
+  border-radius: 3px;
+  border: 1px solid #cfcfcf; }
+
+textarea {
+  padding: 0.6875rem; }
+
+input {
+  padding-left: 0.5em;
+  padding-right: 0.5em; }
+
+textarea.form-control {
+  height: 5.5rem; }
 
 /*# sourceMappingURL=registerhaltigkeit_development.css.map */
