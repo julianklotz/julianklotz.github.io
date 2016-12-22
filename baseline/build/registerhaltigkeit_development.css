@@ -53,6 +53,21 @@ body {
 #wrapper {
   background-color: white; }
 
+.no-margin-top {
+  margin-top: 0; }
+
+.no-margin-bottom {
+  margin-bottom: 0; }
+
+.margin-top-dot5 {
+  margin-top: 0.6875rem; }
+
+.margin-top-1 {
+  margin-top: 1.375rem; }
+
+.margin-top-1dot5 {
+  margin-top: 2.0625rem; }
+
 html, input, option, select, textarea, button {
   font-size: 1em;
   line-height: 1.375rem;
@@ -161,7 +176,7 @@ button.small, button.attribute-item {
   padding: 0 1rem; }
 
 form {
-  margin: -1.375rem; }
+  margin: 1.375rem -1.375rem; }
 
 fieldset {
   background-color: #f3f3f3;
