@@ -48,7 +48,7 @@
   clear: both; }
 
 body {
-  background-color: #e7e7e7; }
+  background-color: #6f6f6f; }
 
 #wrapper {
   background-color: white; }
@@ -126,7 +126,7 @@ code {
   font-family: "Menlo", "Andale Mono", monospace;
   font-size: 0.88889em;
   line-height: 1.375rem;
-  background-color: #f3f3f3; }
+  background-color: rgba(240, 240, 240, 0.5); }
 
 blockquote {
   padding-left: 0.6875rem;
@@ -179,10 +179,10 @@ form {
   margin: 1.375rem -1.375rem; }
 
 fieldset {
-  background-color: #f3f3f3;
+  background-color: rgba(240, 240, 240, 0.5);
   border: none;
-  border-top: 1px solid #cfcfcf;
-  border-bottom: 1px solid #cfcfcf;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   padding: 0.6875rem 1.375rem;
   margin: 0; }
 
@@ -216,7 +216,8 @@ textarea {
 
 input {
   padding-left: 0.5em;
-  padding-right: 0.5em; }
+  padding-right: 0.5em;
+  background-color: white; }
 
 textarea.form-control {
   height: 5.5rem; }
