@@ -124,10 +124,25 @@ button
     padding: $pad 1rem
 
 
+form
+  margin: 0 -$base-line-height
+
 fieldset
-  border: 0
+  background-color: #f3f3f3
+  border: none
+  border-top: 1px solid #cfcfcf
+  border-bottom: 1px solid #cfcfcf
+  padding: $base-line-height / 2 $base-line-height
   margin: 0
-  padding: 0
+
+fieldset + fieldset
+  border-top: none
+
+.fieldset-headline
+  text-transform: uppercase
+  color: #6f6f6f
+  letter-spacing: .05rem
+  @extend small
 
 .tabular
   font-feature-settings: "tnum"
