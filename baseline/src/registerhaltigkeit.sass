@@ -7,11 +7,7 @@ $base-bg-color: rgba(240, 240, 240, .5)
 @import 'layout'
 
 
-
 html, input, option, select, textarea, button
-  font-size: $base-font-size
-  line-height: $base-line-height
-
   font-family: "Alto Pro", Helvetica, Arial, sans-serif
 
   color: #3f3f3f
@@ -26,6 +22,15 @@ html, input, option, select, textarea, button
   -moz-hyphens: auto
   -ms-hyphens: auto
   hyphens: auto
+
+html, input, option, select, textarea, button
+  font-size: $base-font-size
+  line-height: $base-line-height
+
+@media(screen and min-width: 480px)
+  html, input, option, select, textarea, button
+    font-size: 1.125em
+    line-height: 1.3rem
 
 input
   vertical-align: middle
@@ -96,7 +101,6 @@ ul, ol
   margin: $base-line-height /2 0 $base-line-height /2 0
 
 label
-  /*margin:  0 0 $base-line-height / 2 0*/
   display: inline-block
   max-width: 100%
   font-weight: 700
@@ -162,6 +166,11 @@ fieldset + fieldset
   height: 1.5 * ($base-line-height)
   border-radius: 3px
   border: 1px solid #cfcfcf
+
+.help-block
+  margin-top: $base-line-height / 2
+  color: #6f6f6f
+  @extend small
 
 textarea
   padding: $base-line-height / 2

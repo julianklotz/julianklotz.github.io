@@ -1,5 +1,5 @@
 /* --- DEBUGGING --- */
-.show-left-lines h1, .show-left-lines h2, .show-left-lines h3, .show-left-lines h4, .show-left-lines h5, .show-left-lines h6, .show-left-lines li, .show-left-lines p, .show-left-lines dd, .show-left-lines dt, .show-left-lines small, .show-left-lines .fieldset-headline, .show-left-lines blockquote, .show-left-lines ul, .show-left-lines ol, .show-left-lines div, .show-left-lines section, .show-left-lines article {
+.show-left-lines h1, .show-left-lines h2, .show-left-lines h3, .show-left-lines h4, .show-left-lines h5, .show-left-lines h6, .show-left-lines li, .show-left-lines p, .show-left-lines dd, .show-left-lines dt, .show-left-lines small, .show-left-lines .fieldset-headline, .show-left-lines .help-block, .show-left-lines blockquote, .show-left-lines ul, .show-left-lines ol, .show-left-lines div, .show-left-lines section, .show-left-lines article {
   border-left: 1px dotted rgba(134, 0, 0, 0.8);
   padding-left: 1px; }
 
@@ -69,8 +69,6 @@ body {
   margin-top: 2.0625rem; }
 
 html, input, option, select, textarea, button {
-  font-size: 1em;
-  line-height: 1.375rem;
   font-family: "Alto Pro", Helvetica, Arial, sans-serif;
   color: #3f3f3f;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -84,6 +82,14 @@ html, input, option, select, textarea, button {
   -ms-hyphens: auto;
   hyphens: auto; }
 
+html, input, option, select, textarea, button {
+  font-size: 1em;
+  line-height: 1.375rem; }
+
+@media(screen and min-width: 480px) {
+  html, input, option, select, textarea, button {
+    font-size: 1.125em;
+    line-height: 1.3rem; } }
 input {
   vertical-align: middle; }
 
@@ -107,7 +113,7 @@ h4, .fake-h4 {
   line-height: 1.375rem;
   margin: 1.375rem 0 0 0; }
 
-h5, .fake-h5, small, .fieldset-headline, .small, .attribute-item {
+h5, .fake-h5, small, .fieldset-headline, .help-block, .small, .attribute-item {
   font-size: 0.88889em;
   line-height: 1.375rem; }
 
@@ -151,7 +157,6 @@ ul, ol {
   margin: 0.6875rem 0 0.6875rem 0; }
 
 label {
-  /*margin:  0 0 $base-line-height / 2 0 */
   display: inline-block;
   max-width: 100%;
   font-weight: 700;
@@ -210,6 +215,10 @@ fieldset + fieldset {
   height: 2.0625rem;
   border-radius: 3px;
   border: 1px solid #cfcfcf; }
+
+.help-block {
+  margin-top: 0.6875rem;
+  color: #6f6f6f; }
 
 textarea {
   padding: 0.6875rem; }
