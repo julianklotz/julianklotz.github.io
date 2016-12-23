@@ -151,6 +151,19 @@
 	<p>Sed dapibus, lectus sit amet adipiscing egestas, mauris est viverra nibh, <a href='#'>iaculis pretium</a> sem orci aliquet mauris. Donec et nisi dictum <a href='#'>felis sollicitudin</a> congue. Sed dapibus, lectus sit amet adipiscing egestas, mauris est viverra nibh, iaculis pretium sem orci aliquet mauris. Aliquam nisl enim&hellip; tristique tempus placerat at, posuere in lectus. Suspendisse potenti. Donec tempus tempus tellus, ac lacinia turpis mattis ac! </p>
 	<p>Donec tempus tempus tellus, ac <abbr title='Hypertext Markup Language'>HTML</abbr> lacinia turpis mattis ac. Donec tempus tempus tellus, ac lacinia turpis mattis ac! Suspendisse potenti cras molestie, risus a enim convallis vitae luctus libero lacinia. </p>
 	<p>Potenti et eros sed justo &ndash; commodo bibendum non at nunc. Nulla vel magna sit amet dui <a href='#'>lobortis</a> commodo vitae vel nulla. Aliquam nisl enim&hellip; tristique tempus placerat at, posuere in lectus. Nulla auctor eleifend turpis consequat pharetra: <strong>Donec a congue leo. </strong>Cras molestie risus a enim convallis vitae luctus libero lacinia. </p>
+<script>
+	var body = document.getElementsByTagName( 'body' )[0],
+			gridBtn = document.getElementById( 'btn-grid-toggle'),
+			leftLineBtn = document.getElementById( 'btn-left-line-toggle');
+
+	gridBtn.addEventListener( 'click', function() {
+		body.classList.toggle( 'show-grid' );
+	});
+	leftLineBtn.addEventListener( 'click', function() {
+		body.classList.toggle( 'show-left-lines' );
+	});
+</script>
+
 
 
 
