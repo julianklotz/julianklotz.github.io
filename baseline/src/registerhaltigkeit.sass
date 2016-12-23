@@ -82,7 +82,7 @@ p
   margin: $base-line-height 0
 
 ul, ol
-  padding: 0 0 0 1rem
+  padding: 0 0 0 $base-font-size
   list-style-position: outside
 
 li
@@ -104,7 +104,7 @@ label
 
 button
   $pad: $base-line-height / 2
-  padding: $pad 1rem
+  padding: $pad $base-font-size
   margin: 0
   background-color: #c0cc56
   border-radius: 3px
@@ -117,12 +117,12 @@ button::-moz-focus-inner
 button
   &.medium
     $pad: $base-line-height / 3
-    padding: $pad 1rem
+    padding: $pad $base-font-size
     margin: (1 / 6 * $base-line-height) 0
 
   &.small
     $pad: 0
-    padding: $pad 1rem
+    padding: $pad $base-font-size
 
 
 form
@@ -142,7 +142,7 @@ fieldset + fieldset
 .fieldset-headline
   text-transform: uppercase
   color: #6f6f6f
-  letter-spacing: .05rem
+  letter-spacing: .05 * $base-font-size
   @extend small
 
 .tabular

@@ -139,7 +139,7 @@ p {
   margin: 22px 0; }
 
 ul, ol {
-  padding: 0 0 0 1rem;
+  padding: 0 0 0 16px;
   list-style-position: outside; }
 
 li {
@@ -160,7 +160,7 @@ label {
   line-height: 22px; }
 
 button {
-  padding: 11px 1rem;
+  padding: 11px 16px;
   margin: 0;
   background-color: #c0cc56;
   border-radius: 3px;
@@ -171,10 +171,10 @@ button::-moz-focus-inner {
   padding: 0; }
 
 button.medium {
-  padding: 7.33333px 1rem;
+  padding: 7.33333px 16px;
   margin: 3.66667px 0; }
 button.small, button.attribute-item {
-  padding: 0 1rem; }
+  padding: 0 16px; }
 
 form {
   margin: 22px -22px; }
@@ -193,7 +193,7 @@ fieldset + fieldset {
 .fieldset-headline {
   text-transform: uppercase;
   color: #6f6f6f;
-  letter-spacing: 0.05rem; }
+  letter-spacing: 0.8px; }
 
 .tabular, .attribute-item {
   font-feature-settings: "tnum"; }
