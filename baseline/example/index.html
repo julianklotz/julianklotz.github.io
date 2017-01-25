@@ -8,7 +8,7 @@
 
 		<style>
 			body { margin: 0; padding: 0; }
-			#wrapper { margin: 0 auto 0 auto; max-width: 700px; padding: 22px 22px 22px 22px; }
+			#wrapper { margin: 0 auto 0 auto; max-width: 700px; padding: 22px 2em;}
 
 			.show-grid #wrapper{
 				background-image: url('img/bg.png');
@@ -29,6 +29,15 @@
 		<a class="bar-item" href="#">Teilen</a>
 		<a class="bar-item" href="#">Bearbeiten</a>
 	</div>
+
+	<h1>A little bit of a README</h1>
+	<ol>
+		<li>The basic font size is 16px/22px
+		<li>The smallest possible unit is line-height / 2
+		<li>Top and bottom values should be based on a multiple of half a line height
+		<li>Left and right values should be based on a multiple of half an em
+		<li>Text areas and input fields are layed out in a way that a one-line field is 36px in total, plus 8px margin-top to fix to keep the baseline
+	</ol>
 
 
 	<h1>The impressive Rocks of Quiraing</h1>
@@ -91,6 +100,11 @@
 			</div>
 			<div class="form-group">
 				<label>Über mich</label>
+				<textarea class="form-control" placeholder="Deine Biografie">
+				</textarea>
+			</div>
+			<div class="form-group">
+				<label>Some more</label>
 				<textarea class="form-control" placeholder="Deine Biografie">
 				</textarea>
 			</div>
