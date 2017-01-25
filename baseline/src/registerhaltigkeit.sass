@@ -28,9 +28,6 @@ html, input, option, select, textarea, button
   font-size: $base-font-size
   line-height: $base-line-height
 
-input
-  vertical-align: middle
-
 h1, .fake-h1
   font-size: 2 * $base-font-size
   line-height: 2 * $base-line-height
@@ -101,6 +98,12 @@ label
   font-weight: 700
   font-size: 0.8888888889 * $base-font-size
   line-height: $base-line-height
+
+  &.form-checkbox-label
+    font-weight: normal
+    display: block
+    padding: 11px 0
+
 
 button
   $pad: $base-line-height / 2
@@ -181,4 +184,5 @@ textarea.form-control
   height: 3 * ($base-line-height) + 2 * 6px
   margin-top: 8px
   margin-bottom: 0
+
 
