@@ -1,58 +1,235 @@
-/*
-Error: Invalid CSS after "none": expected expression (e.g. 1px, bold), was ";"
-        on line 14 of src/registerhaltigkeit.sass
+/* --- DEBUGGING --- */
+.show-left-lines h1, .show-left-lines h2, .show-left-lines h3, .show-left-lines h4, .show-left-lines h5, .show-left-lines h6, .show-left-lines li, .show-left-lines p, .show-left-lines dd, .show-left-lines dt, .show-left-lines small, .show-left-lines .fieldset-headline, .show-left-lines .help-block, .show-left-lines blockquote, .show-left-lines ul, .show-left-lines ol, .show-left-lines div, .show-left-lines section, .show-left-lines article {
+  border-left: 1px dotted rgba(134, 0, 0, 0.8);
+  padding-left: 1px; }
 
-9: 
-10: html, input, option, select, textarea, button
-11: 
-12:   font-family: "Alto Pro", Helvetica, Arial, sans-serif
-13: 
-14:   -webkit-text-size-adjust: none;
-15:   -moz-text-size-adjust: none;
-16:   -ms-text-size-adjust: none;
-17: 
-18:   color: #3f3f3f
-19: 
+/* --- LAYOUT --- */
+.bar {
+  background-color: rgba(220, 220, 220, 0.6);
+  text-align: right;
+  border-radius: 4px;
+  margin: 22px 0; }
 
-Backtrace:
-src/registerhaltigkeit.sass:14
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1207:in `expected'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/script/lexer.rb:229:in `expected!'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/script/parser.rb:744:in `assert_done'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/script/parser.rb:76:in `parse'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/script/parser.rb:240:in `parse'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/script.rb:27:in `parse'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:1151:in `parse_script'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:721:in `parse_property'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:692:in `parse_property_or_rule'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:658:in `parse_line'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:536:in `build_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:555:in `block in append_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:554:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:554:in `append_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:545:in `block in build_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:538:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:538:in `build_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:555:in `block in append_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:554:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:554:in `append_children'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:409:in `_to_tree'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:381:in `_render_with_sourcemap'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/engine.rb:298:in `render_with_sourcemap'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `each'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/lib/sass/plugin/compiler.rb:331:in `block in watch'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/vendor/listen/lib/listen/listener.rb:252:in `call'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.4.23/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"none\": expected expression (e.g. 1px, bold), was \";\"\A         on line 14 of src/registerhaltigkeit.sass\A \A 9: \A 10: html, input, option, select, textarea, button\A 11: \A 12:   font-family: \"Alto Pro\", Helvetica, Arial, sans-serif\A 13: \A 14:   -webkit-text-size-adjust: none;\A 15:   -moz-text-size-adjust: none;\A 16:   -ms-text-size-adjust: none;\A 17: \A 18:   color: #3f3f3f\A 19: "; }
+.bar, .bar-item {
+  padding-top: 11px;
+  padding-bottom: 11px; }
+
+.bar-item {
+  padding: 11px 0.5rem; }
+
+.attribute {
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.1rem 0.3rem; }
+
+.attribute-item {
+  margin-right: 0.5rem;
+  display: block;
+  float: left;
+  min-width: 5rem; }
+
+.difficulty-medium {
+  border-color: #e30613;
+  color: #e30613; }
+
+.oax-icon-star {
+  color: #cfcfcf; }
+  .oax-icon-star.active {
+    color: #a6b339; }
+
+.cat-icon {
+  vertical-align: middle;
+  margin: -12px 0 0 0; }
+
+.author-recommends-label {
+  font-weight: bold; }
+
+.clearfix {
+  clear: both; }
+
+body {
+  background-color: #6f6f6f; }
+
+#wrapper {
+  background-color: white; }
+
+.no-margin-top {
+  margin-top: 0; }
+
+.no-margin-bottom {
+  margin-bottom: 0; }
+
+.margin-top-dot5 {
+  margin-top: 11px; }
+
+.margin-top-1 {
+  margin-top: 22px; }
+
+.margin-top-1dot5 {
+  margin-top: 33px; }
+
+html, input, option, select, textarea, button {
+  font-family: "Alto Pro", Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  color: #3f3f3f;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -o-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
+
+html, input, option, select, textarea, button {
+  font-size: 16px;
+  line-height: 22px; }
+
+h1, .fake-h1 {
+  font-size: 32px;
+  line-height: 44px;
+  margin: 44px 0 22px 0; }
+
+h2, .fake-2 {
+  font-size: 21.33333px;
+  line-height: 44px;
+  margin: 22px 0; }
+
+h3, .fake-h3 {
+  font-size: 19.2px;
+  line-height: 22px;
+  margin: 22px 0; }
+
+h4, .fake-h4 {
+  font-size: 16px;
+  line-height: 22px;
+  margin: 22px 0 0 0; }
+
+h5, .fake-h5, small, .fieldset-headline, .help-block, .small, .attribute-item {
+  font-size: 14.22222px;
+  line-height: 22px; }
+
+h5, .fake-h5 {
+  margin: 22px 0 0 0; }
+
+sup {
+  font-size: 12.44444px; }
+
+h6, .fake-h6, .incredibly-small, .attribute {
+  font-size: 12.44444px;
+  line-height: 22px;
+  margin: 22px 0 0 0; }
+
+code {
+  font-family: "Menlo", "Andale Mono", monospace;
+  font-size: 14.22222px;
+  line-height: 22px;
+  background-color: rgba(240, 240, 240, 0.5); }
+
+blockquote {
+  padding-left: 0.5em;
+  border-left: 4px solid #e7e7e7;
+  margin: 0 0 22px 0; }
+
+p {
+  margin: 22px 0; }
+
+ul, ol {
+  padding: 0 0 0 16px;
+  list-style-position: outside; }
+
+li {
+  margin: 0;
+  padding-left: 0.5em; }
+
+li + li {
+  margin-top: 11px; }
+
+ul, ol {
+  margin: 11px 0 11px 0; }
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  font-weight: 700;
+  font-size: 14.22222px;
+  line-height: 22px; }
+  label.form-checkbox-label {
+    font-weight: normal;
+    display: block;
+    padding: 11px 0; }
+
+button {
+  padding: 11px 1em;
+  margin: 0;
+  background-color: #c0cc56;
+  border-radius: 3px;
+  border: none; }
+
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+button.medium {
+  margin: 3.66667px 0;
+  padding: 7px 1em;
+  margin: 4px 0; }
+
+form {
+  margin: 22px -2em; }
+
+fieldset {
+  background-color: rgba(240, 240, 240, 0.5);
+  border: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 11px 2em;
+  margin: 0; }
+
+fieldset + fieldset {
+  border-top: none; }
+
+.fieldset-headline {
+  text-transform: uppercase;
+  color: #6f6f6f;
+  letter-spacing: 0.8px; }
+
+.tabular, .attribute-item {
+  font-feature-settings: "tnum"; }
+
+.form-group + .form-group {
+  margin-top: 33px; }
+
+.form-group {
+  margin: 22px 0; }
+
+.form-control {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+  border-radius: 3px;
+  border: 1px solid #cfcfcf; }
+
+.help-block {
+  margin-top: 11px;
+  color: #6f6f6f; }
+
+input {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: white; }
+
+textarea.form-control {
+  height: 78px;
+  margin-top: 8px;
+  margin-bottom: 0; }
+
+/*# sourceMappingURL=registerhaltigkeit_development.css.map */
