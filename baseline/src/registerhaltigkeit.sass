@@ -189,4 +189,69 @@ textarea.form-control
   margin-top: 8px
   margin-bottom: 0
 
+/* --- STYLING FOR FILE INPUT --- */
+
+.file-control
+  width: 0.1px
+  height: 0.1px
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  z-index: -1
+
+
+
+
+.file-control + label
+  line-height: $base-line-height
+  border: 1px solid #cfcfcf
+  width: 100%
+  text-align: left
+  border-radius: 3px
+  background-color: white
+  display: inline-block
+  cursor: pointer
+  margin-top: 8px
+
+  strong
+    padding: 6px 2em
+    display: inline-block
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+    vertical-align: top
+    background-color: #C0CC56
+    float: right
+
+
+
+//.file-control:focus + label
+//  outline: 1px dotted #000
+//  outline: -webkit-focus-ring-color auto 5px
+
+.file-control + label *
+  pointer-events: none
+
+.js-filename
+  width: 200px
+  font-weight: normal
+  padding: 6px 1em
+  display: inline-block
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+  vertical-align: middle
+
+@media screen and (max-width: 50em)
+  .file-control + label strong
+    display: block !important
+    float: none
+    text-align: center
+
+  .js-filename
+    display: block
+    width: auto
+    text-align: center
+
+/* --- END STYLING FOR FILE INPUT --- */
 
