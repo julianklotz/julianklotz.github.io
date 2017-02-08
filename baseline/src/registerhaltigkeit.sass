@@ -8,7 +8,12 @@ $base-bg-color: rgba(240, 240, 240, .5)
 
 
 html, input, option, select, textarea, button
+
   font-family: "Alto Pro", Helvetica, Arial, sans-serif
+
+  -webkit-text-size-adjust: none
+  -moz-text-size-adjust: none
+  -ms-text-size-adjust: none
 
   color: #3f3f3f
 
@@ -26,9 +31,6 @@ html, input, option, select, textarea, button
 html, input, option, select, textarea, button
   font-size: $base-font-size
   line-height: $base-line-height
-
-input
-  vertical-align: middle
 
 h1, .fake-h1
   font-size: 2 * $base-font-size
@@ -55,7 +57,6 @@ h5, .fake-h5, small, .small
   line-height: $base-line-height
 
 
-
 h5, .fake-h5
   margin: $base-line-height 0 0 0
 
@@ -74,7 +75,7 @@ code
   background-color: $base-bg-color
 
 blockquote
-  padding-left: $base-line-height / 2
+  padding-left: .5em
   border-left: 4px solid #e7e7e7
   margin: 0 0 $base-line-height 0
 
@@ -87,7 +88,7 @@ ul, ol
 
 li
   margin: 0
-  padding-left: .5 * $base-font-size
+  padding-left: .5em
 
 li + li
   margin-top: $base-line-height / 2
@@ -102,9 +103,15 @@ label
   font-size: 0.8888888889 * $base-font-size
   line-height: $base-line-height
 
+  &.form-checkbox-label
+    font-weight: normal
+    display: block
+    padding: 11px 0
+
+
 button
   $pad: $base-line-height / 2
-  padding: $pad $base-font-size
+  padding: $pad 1em
   margin: 0
   background-color: #c0cc56
   border-radius: 3px
@@ -116,24 +123,23 @@ button::-moz-focus-inner
 
 button
   &.medium
-    $pad: $base-line-height / 3
-    padding: $pad $base-font-size
     margin: (1 / 6 * $base-line-height) 0
+    padding: 7px 1em
+    margin: 4px 0
 
   &.small
     $pad: 0
-    padding: $pad $base-font-size
 
 
 form
-  margin: #{$base-line-height} #{-$base-line-height}
+  margin: #{$base-line-height} -2em
 
 fieldset
   background-color: $base-bg-color
   border: none
   border-top: 1px solid white
   border-bottom: 1px solid white
-  padding: $base-line-height / 2 $base-line-height
+  padding: $base-line-height / 2 2em
   margin: 0
 
 fieldset + fieldset
@@ -158,7 +164,13 @@ fieldset + fieldset
   display: block
   width: 100%
   max-width: 100%
-  height: 1.5 * ($base-line-height)
+  // border 1px + pad 6px + line height 22px + pad 6px + border 1px
+  padding-top: 6px
+  padding-bottom: 6px
+
+  margin-top: 8px
+  margin-bottom: 0px
+
   border-radius: 3px
   border: 1px solid #cfcfcf
 
@@ -167,14 +179,79 @@ fieldset + fieldset
   color: #6f6f6f
   @extend small
 
-textarea
-  padding: $base-line-height / 2
-
 input
-  padding-left: $base-font-size / 2
-  padding-right: $base-font-size / 2
+  padding-left: .5em
+  padding-right: .5em
   background-color: white
 
 textarea.form-control
-  height: 4 * ($base-line-height)
+  height: 3 * ($base-line-height) + 2 * 6px
+  margin-top: 8px
+  margin-bottom: 0
+
+/* --- STYLING FOR FILE INPUT --- */
+
+.file-control
+  width: 0.1px
+  height: 0.1px
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  z-index: -1
+
+
+
+
+.file-control + label
+  line-height: $base-line-height
+  border: 1px solid #cfcfcf
+  width: 100%
+  text-align: left
+  border-radius: 3px
+  background-color: white
+  display: inline-block
+  cursor: pointer
+  margin-top: 8px
+
+  strong
+    padding: 6px 2em
+    display: inline-block
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+    vertical-align: top
+    background-color: #C0CC56
+    float: right
+
+
+
+//.file-control:focus + label
+//  outline: 1px dotted #000
+//  outline: -webkit-focus-ring-color auto 5px
+
+.file-control + label *
+  pointer-events: none
+
+.js-filename
+  width: 200px
+  font-weight: normal
+  padding: 6px 1em
+  display: inline-block
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+  vertical-align: middle
+
+@media screen and (max-width: 50em)
+  .file-control + label strong
+    display: block !important
+    float: none
+    text-align: center
+
+  .js-filename
+    display: block
+    width: auto
+    text-align: center
+
+/* --- END STYLING FOR FILE INPUT --- */
 
