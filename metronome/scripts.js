@@ -305,7 +305,12 @@ $(document).ready(function() {
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
 
 		prepareAudio: function() {
-			window.AudioContext = window.AudioContext || window.webkitAudioContext;
+			window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+			if(!window.AudioContext) {
+				alert("Sorry, your browser does not support playing sound using the Web Audio API.");
+			}
+
 			this.audioCtx = new AudioContext();
 			var bufferLoader = new BufferLoader( this.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
 			bufferLoader.load();
