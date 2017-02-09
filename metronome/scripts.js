@@ -286,8 +286,9 @@ $(document).ready(function() {
 		},
 
 		resume: function() {
+			console.log('Trying to resume …');
 			if(this.audioCtx) {
-				console.log('resume');
+				console.log('Audio context is defined …');
 				this.audioCtx.resume();
 
 				setTimeout(function () {
@@ -296,7 +297,7 @@ $(document).ready(function() {
 					}
 				}, 0);
 			}
-		}
+		},
 
 		onMute: function(evt) {
 			console.log('click');
