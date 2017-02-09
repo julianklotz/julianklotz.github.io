@@ -330,7 +330,7 @@ $(document).ready(function() {
 			this.audioCtx = new AudioContext();
 			var bufferLoader = new BufferLoader( this.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
 			bufferLoader.load();
-			document.body.addEventListener('touchend', this.resume, false);
+			document.body.addEventListener('touchend', this.resume.bind(this), false);
 
 		},
 
