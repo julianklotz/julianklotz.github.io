@@ -286,7 +286,7 @@ $(document).ready(function() {
 		},
 
 		resume: function() {
-			console.log('Trying to resume …');
+			debugger
 			if(this.audioCtx) {
 				console.log('Audio context is defined …');
 				this.audioCtx.resume();
