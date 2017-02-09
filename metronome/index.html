@@ -11,7 +11,6 @@
 <title>The HTML5 Herald</title>
 <meta name="description" content="The HTML5 Herald">
 <meta name="author" content="SitePoint">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
 
 <style>
 input::-webkit-outer-spin-button,
@@ -30,13 +29,30 @@ input::-webkit-inner-spin-button {
 	</div>
 
 <script type="text/template" id="speed-trainer">
-	<input id="js-speedtrainer-from" />
+	<form>
+		<label>From</label>
+		<input id="js-speedtrainer-from" type="number" value="<%= from %>" />
+		<label>To</label>
+		<input id="js-speedtrainer-to" type="number" value="<%= to %>"/>
+		<label>Step</label>
+		<input id="js-speedtrainer-stepsize" type="number" value="<%= stepSize %>" />
 
+		<input id="js-btn-toggle-trainer" type="submit"
+			value="<%= isRunning === true ? 'Stop' : 'Play' %>" />
+	</form>
 </script>
 
 <script type="text/template" id="metronome">
+		<button id="js-btn-mute">
+			<% if(isMuted === true ) { %>
+				Start
+			<% } else if (isMuted === false ) { %>
+				Mute
+			<% } %>
+
+		</button>
 		<form>
-			<label>BPM</label><br />
+			<label class="">BPM</label>
 			<div class="input-group">
 				<div class="input-group-addon" id="js-decrement-bpm">-</div>
 

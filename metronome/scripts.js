@@ -60,9 +60,9 @@ $(document).ready(function() {
 
 	var BarModel = Backbone.Model.extend({
 		defaults: {
-			"bpm":  60,
+			"bpm":  120,
 			"meter": 4,
-			"isMuted": false,
+			"isMuted": true,
 			"dirty": false, // Indicates whether the speed or meter has changed
 			"bpmMax": 240,
 			"bpmMin": 30,
@@ -72,7 +72,17 @@ $(document).ready(function() {
 		_currentBeat: 1,
 
 		initialize: function() {
-			this.updateInterval();
+			this.on('change:isMuted', this.onMuteChange);
+			this.onMuteChange();
+		},
+
+		onMuteChange: function() {
+			console.log('onMuteChange');
+			if(this.get('isMuted') === false ) {
+				this.updateInterval();
+			} else {
+				this.clearInterval();
+			}
 		},
 
 		updateInterval: function() {
@@ -86,6 +96,7 @@ $(document).ready(function() {
 
 		clearInterval: function() {
 			window.clearInterval( this._intervalId );
+			this._currentBeat = 1;
 		},
 
 		onInterval: function() {
@@ -115,12 +126,12 @@ $(document).ready(function() {
 			}
 		},
 
-		mute: function() {
-			this.set('isMuted', true);
+		toggleMute: function() {
+			this.set('isMuted', !this.get('isMuted'));
 		},
 
-		unMute: function() {
-			this.set('isMuted', false);
+		isMuted: function() {
+			return this.get('isMuted')
 		},
 
 		setMeter: function( meter ) {
@@ -168,26 +179,41 @@ $(document).ready(function() {
 
 	var SpeedTrainer = Backbone.Model.extend({
 		defaults: {
-			from: 60,
-			to: 100,
+			from: 120,
+			to: 140,
 			currentSpeed: null,
-			stepSize: 5,
+			stepSize: 10,
 			increaseAfter: 4, // bars
 			currentBar: 1,
+			isRunning: false,
 		},
 
 		initialize: function(options) {
 			this.metronome = options.metronome;
+			_.bindAll(this, 'onBeatLast');
+
 		},
 
-		onBeatLast: function() {
-			console.log("Current Bar: " + this.get('currentBar'));
-			console.log("Current Speed: " + this.get('currentSpeed'));
+		toggleTrainer: function() {
+			var isRunning = this.get('isRunning');
 
+			if( isRunning === true ) {
+				this.stop();
+			} else {
+				this.start();
+			}
+		},
+
+
+		onBeatLast: function() {
 			var bar = this.get('currentBar');
 			if( bar >= this.get('increaseAfter')) {
 				var newBpm = this.get('currentSpeed') + this.get('stepSize');
 				var maxBpm = this.get('to');
+
+				if(newBpm === maxBpm) {
+					this.stop();
+				}
 
 				if(newBpm > maxBpm) {
 					newBpm = maxBpm;
@@ -205,13 +231,15 @@ $(document).ready(function() {
 		},
 
 		start: function() {
-			this.metronome.on("BEAT_LAST", this.onBeatLast.bind(this));
+			this.metronome.on("BEAT_LAST", this.onBeatLast);
 			this.metronome.on("BEAT", this.onBeat);
-			this.set('currentSpeed', this.get('from'));
+			this.set({ 'isRunning': true, 'currentSpeed': this.get('from')} );
 			this.metronome.setBpm( this.get('currentSpeed') );
 		},
 
 		stop: function() {
+			console.log('-- STOP --');
+			this.set( 'isRunning', false );
 			this.metronome.off("BEAT_LAST", this.onBeatLast);
 			this.metronome.off("BEAT", this.onBeat);
 		},
@@ -223,6 +251,8 @@ $(document).ready(function() {
 		template: _.template( $('#metronome').html() ),
 
 		events: {
+			'click #js-btn-mute': 'onMute',
+
 			'input #js-input-bpm': 'onInputBpm',
 			'click #js-increment-bpm': 'onIncrementBpm',
 			'click #js-decrement-bpm': 'onDecrementBpm',
@@ -230,11 +260,12 @@ $(document).ready(function() {
 			'input #js-input-meter': 'onInputMeter',
 			'click #js-increment-meter': 'onIncrementMeter',
 			'click #js-decrement-meter': 'onDecrementMeter',
+
 		},
 
 		initialize: function() {
-			//this.speedTrainer = new SpeedTrainer({ metronome: this.model });
-			//this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
+			this.speedTrainer = new SpeedTrainer({ metronome: this.model });
+			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
 
 			this.prepareAudio.call(this);
 
@@ -251,34 +282,26 @@ $(document).ready(function() {
 			this.$decMeter = this.$('#js-decrement-meter');
 		},
 
+		onMute: function(evt) {
+			console.log('click');
+			evt.preventDefault();
+			this.model.toggleMute();
+		},
+
 		onInputBpm: function(evt) {
 			var val = parseInt( evt.target.value, 10);
 			this.model.setBpm( val );
 		},
 
-		onIncrementBpm: function(evt) { this.model.incBpm(); },
-		onDecrementBpm: function(evt) { this.model.decBpm(); },
-
 		onInputMeter: function(evt) {
 			var val = parseInt( evt.target.value, 10);
 			this.model.setMeter( val );
 		},
+
+		onIncrementBpm: function(evt) { this.model.incBpm(); },
+		onDecrementBpm: function(evt) { this.model.decBpm(); },
 		onIncrementMeter: function(evt) { this.model.incMeter(); },
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
-// 		onIncrementBpm: function(evt) {
-// 			var el = this.$inputBpm;
-// 		}
-//
-// 		updateInputValue: function(el, operation) {
-// 			var val = parseInt(el.val(), 10);
-// 			if(operation === 'INC') {
-// 				input.val = val++;
-// 			} else if(operation === 'DEC') {
-// 				input.val = val--;
-// 			} else {
-// 				console.error("Invalid Operation", operation);
-// 			}
-// 		},
 
 		prepareAudio: function() {
 			window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -305,7 +328,7 @@ $(document).ready(function() {
 				gainNode.gain.value = 1;
 			}
 		 	else {
-				gainNode.gain.value = .3;
+				gainNode.gain.value = .1;
 			}
 
 			clickSound.start( 0 );
@@ -313,7 +336,8 @@ $(document).ready(function() {
 
 		render: function() {
 			this.$el.html(this.template( this.model.attributes ));
-			// this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
+			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
+			this.speedTrainerView.delegateEvents();
 
 			return this
 		}
@@ -323,9 +347,39 @@ $(document).ready(function() {
 	var SpeedTrainerView = Backbone.View.extend({
 		template: _.template( $('#speed-trainer').html() ),
 
+		events: {
+			'click #js-btn-toggle-trainer': 'toggleTrainer',
+		},
+
+		initialize: function() {
+			this.model.on( 'change', this.render.bind(this) );
+		},
+
+		populateFormValues: function() {
+			this.$from = this.$('#js-speedtrainer-from');
+			this.$to = this.$('#js-speedtrainer-to');
+			this.$stepSize = this.$('#js-speedtrainer-stepsize');
+
+			var modelArgs = {
+				from:	parseInt( this.$from.val(), 10 ),
+				to:	parseInt( this.$to.val(), 10 ),
+				stepSize:	parseInt( this.$stepSize.val(), 10 ),
+			};
+
+			console.log(modelArgs);
+
+			this.model.set( modelArgs  );
+		},
+
+		toggleTrainer: function( evt ) {
+			evt.preventDefault();
+
+			this.populateFormValues();
+			this.model.toggleTrainer();
+		},
+
 		render: function() {
 			this.$el.html(this.template( this.model.attributes ));
-
 			return this
 		}
 
