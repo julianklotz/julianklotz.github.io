@@ -1,0 +1,82 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+.btn-mute {
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  right: 0; }
+
+.stepper {
+  color: #999; }
+
+.black-curtain {
+  background-color: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+label {
+  font-weight: bold;
+  margin-right: 48px;
+  width: 100px;
+  display: inline-block; }
+
+.clear {
+  clear: both; }
+
+.speed-trainer-headline {
+  margin-top: 36px;
+  margin-bottom: 24px;
+  font-weight: bold; }
+
+.label-small {
+  width: 50px; }
+
+.fl {
+  float: left;
+  width: 25%; }
+
+body, button, input {
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  line-height: 24px; }
+
+body {
+  background-color: white;
+  padding: 0;
+  margin: 48px 0 0 0; }
+
+input {
+  width: 100px;
+  border: none;
+  background: transparent; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold; }
+
+button {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 12px 0;
+  border: none;
+  font-weight: bold; }
+
+.container {
+  margin: 0 auto;
+  max-width: 480px;
+  padding: 24px; }
+
+/*# sourceMappingURL=style.css.map */
