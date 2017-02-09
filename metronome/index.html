@@ -43,8 +43,10 @@ label {
 	display: inline-block;
 }
 
+.clear { clear: both; }
+
 .speed-trainer-headline {
-	font-size: 36px; line-height: 48px; margin-top: 72px; margin-bottom: 24px;
+	margin-top: 36px; margin-bottom: 24px;
 	font-weight: bold;
 }
 
@@ -53,8 +55,6 @@ label {
 }
 
 .group-large, .group-large * {
-	font-size: 36px;
-	line-height: 48px;
 }
 
 .fl { float: left; width: 25%;}
@@ -153,8 +153,8 @@ button {
 		</button>
 		<form>
 
-			<div class="group-large">
-				<label class="">bpm</label>
+			<div class="fl">
+				<label class="">bpm</label><br />
 
 				<input
 					class="form-control"
@@ -169,8 +169,8 @@ button {
 				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>
 			</div>
 
-			<div class="group-large">
-				<label class="">meter</label>
+			<div class="fl">
+				<label class="">meter</label><br />
 
 				<input
 					class="form-control"
@@ -184,6 +184,7 @@ button {
 				<span class="input-group-addon stepper" id="js-decrement-meter">-</span>
 				<span id="js-increment-meter" class="stepper input-group-addon">+</span>
 			</div>
+			<div class="clear"></div>
 		</form>
 		<div class="speed-trainer-node">
 

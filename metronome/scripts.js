@@ -324,6 +324,11 @@ $(document).ready(function() {
 			var gainNode = this.audioCtx.createGain();
 			var clickSound = this.audioCtx.createBufferSource();
 
+			if(!this.bufferList) {
+				console.error('Couldn’t load audio files');
+				return
+			}
+
 			clickSound.buffer = this.bufferList[0];
 			clickSound.connect(this.audioCtx.destination);
 			clickSound.connect( gainNode );
