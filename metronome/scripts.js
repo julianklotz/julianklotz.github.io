@@ -253,6 +253,7 @@ $(document).ready(function() {
 
 		events: {
 			'click #js-btn-mute': 'onMute',
+			'touchend #js-btn-mute': 'onMute',
 
 			'input #js-input-bpm': 'onInputBpm',
 			'click #js-increment-bpm': 'onIncrementBpm',
