@@ -247,6 +247,7 @@ $(document).ready(function() {
 	});
 
 	var MetronomeView = Backbone.View.extend({
+		className: 'wrap-center',
 		el: '#root',
 		template: _.template( $('#metronome').html() ),
 

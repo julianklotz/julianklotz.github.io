@@ -18,6 +18,85 @@ input::-webkit-inner-spin-button {
 	    -webkit-appearance: none;
 				    margin: 0;
 }
+
+.btn-mute {
+	bottom: 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+}
+
+.stepper {
+	color: #999;
+}
+
+label {
+	font-weight: bold;
+	margin-right: 48px;
+	width: 100px;
+	display: inline-block;
+}
+
+.speed-trainer-headline {
+	font-size: 36px; line-height: 48px; margin-top: 72px; margin-bottom: 24px;
+	font-weight: bold;
+}
+
+.label-small {
+	width: 50px;
+}
+
+.group-large, .group-large * {
+	font-size: 36px;
+	line-height: 48px;
+}
+
+.fl { float: left; width: 25%;}
+
+
+body, button, input {
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+body {
+	background-color: white;
+	padding: 0; margin: 48px 0 0 0;
+}
+
+input {
+	width: 100px;
+	border: none;
+	background: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+		font-weight: bold;
+}
+
+button {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 12px 0;
+	border: none;
+	font-weight: bold;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 480px;
+}
+
+
 </style>
 
 </head>
@@ -30,31 +109,40 @@ input::-webkit-inner-spin-button {
 
 <script type="text/template" id="speed-trainer">
 	<form>
-		<label>From</label>
-		<input id="js-speedtrainer-from" type="number" value="<%= from %>" />
-		<label>To</label>
-		<input id="js-speedtrainer-to" type="number" value="<%= to %>"/>
-		<label>Step</label>
-		<input id="js-speedtrainer-stepsize" type="number" value="<%= stepSize %>" />
+		<p class="speed-trainer-headline">speed trainer</p>
+		<div class="fl">
+			<label class="label-small">from</label><br />
+			<input id="js-speedtrainer-from" type="number" value="<%= from %>" />
+		</div>
+		<div class="fl">
+			<label class="label-small">to</label><br />
+			<input id="js-speedtrainer-to" type="number" value="<%= to %>"/>
+		</div>
+		<div class="fl">
+			<label class="label-small">step</label><br />
+			<input id="js-speedtrainer-stepsize" type="number" value="<%= stepSize %>" />
+		</div>
 
-		<input id="js-btn-toggle-trainer" type="submit"
-			value="<%= isRunning === true ? 'Stop' : 'Play' %>" />
+		<div class="fl">
+			<button id="js-btn-toggle-trainer"><%= isRunning === true ? 'stop' : 'play' %></button>
+		</div>
+
 	</form>
 </script>
 
 <script type="text/template" id="metronome">
-		<button id="js-btn-mute">
+		<button id="js-btn-mute" class="btn-mute">
 			<% if(isMuted === true ) { %>
-				Start
+				start
 			<% } else if (isMuted === false ) { %>
-				Mute
+				mute
 			<% } %>
 
 		</button>
 		<form>
-			<label class="">BPM</label>
-			<div class="input-group">
-				<div class="input-group-addon" id="js-decrement-bpm">-</div>
+
+			<div class="group-large">
+				<label class="">bpm</label>
 
 				<input
 					class="form-control"
@@ -65,12 +153,12 @@ input::-webkit-inner-spin-button {
 					min="<%= bpmMin %>"
 					max="<%= bpmMax %>" />
 
-				<div class="input-group-addon" id="js-increment-bpm">+</div>
+				<span class="input-group-addon stepper" id="js-decrement-bpm">-</span>
+				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>
 			</div>
 
-			<br /><label>Meter</label><br />
-			<div class="input-group">
-				<div class="input-group-addon" id="js-decrement-meter">-</div>
+			<div class="group-large">
+				<label class="">meter</label>
 
 				<input
 					class="form-control"
@@ -81,7 +169,8 @@ input::-webkit-inner-spin-button {
 					min="1"
 					max="10" />
 
-				<div id="js-increment-meter" class="input-group-addon">+</div>
+				<span class="input-group-addon stepper" id="js-decrement-meter">-</span>
+				<span id="js-increment-meter" class="stepper input-group-addon">+</span>
 			</div>
 		</form>
 		<div class="speed-trainer-node">
