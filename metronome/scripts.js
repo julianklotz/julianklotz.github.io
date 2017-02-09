@@ -290,12 +290,14 @@ $(document).ready(function() {
 			if(this.audioCtx) {
 				console.log('Audio context is defined …');
 				this.audioCtx.resume();
-
-				setTimeout(function () {
+				
+				var cb = (function () {
 					if (this.audioCtx.state === 'running') {
 						document.body.removeEventListener('touchend', this.resume, false);
 					}
-				}, 0);
+				}).bind(this);
+
+				setTimeout(cb, 0);
 			}
 		},
 
