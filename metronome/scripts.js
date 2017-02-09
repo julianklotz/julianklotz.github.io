@@ -269,8 +269,9 @@ $(document).ready(function() {
 			this.speedTrainer = new SpeedTrainer({ metronome: this.model });
 			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
 
-			this.prepareAudio.call(this);
 
+			this.prepareAudio.call(this);
+			_.bindAll(this, 'resume');
 			// this.model.on('BEAT', this.render.bind(this));
 			this.render();
 			this.model.on('BEAT', this.playSound.bind(this));
@@ -283,6 +284,19 @@ $(document).ready(function() {
 			this.$incMeter = this.$('#js-increment-meter');
 			this.$decMeter = this.$('#js-decrement-meter');
 		},
+
+		resume: function() {
+			if(this.audioCtx) {
+				console.log('resume');
+				this.audioCtx.resume();
+
+				setTimeout(function () {
+					if (this.audioCtx.state === 'running') {
+						document.body.removeEventListener('touchend', this.resume, false);
+					}
+				}, 0);
+			}
+		}
 
 		onMute: function(evt) {
 			console.log('click');
@@ -306,6 +320,7 @@ $(document).ready(function() {
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
 
 		prepareAudio: function() {
+			document.body.addEventListener('touchend', this.resume, false);
 			window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
 
 			if(!window.AudioContext) {
