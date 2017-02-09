@@ -30,6 +30,12 @@ input::-webkit-inner-spin-button {
 	color: #999;
 }
 
+.black-curtain {
+	background-color: rgba(255,255,255,.9);
+	position: fixed;
+	bottom: 0; top: 0; left: 0; right: 0;
+}
+
 label {
 	font-weight: bold;
 	margin-right: 48px;
@@ -102,6 +108,7 @@ button {
 </head>
 
 <body id="">
+
 	<div id="root" class="container">
 
 
@@ -124,13 +131,17 @@ button {
 		</div>
 
 		<div class="fl">
-			<button id="js-btn-toggle-trainer"><%= isRunning === true ? 'stop' : 'play' %></button>
+			<button id="js-btn-toggle-trainer"><%= isRunning === true ? 'stop' : 'start' %></button>
 		</div>
 
 	</form>
 </script>
 
 <script type="text/template" id="metronome">
+		<% if(isMuted === true ) { %>
+			<div class="black-curtain"></div>
+		<% } %>
+
 		<button id="js-btn-mute" class="btn-mute">
 			<% if(isMuted === true ) { %>
 				start
