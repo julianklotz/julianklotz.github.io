@@ -77,7 +77,6 @@ $(document).ready(function() {
 		},
 
 		onMuteChange: function() {
-			console.log('onMuteChange');
 			if(this.get('isMuted') === false ) {
 				this.updateInterval();
 			} else {
@@ -87,11 +86,9 @@ $(document).ready(function() {
 
 		updateInterval: function() {
 			this.clearInterval();
-			var intervalInMs = Math.round( (1000 * 60) / this.get('bpm') );
+			var intervalInMs = this.getBeatDuration();
 			this._intervalId = window.setInterval( this.onInterval.bind(this), intervalInMs );
 			this.onInterval.call(this);
-
-			console.log( "timer will fire every " + intervalInMs + "ms");
 		},
 
 		clearInterval: function() {
@@ -174,6 +171,18 @@ $(document).ready(function() {
 		decMeter: function() {
 			var meter = this.get('meter');
 			this.setMeter( meter - 1 );
+		},
+
+
+		getBeatDuration: function() {
+			var bpm = this.get('bpm');
+			var intervalInMs = Math.round( (1000 * 60) / bpm );
+			return intervalInMs
+		},
+
+		getBarDuration: function() {
+			var duration = this.getBeatDuration() * 2 * this.get('meter');
+			return duration
 		},
 	});
 
@@ -272,7 +281,6 @@ $(document).ready(function() {
 
 			this.prepareAudio.call(this);
 			_.bindAll(this, 'resume');
-			// this.model.on('BEAT', this.render.bind(this));
 			this.render();
 			this.model.on('BEAT', this.playSound.bind(this));
 			this.model.on('change', this.render.bind(this));
@@ -289,7 +297,7 @@ $(document).ready(function() {
 			if(this.audioCtx) {
 				console.log('Audio context is defined …');
 				this.audioCtx.resume();
-				
+
 				var cb = (function () {
 					if (this.audioCtx.state === 'running') {
 						document.body.removeEventListener('touchend', this.resume, false);
@@ -365,7 +373,11 @@ $(document).ready(function() {
 		},
 
 		render: function() {
-			this.$el.html(this.template( this.model.attributes ));
+			var tplArgs = this.model.attributes;
+			tplArgs.beatDuration = this.model.getBeatDuration();
+			tplArgs.barDuration = this.model.getBarDuration();
+
+			this.$el.html(this.template( tplArgs ));
 			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
 			this.speedTrainerView.delegateEvents();
 

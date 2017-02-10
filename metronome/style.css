@@ -4,6 +4,7 @@ input::-webkit-inner-spin-button {
   margin: 0; }
 
 .btn-mute {
+  background-color: white;
   bottom: 0;
   position: fixed;
   left: 0;
@@ -49,7 +50,7 @@ body, button, input {
   line-height: 24px; }
 
 body {
-  background-color: white;
+  background-color: #ebebe8;
   padding: 0;
   margin: 48px 0 0 0; }
 
@@ -78,7 +79,7 @@ button {
 .container {
   margin: 0 auto;
   max-width: 480px;
-  padding: 24px; }
+  padding: 0 24px 24px 24px; }
 
 /**** */
 @keyframes dash {
@@ -88,23 +89,27 @@ button {
     stroke-dashoffset: 1414; } }
 @keyframes pulse {
   0% {
-    r: 50;
+    r: 70;
     opacity: 0.7; }
   5% {
     r: 75;
     opacity: 1; }
   100% {
-    r: 50;
+    r: 70;
     opacity: 0.7; } }
+#circle-inner {
+  stroke: #7A8B86; }
+
+#circle-outer {
+  stroke: #9E7F6B; }
+
 .animation-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; }
+  margin-bottom: 48px;
+  overflow: hidden;
+  position: relative;
+  width: 250px;
+  height: 280px;
+  margin: 0 auto; }
   .animation-content div {
     position: absolute; }
   .animation-content rect {
@@ -116,6 +121,6 @@ button {
     left: 25px; }
   .animation-content #c2 circle {
     stroke-dasharray: 707;
-    animation: dash 4s linear infinite; }
+    animation: dash 2s linear infinite alternate; }
 
 /*# sourceMappingURL=style.css.map */

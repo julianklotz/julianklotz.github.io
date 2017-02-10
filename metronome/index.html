@@ -40,14 +40,16 @@
 			<button id="js-btn-toggle-trainer"><%= isRunning === true ? 'stop' : 'start' %></button>
 		</div>
 		<div class="clear"></div>
+		<% if( isRunning ) { %>
+			<p>speed trainer is running …</p>
+		<% } %>
+
 
 	</form>
 		</script>
 
 		<script type="text/template" id="metronome">
-
-
-<% if(isMuted === true ) { %>
+		<% if(isMuted === true ) { %>
 			<div class="black-curtain"></div>
 		<% } %>
 
@@ -59,6 +61,23 @@
 			<% } %>
 
 		</button>
+
+
+			<div class="animation-content">
+				<div id="c1">
+					<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+					<circle id="circle-inner" cx="100" cy="100" r="75" stroke="black" stroke-width="25" fill="transparent" style="animation-duration: <%= beatDuration %>;" />
+					</svg>
+				</div>
+
+				<div id="c2">
+					<svg width="250" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				  	<circle id="circle-outer" cx="125" cy="125" r="112.5" stroke="black" stroke-width="25" fill="transparent" style="animation-duration: <%= barDuration %>;" />
+					</svg>
+				</div>
+			</div>
+
+
 		<form>
 
 			<div class="fl">
@@ -72,9 +91,9 @@
 					value="<%= bpm %>"
 					min="<%= bpmMin %>"
 					max="<%= bpmMax %>" />
-
+			<!--
 				<span class="input-group-addon stepper" id="js-decrement-bpm">-</span>
-				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>
+				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>-->
 			</div>
 
 			<div class="fl">
@@ -88,29 +107,16 @@
 					value="<%= meter %>"
 					min="1"
 					max="10" />
-
+				<!--
 				<span class="input-group-addon stepper" id="js-decrement-meter">-</span>
 				<span id="js-increment-meter" class="stepper input-group-addon">+</span>
+
+				-->
 			</div>
 			<div class="clear"></div>
 		</form>
 		<div class="speed-trainer-node">
 
-		</div>
-		<div style="position: relative; height: 1000px;">
-			<div class="animation-content">
-				<div id="c1">
-					<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
-				  <circle cx="100" cy="100" r="75" stroke="black" stroke-width="0" fill="#6f6f6f" />
-					</svg>
-				</div>
-
-				<div id="c2">
-					<svg width="250" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
-				  	<circle cx="125" cy="125" r="112.5" stroke="black" stroke-width="25" fill="transparent" />
-					</svg>
-				</div>
-			</div>
 		</div>
 
 		</script>
