@@ -62,7 +62,7 @@ $(document).ready(function() {
 		defaults: {
 			"bpm":  120,
 			"meter": 4,
-			"isMuted": true,
+			"isMuted": false,
 			"dirty": false, // Indicates whether the speed or meter has changed
 			"bpmMax": 240,
 			"bpmMin": 30,
