@@ -68,18 +68,50 @@ $(document).ready(function() {
 			"bpmMin": 30,
 		},
 
+		_lookahead: 25.0,
 		_intervalId: null,
 		_currentBeat: 1,
 
-		initialize: function() {
+		initialize: function(options) {
+			this._timer = new Worker("metronomeworker.js");
+			this._timer.postMessage({ "interval": this._lookahead });
+			this._timer.onmessage = this.onTimerMessage.bind(this);
+
+			this.initAudioContext();
+
 			this.on('change:isMuted', this.onMuteChange);
 			this.onMuteChange();
 		},
 
+
+		initAudioContext: function() {
+			window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+			if(!window.AudioContext) {
+				alert("Sorry, your browser does not support playing sound using the Web Audio API.");
+			}
+
+			this.audioCtx = new AudioContext();
+		},
+
+		onTimerMessage: function(e) {
+			if (e.data == "tick") {
+				this.scheduler();
+			}
+		},
+
+		scheduler: function() {
+			// TODO Scheduler implementieren
+			// NOTE: playSound ist auskommentiert
+
+		},
+
 		onMuteChange: function() {
 			if(this.get('isMuted') === false ) {
+				this._timer.postMessage('start');
 				this.updateInterval();
 			} else {
+				this._timer.postMessage('stop');
 				this.clearInterval();
 			}
 		},
@@ -280,7 +312,6 @@ $(document).ready(function() {
 
 
 			this.prepareAudio.call(this);
-			_.bindAll(this, 'resume');
 			this.render();
 			this.model.on('BEAT', this.playSound.bind(this));
 			this.model.on('change', this.render.bind(this));
@@ -293,23 +324,7 @@ $(document).ready(function() {
 			this.$decMeter = this.$('#js-decrement-meter');
 		},
 
-		resume: function() {
-			if(this.audioCtx) {
-				console.log('Audio context is defined …');
-				this.audioCtx.resume();
-
-				var cb = (function () {
-					if (this.audioCtx.state === 'running') {
-						document.body.removeEventListener('touchend', this.resume, false);
-					}
-				}).bind(this);
-
-				setTimeout(cb, 0);
-			}
-		},
-
 		onMute: function(evt) {
-			console.log('click');
 			evt.preventDefault();
 			this.model.toggleMute();
 		},
@@ -330,17 +345,9 @@ $(document).ready(function() {
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
 
 		prepareAudio: function() {
-			window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
-
-			if(!window.AudioContext) {
-				alert("Sorry, your browser does not support playing sound using the Web Audio API.");
-			}
-
-			this.audioCtx = new AudioContext();
-			var bufferLoader = new BufferLoader( this.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
+			var bufferLoader = new BufferLoader( this.model.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
 			bufferLoader.load();
-			document.body.addEventListener('touchend', this.resume.bind(this), false);
-
+			// document.body.addEventListener('touchend', this.resume.bind(this), false);
 		},
 
 		finishedLoading: function(bufferList) {
@@ -348,8 +355,8 @@ $(document).ready(function() {
 		},
 
 		playSound: function(evt) {
-			var gainNode = this.audioCtx.createGain();
-			var clickSound = this.audioCtx.createBufferSource();
+			var gainNode = this.model.audioCtx.createGain();
+			var clickSound = this.model.audioCtx.createBufferSource();
 
 			if(!this.bufferList) {
 				console.error('Couldn’t load audio files');
@@ -357,9 +364,9 @@ $(document).ready(function() {
 			}
 
 			clickSound.buffer = this.bufferList[0];
-			clickSound.connect(this.audioCtx.destination);
+			clickSound.connect(this.model.audioCtx.destination);
 			clickSound.connect( gainNode );
-			gainNode.connect(this.audioCtx.destination);
+			gainNode.connect(this.model.audioCtx.destination);
 
 
 			if(evt && evt.accent === true ) {
@@ -369,7 +376,8 @@ $(document).ready(function() {
 				gainNode.gain.value = .1;
 			}
 
-			clickSound.start( 0 );
+
+			//clickSound.start( 0 );
 		},
 
 		render: function() {
