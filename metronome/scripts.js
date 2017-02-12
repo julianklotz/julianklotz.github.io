@@ -69,8 +69,14 @@ $(document).ready(function() {
 		},
 
 		_lookahead: 25.0,
-		_intervalId: null,
 		_currentBeat: 1,
+		_scheduleAheadTime: 0.1, // scheduling ahead, in seconds
+		_bufferList: null,
+		_nextNoteTime: null,
+		_quarterNoteCount: 0,
+
+
+		audioCtx: null,
 
 		initialize: function(options) {
 			this._timer = new Worker("metronomeworker.js");
@@ -83,6 +89,58 @@ $(document).ready(function() {
 			this.onMuteChange();
 		},
 
+		onTimerMessage: function(e) {
+			if (e.data == "tick") {
+				this.scheduler();
+			}
+		},
+
+		scheduler: function() {
+			while( this._nextNoteTime < this.audioCtx.currentTime + this._scheduleAheadTime) {
+        	this.schedulePlayback(this._nextNoteTime);
+				  this.nextPlayback();
+			}
+		},
+
+		nextPlayback: function() {
+			var dur = this.getBeatDuration(); // seconds
+			this._nextNoteTime = this._nextNoteTime + dur;
+		},
+
+		schedulePlayback: function( time ) {
+			this._quarterNoteCount++;
+
+			var gainNode = this.audioCtx.createGain();
+			var clickSound = this.audioCtx.createBufferSource();
+
+
+			if(!this._bufferList) {
+				console.error('Couldn’t load audio files');
+				return
+			}
+
+			clickSound.buffer = this._bufferList[0];
+			clickSound.connect(this.audioCtx.destination);
+			clickSound.connect( gainNode );
+			gainNode.connect(this.audioCtx.destination);
+
+			var accent = (this._quarterNoteCount === 1) ? true : false;
+
+			if(accent === true ) {
+				gainNode.gain.value = 1;
+			}
+		 	else {
+				gainNode.gain.value = .1;
+			}
+
+			console.log( "Scheduled Time", time);
+			clickSound.start( time );
+
+			if(this._quarterNoteCount >= this.get( 'meter' ) ) {
+				this._quarterNoteCount = 0;
+			}
+
+		},
 
 		initAudioContext: function() {
 			window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
@@ -92,66 +150,22 @@ $(document).ready(function() {
 			}
 
 			this.audioCtx = new AudioContext();
+			var bufferLoader = new BufferLoader( this.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
+			bufferLoader.load();
 		},
 
-		onTimerMessage: function(e) {
-			if (e.data == "tick") {
-				this.scheduler();
-			}
+		finishedLoading: function(bufferList) {
+			this._bufferList = bufferList;
 		},
 
-		scheduler: function() {
-			// TODO Scheduler implementieren
-			// NOTE: playSound ist auskommentiert
-
-		},
 
 		onMuteChange: function() {
 			if(this.get('isMuted') === false ) {
 				this._timer.postMessage('start');
-				this.updateInterval();
+				this._nextNoteTime = this.audioCtx.currentTime;
 			} else {
 				this._timer.postMessage('stop');
 				this.clearInterval();
-			}
-		},
-
-		updateInterval: function() {
-			this.clearInterval();
-			var intervalInMs = this.getBeatDuration();
-			this._intervalId = window.setInterval( this.onInterval.bind(this), intervalInMs );
-			this.onInterval.call(this);
-		},
-
-		clearInterval: function() {
-			window.clearInterval( this._intervalId );
-			this._currentBeat = 1;
-		},
-
-		onInterval: function() {
-			if( this.get('dirty') === true ) {
-				this.set('dirty', false, { silent: true });
-				this.updateInterval();
-
-				console.log("Updated settings before tick");
-				return false
-			}
-
-			var evtArgs = { accent: false };
-			if( this._currentBeat === 1 ) {
-				evtArgs.accent = true;
-				this.trigger("BEAT_FIRST");
-			}
-
-			this.trigger("BEAT", evtArgs);
-
-
-
-			if(this._currentBeat == this.get('meter') ) {
-			this.trigger("BEAT_LAST");
-				this._currentBeat = 1;
-			} else {
-				this._currentBeat += 1;
 			}
 		},
 
@@ -208,8 +222,8 @@ $(document).ready(function() {
 
 		getBeatDuration: function() {
 			var bpm = this.get('bpm');
-			var intervalInMs = Math.round( (1000 * 60) / bpm );
-			return intervalInMs
+			var intervalInS = 60.0 / bpm;
+			return intervalInS
 		},
 
 		getBarDuration: function() {
@@ -311,9 +325,8 @@ $(document).ready(function() {
 			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
 
 
-			this.prepareAudio.call(this);
 			this.render();
-			this.model.on('BEAT', this.playSound.bind(this));
+			// this.model.on('BEAT', this.playSound.bind(this));
 			this.model.on('change', this.render.bind(this));
 
 			this.$inputBpm = this.$('#js-input-bpm');
@@ -344,50 +357,22 @@ $(document).ready(function() {
 		onIncrementMeter: function(evt) { this.model.incMeter(); },
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
 
-		prepareAudio: function() {
-			var bufferLoader = new BufferLoader( this.model.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
-			bufferLoader.load();
-			// document.body.addEventListener('touchend', this.resume.bind(this), false);
-		},
-
-		finishedLoading: function(bufferList) {
-			this.bufferList = bufferList;
-		},
-
-		playSound: function(evt) {
-			var gainNode = this.model.audioCtx.createGain();
-			var clickSound = this.model.audioCtx.createBufferSource();
-
-			if(!this.bufferList) {
-				console.error('Couldn’t load audio files');
-				return
-			}
-
-			clickSound.buffer = this.bufferList[0];
-			clickSound.connect(this.model.audioCtx.destination);
-			clickSound.connect( gainNode );
-			gainNode.connect(this.model.audioCtx.destination);
 
 
-			if(evt && evt.accent === true ) {
-				gainNode.gain.value = 1;
-			}
-		 	else {
-				gainNode.gain.value = .1;
-			}
-
-
-			//clickSound.start( 0 );
-		},
 
 		render: function() {
+
+
 			var tplArgs = this.model.attributes;
 			tplArgs.beatDuration = this.model.getBeatDuration();
 			tplArgs.barDuration = this.model.getBarDuration();
-
+			if(this.model.audioCtx) {
+				console.log('Render at', this.model.audioCtx.currentTime);
+			}
 			this.$el.html(this.template( tplArgs ));
 			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
 			this.speedTrainerView.delegateEvents();
+
 
 			return this
 		}
