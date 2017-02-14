@@ -88,9 +88,11 @@ button {
 /**** */
 @keyframes dash {
   0% {
-    stroke-dashoffset: 0; }
+    stroke-dashoffset: 0;
+    opacity: 0; }
   100% {
-    stroke-dashoffset: 2828; } }
+    stroke-dashoffset: 1414;
+    opacity: 1; } }
 @keyframes pulse {
   0% {
     r: 70;

@@ -19,8 +19,63 @@
 
 		</div>
 
-		<script type="text/template" id="speed-trainer">
+		<script type="text/template" id="circle-animation">
+			<div class="animation-content">
+				<div id="c1">
+					<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+					<circle id="circle-inner" cx="100" cy="100" r="75" stroke="black" stroke-width="25" fill="transparent" style="animation-duration: <%= beatDuration %>s;" />
+					</svg>
+				</div>
 
+				<div id="c2">
+					<svg width="250" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				  	<circle id="circle-outer" cx="125" cy="125" r="112.5" stroke="black" stroke-width="25" fill="transparent" style="animation-duration: <%= barDuration %>s;" />
+					</svg>
+				</div>
+			</div>
+		</script>
+
+		<script type="text/template" id="metronome-controls">
+		<form>
+
+			<div class="fl">
+				<label class="">bpm</label><br />
+
+				<input
+					class="form-control"
+					id="js-input-bpm"
+					type="number"
+					step="1"
+					value="<%= bpm %>"
+					min="<%= bpmMin %>"
+					max="<%= bpmMax %>" />
+			<!--
+				<span class="input-group-addon stepper" id="js-decrement-bpm">-</span>
+				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>-->
+			</div>
+
+			<div class="fl">
+				<label class="">meter</label><br />
+
+				<input
+					class="form-control"
+					id="js-input-meter"
+					type="number"
+					step="1"
+					value="<%= meter %>"
+					min="1"
+					max="10" />
+				<!--
+				<span class="input-group-addon stepper" id="js-decrement-meter">-</span>
+				<span id="js-increment-meter" class="stepper input-group-addon">+</span>
+
+				-->
+			</div>
+			<div class="clear"></div>
+		</form>
+		</script>
+
+		<script type="text/template" id="speed-trainer">
 <form>
 		<p class="speed-trainer-headline">speed trainer</p>
 		<div class="fl">
@@ -64,62 +119,9 @@
 		</button>
 		-->
 
-
-			<div class="animation-content">
-				<div id="c1">
-					<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
-					<circle id="circle-inner" cx="100" cy="100" r="75" stroke="black" stroke-width="25" fill="transparent" style="animation-duration: <%= beatDuration %>s;" />
-					</svg>
-				</div>
-
-				<div id="c2">
-					<svg width="250" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg">
-				  	<circle id="circle-outer" cx="125" cy="125" r="112.5" stroke="black" stroke-width="25" fill="transparent" style="animation-duration: <%= barDuration %>s;" />
-					</svg>
-				</div>
-			</div>
-
-
-		<form>
-
-			<div class="fl">
-				<label class="">bpm</label><br />
-
-				<input
-					class="form-control"
-					id="js-input-bpm"
-					type="number"
-					step="1"
-					value="<%= bpm %>"
-					min="<%= bpmMin %>"
-					max="<%= bpmMax %>" />
-			<!--
-				<span class="input-group-addon stepper" id="js-decrement-bpm">-</span>
-				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>-->
-			</div>
-
-			<div class="fl">
-				<label class="">meter</label><br />
-
-				<input
-					class="form-control"
-					id="js-input-meter"
-					type="number"
-					step="1"
-					value="<%= meter %>"
-					min="1"
-					max="10" />
-				<!--
-				<span class="input-group-addon stepper" id="js-decrement-meter">-</span>
-				<span id="js-increment-meter" class="stepper input-group-addon">+</span>
-
-				-->
-			</div>
-			<div class="clear"></div>
-		</form>
-		<div class="speed-trainer-node">
-
-		</div>
+			<div class="animation-node"></div>
+			<div class="metronome-controls-node"></div>
+			<div class="speed-trainer-node"></div>
 
 		</script>
 		</script><script src="scripts.js"></script>

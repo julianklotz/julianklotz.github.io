@@ -285,12 +285,8 @@ $(document).ready(function() {
 			}
 		},
 
-		onBeat: function() {
-		},
-
 		start: function() {
-			this.metronome.on("BEAT_LAST", this.onBeatLast);
-			this.metronome.on("BEAT", this.onBeat);
+			this.metronome.on("LAST_BEAT", this.onBeatLast);
 			this.set({ 'isRunning': true, 'currentSpeed': this.get('from')} );
 			this.metronome.setBpm( this.get('currentSpeed') );
 		},
@@ -298,8 +294,7 @@ $(document).ready(function() {
 		stop: function() {
 			console.log('-- STOP --');
 			this.set( 'isRunning', false );
-			this.metronome.off("BEAT_LAST", this.onBeatLast);
-			this.metronome.off("BEAT", this.onBeat);
+			this.metronome.off("LAST_BEAT", this.onBeatLast);
 		},
 
 	});
@@ -309,6 +304,32 @@ $(document).ready(function() {
 		el: '#root',
 		template: _.template( $('#metronome').html() ),
 
+
+		initialize: function() {
+			this.speedTrainer = new SpeedTrainer({ metronome: this.model });
+			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
+			this.metronomeControlsView = new MetronomeControlsView({ model: this.model });
+			this.animationView = new CircleAnimationView({ model: this.model });
+			this.render();
+		},
+
+
+		render: function() {
+			this.$el.html(this.template( this.model.attributes ));
+
+			console.log( this.$('.animation-node'));
+
+			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
+			this.$('.animation-node').html( this.animationView.render().el );
+			this.$('.metronome-controls-node').html( this.metronomeControlsView.render().el );
+			this.speedTrainerView.delegateEvents();
+
+			return this
+		}
+
+	});
+
+	var MetronomeControlsView = Backbone.View.extend({
 		events: {
 			'click #js-btn-mute': 'onMute',
 			'touchend #js-btn-mute': 'onMute',
@@ -324,13 +345,7 @@ $(document).ready(function() {
 		},
 
 		initialize: function() {
-			this.speedTrainer = new SpeedTrainer({ metronome: this.model });
-			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
-
-
-			// this.model.on('BEAT', this.playSound.bind(this));
-			//this.model.on('change', this.render.bind(this));
-
+			this.template = _.template( $('#metronome-controls').html() );
 			this.$inputBpm = this.$('#js-input-bpm');
 			this.$incBpm = this.$('#js-increment-bpm');
 			this.$decBpm = this.$('#js-decrement-bpm');
@@ -338,28 +353,7 @@ $(document).ready(function() {
 			this.$incMeter = this.$('#js-increment-meter');
 			this.$decMeter = this.$('#js-decrement-meter');
 
-			this.draw();
-			this.render();
-		},
-
-		draw: function() {
-			var currentNote = null,
-					currentTime = this.model.audioCtx.currentTime,
-					notesInQueue = this.model.notesInQueue;
-
-
-			while (notesInQueue.length && notesInQueue[0].time < currentTime) {
-				currentNote = notesInQueue[0];
-				notesInQueue.splice(0,1);   // remove note from queue
-
-				// New bar, new render to keep in sync
-				if( currentNote.quarterNoteCount === 0 || this.model.dirty === true ) {
-					this.render();
-					this.model.dirty = false;
-				}
-			}
-
-			window.requestAnimationFrame( this.draw.bind(this) );
+			this.model.on('change', this.render.bind(this));
 		},
 
 		onMute: function(evt) {
@@ -383,20 +377,52 @@ $(document).ready(function() {
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
 
 		render: function() {
-			var tplArgs = this.model.attributes;
-			tplArgs.beatDuration = this.model.getBeatDuration();
-			tplArgs.barDuration = this.model.getBarDuration();
-
-			this.$el.html(this.template( tplArgs ));
-			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
-			this.speedTrainerView.delegateEvents();
+			this.$el.html( this.template( this.model.attributes ) );
 
 			return this
 		}
 
 	});
 
-	//var CircleVisualizationView = Backbone.View.eI
+	var CircleAnimationView = Backbone.View.extend({
+
+		initialize: function() {
+			this.template = _.template( $('#circle-animation').html() );
+			this.draw();
+		},
+
+		draw: function() {
+			var currentNote = null,
+					currentTime = this.model.audioCtx.currentTime,
+					notesInQueue = this.model.notesInQueue;
+
+
+			while (notesInQueue.length && notesInQueue[0].time < currentTime) {
+				currentNote = notesInQueue[0];
+				notesInQueue.splice(0,1);   // remove note from queue
+
+				if(currentNote.quarterNoteCount + 1 === this.model.get('meter')) {
+					this.model.trigger('LAST_BEAT');
+				}
+
+				// New bar, new render to keep in sync
+				if( currentNote.quarterNoteCount === 0 || this.model.dirty === true ) {
+					this.render();
+					this.model.dirty = false;
+				}
+			}
+			window.requestAnimationFrame( this.draw.bind(this) );
+		},
+
+		render: function() {
+			var tplArgs = this.model.attributes;
+			tplArgs.beatDuration = this.model.getBeatDuration();
+			tplArgs.barDuration = this.model.getBarDuration();
+
+			this.$el.html(this.template( tplArgs ));
+			return this
+		}
+	});
 
 	var SpeedTrainerView = Backbone.View.extend({
 		template: _.template( $('#speed-trainer').html() ),
@@ -419,8 +445,6 @@ $(document).ready(function() {
 				to:	parseInt( this.$to.val(), 10 ),
 				stepSize:	parseInt( this.$stepSize.val(), 10 ),
 			};
-
-			console.log(modelArgs);
 
 			this.model.set( modelArgs  );
 		},
