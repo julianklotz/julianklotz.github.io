@@ -90,7 +90,7 @@ button {
   0% {
     stroke-dashoffset: 0; }
   100% {
-    stroke-dashoffset: 1414; } }
+    stroke-dashoffset: 2828; } }
 @keyframes pulse {
   0% {
     r: 70;

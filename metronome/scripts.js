@@ -63,7 +63,6 @@ $(document).ready(function() {
 			"bpm":  120,
 			"meter": 4,
 			"isMuted": false,
-			"dirty": false, // Indicates whether the speed or meter has changed
 			"bpmMax": 240,
 			"bpmMin": 30,
 		},
@@ -75,8 +74,9 @@ $(document).ready(function() {
 		_nextNoteTime: null,
 		_quarterNoteCount: 0,
 
-
+		notesInQueue: [],
 		audioCtx: null,
+		dirty: false,
 
 		initialize: function(options) {
 			this._timer = new Worker("metronomeworker.js");
@@ -86,7 +86,14 @@ $(document).ready(function() {
 			this.initAudioContext();
 
 			this.on('change:isMuted', this.onMuteChange);
+			this.on('change:meter', this.onChange);
+			this.on('change:bpm', this.onChange);
 			this.onMuteChange();
+		},
+
+		// Is used in view to check whether re-paint is necessary
+		onChange: function(e) {
+			this.dirty = true;
 		},
 
 		onTimerMessage: function(e) {
@@ -108,6 +115,7 @@ $(document).ready(function() {
 		},
 
 		schedulePlayback: function( time ) {
+			this.notesInQueue.push( { time: time, quarterNoteCount: this._quarterNoteCount } );
 			this._quarterNoteCount++;
 
 			var gainNode = this.audioCtx.createGain();
@@ -133,7 +141,6 @@ $(document).ready(function() {
 				gainNode.gain.value = .1;
 			}
 
-			console.log( "Scheduled Time", time);
 			clickSound.start( time );
 
 			if(this._quarterNoteCount >= this.get( 'meter' ) ) {
@@ -162,10 +169,8 @@ $(document).ready(function() {
 		onMuteChange: function() {
 			if(this.get('isMuted') === false ) {
 				this._timer.postMessage('start');
-				this._nextNoteTime = this.audioCtx.currentTime;
 			} else {
 				this._timer.postMessage('stop');
-				this.clearInterval();
 			}
 		},
 
@@ -181,7 +186,6 @@ $(document).ready(function() {
 			if( typeof meter == 'number') {
 				this.set({
 					meter: meter,
-					dirty: true,
 				});
 				bardebug( "Updated meter to " + this.get('meter') );
 			}
@@ -194,7 +198,6 @@ $(document).ready(function() {
 				if( speed > this.get('bpmMin') && speed < this.get('bpmMax') ) {
 					this.set({
 						bpm: speed,
-						dirty: true
 					});
 				}
 			}
@@ -325,9 +328,8 @@ $(document).ready(function() {
 			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
 
 
-			this.render();
 			// this.model.on('BEAT', this.playSound.bind(this));
-			this.model.on('change', this.render.bind(this));
+			//this.model.on('change', this.render.bind(this));
 
 			this.$inputBpm = this.$('#js-input-bpm');
 			this.$incBpm = this.$('#js-increment-bpm');
@@ -335,6 +337,29 @@ $(document).ready(function() {
 			this.$inputMeter = this.$('#js-input-meter');
 			this.$incMeter = this.$('#js-increment-meter');
 			this.$decMeter = this.$('#js-decrement-meter');
+
+			this.draw();
+			this.render();
+		},
+
+		draw: function() {
+			var currentNote = null,
+					currentTime = this.model.audioCtx.currentTime,
+					notesInQueue = this.model.notesInQueue;
+
+
+			while (notesInQueue.length && notesInQueue[0].time < currentTime) {
+				currentNote = notesInQueue[0];
+				notesInQueue.splice(0,1);   // remove note from queue
+
+				// New bar, new render to keep in sync
+				if( currentNote.quarterNoteCount === 0 || this.model.dirty === true ) {
+					this.render();
+					this.model.dirty = false;
+				}
+			}
+
+			window.requestAnimationFrame( this.draw.bind(this) );
 		},
 
 		onMute: function(evt) {
@@ -357,27 +382,21 @@ $(document).ready(function() {
 		onIncrementMeter: function(evt) { this.model.incMeter(); },
 		onDecrementMeter: function(evt) { this.model.decMeter(); },
 
-
-
-
 		render: function() {
-
-
 			var tplArgs = this.model.attributes;
 			tplArgs.beatDuration = this.model.getBeatDuration();
 			tplArgs.barDuration = this.model.getBarDuration();
-			if(this.model.audioCtx) {
-				console.log('Render at', this.model.audioCtx.currentTime);
-			}
+
 			this.$el.html(this.template( tplArgs ));
 			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
 			this.speedTrainerView.delegateEvents();
-
 
 			return this
 		}
 
 	});
+
+	//var CircleVisualizationView = Backbone.View.eI
 
 	var SpeedTrainerView = Backbone.View.extend({
 		template: _.template( $('#speed-trainer').html() ),
