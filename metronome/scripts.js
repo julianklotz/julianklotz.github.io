@@ -85,7 +85,8 @@ $(document).ready(function() {
 
 			this.initAudioContext();
 
-			$('#root').addEventListener('touchstart', this.unlock.bind(this), false);
+			document.getElementById('root').addEventListener('touchstart', this.unlock.bind(this), false);
+			document.getElementById('root').addEventListener('touchend', this.unlock.bind(this), false);
 
 			this.on('change:isMuted', this.onMuteChange);
 			this.on('change:meter', this.onChange);
@@ -120,7 +121,7 @@ $(document).ready(function() {
 		 * https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
 		 */
 		unlock: function() {
-			console.log( 'unlog' );
+			console.log( 'unlock' );
 			var myContext = this.audioCtx;
 			var buffer = myContext.createBuffer(1, 1, 22050);
 			var source = myContext.createBufferSource();
