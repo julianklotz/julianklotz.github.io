@@ -84,6 +84,7 @@ $(document).ready(function() {
 			this._timer.onmessage = this.onTimerMessage.bind(this);
 
 			this.initAudioContext();
+			window.addEventListener('touchstart', this.unlock.bind(this), false);
 
 			this.on('change:isMuted', this.onMuteChange);
 			this.on('change:meter', this.onChange);
@@ -112,6 +113,17 @@ $(document).ready(function() {
 		nextPlayback: function() {
 			var dur = this.getBeatDuration(); // seconds
 			this._nextNoteTime = this._nextNoteTime + dur;
+		},
+
+		unlock: function() {
+			var myContext = this.audioContext;
+			var buffer = myContext.createBuffer(1, 1, 22050);
+			var source = myContext.createBufferSource();
+			source.buffer = buffer;
+
+			source.connect(myContext.destination);
+
+			source.noteOn(0);
 		},
 
 		schedulePlayback: function( time ) {
