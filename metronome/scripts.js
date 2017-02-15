@@ -121,7 +121,7 @@ $(document).ready(function() {
 		 */
 		unlock: function() {
 			console.log( 'unlog' );
-			var myContext = this.audioContext;
+			var myContext = this.audioCtx;
 			var buffer = myContext.createBuffer(1, 1, 22050);
 			var source = myContext.createBufferSource();
 			source.buffer = buffer;
