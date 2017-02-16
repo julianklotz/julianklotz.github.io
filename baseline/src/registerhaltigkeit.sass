@@ -82,19 +82,12 @@ blockquote
 p
   margin: $base-line-height 0
 
-ul, ol
-  padding: 0 0 0 $base-font-size
-  list-style-position: outside
-
-li
-  margin: 0
-  padding-left: .5em
-
 li + li
   margin-top: $base-line-height / 2
 
 ul, ol
-  margin: $base-line-height /2 0 $base-line-height /2 0
+  margin-top: $base-line-height /2
+  margin-bottom: $base-line-height / 2
 
 label
   display: inline-block
@@ -255,3 +248,13 @@ textarea.form-control
 
 /* --- END STYLING FOR FILE INPUT --- */
 
+/* --- LIST STYLING --- */
+
+
+
+ol, ul
+  .no-style
+    list-style-type: none
+
+  margin-left: 18px
+  padding-left: 0
