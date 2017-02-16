@@ -192,9 +192,6 @@ textarea.form-control
   position: absolute
   z-index: -1
 
-
-
-
 .file-control + label
   line-height: $base-line-height
   border: 1px solid #cfcfcf
@@ -215,12 +212,6 @@ textarea.form-control
     vertical-align: top
     background-color: #C0CC56
     float: right
-
-
-
-//.file-control:focus + label
-//  outline: 1px dotted #000
-//  outline: -webkit-focus-ring-color auto 5px
 
 .file-control + label *
   pointer-events: none
@@ -250,11 +241,13 @@ textarea.form-control
 
 /* --- LIST STYLING --- */
 
-
-
 ol, ul
-  .no-style
-    list-style-type: none
-
   margin-left: 18px
   padding-left: 0
+
+  &.no-style
+    margin-left: 0
+
+    li
+      list-style-type: none
+

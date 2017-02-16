@@ -282,7 +282,9 @@ textarea.form-control {
 ol, ul {
   margin-left: 18px;
   padding-left: 0; }
-  ol .no-style, ul .no-style {
-    list-style-type: none; }
+  ol.no-style, ul.no-style {
+    margin-left: 0; }
+    ol.no-style li, ul.no-style li {
+      list-style-type: none; }
 
 /*# sourceMappingURL=registerhaltigkeit_development.css.map */
