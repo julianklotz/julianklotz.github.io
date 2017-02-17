@@ -94,7 +94,14 @@ button
   font-weight: bold
 
   &:hover
-    background-color: lighten($blue, 10)
+    background-color: lighten($blue, 10%)
+    color: #272727
+    transition: background-color .2s ease-in-out
+
+  &:active
+    color: #272727
+    background-color: darken($blue, 5%)
+    transition: background-color .05s ease-in-out
 
 
 .container
@@ -193,5 +200,25 @@ $minradius: 70
   #c2 circle
     stroke-dasharray: 707
     animation: dash 2s $timing infinite alternate
+
+#overlay
+  z-index: 100
+  position: absolute
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  height: 100%
+  background-color: rgba(0,0,0,.8)
+  backdrop-filter: blur(5px)
+
+.button-circular
+  position: absolute
+  top: calc(50% - 46px)
+  left: calc(50% - 46px)
+  width: 88px
+  height: 88px
+  border-radius: 50%
+  border: 4px solid white
 
 

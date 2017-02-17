@@ -78,7 +78,13 @@ button {
   border: none;
   font-weight: bold; }
   button:hover {
-    background-color: #95a39f; }
+    background-color: #95a39f;
+    color: #272727;
+    transition: background-color 0.2s ease-in-out; }
+  button:active {
+    color: #272727;
+    background-color: #6e7e79;
+    transition: background-color 0.05s ease-in-out; }
 
 .container {
   margin: 0 auto;
@@ -129,4 +135,24 @@ button {
     stroke-dasharray: 707;
     animation: dash 2s linear infinite alternate; }
 
-/*# sourceMappingURL=style.css.map */
+#overlay {
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px); }
+
+.button-circular {
+  position: absolute;
+  top: calc(50% - 46px);
+  left: calc(50% - 46px);
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 4px solid white; }
+
+/*# sourceMappingURL=core.css.map */

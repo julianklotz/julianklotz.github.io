@@ -1,5 +1,3 @@
-"use strict";
-
 function BufferLoader(context, urlList, callback) {
 	this.context = context;
 	this.urlList = urlList;
@@ -50,13 +48,7 @@ BufferLoader.prototype.load = function() {
 
 
 $(document).ready(function() {
-	var DEBUG = true;
-
-	var bardebug = function( val ) {
-		if( DEBUG === true ) {
-			console.log( val );
-		}
-	}
+	"use strict";
 
 	var BarModel = Backbone.Model.extend({
 		defaults: {
@@ -77,21 +69,23 @@ $(document).ready(function() {
 		notesInQueue: [],
 		audioCtx: null,
 		dirty: false,
+		unlocked: false,
 
 		initialize: function(options) {
-			this._timer = new Worker("metronomeworker.js");
+			this._timer = new Worker("js/application/metronomeworker.js");
 			this._timer.postMessage({ "interval": this._lookahead });
 			this._timer.onmessage = this.onTimerMessage.bind(this);
 
 			this.initAudioContext();
 
-			document.getElementById('root').addEventListener('touchstart', this.unlock.bind(this), false);
-			document.getElementById('root').addEventListener('touchend', this.unlock.bind(this), false);
+			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchstart', this.unlock.bind(this), false);
+			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchend', this.unlock.bind(this), false);
+			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('click', this.unlock.bind(this), false);
 
-			this.on('change:isMuted', this.onMuteChange);
 			this.on('change:meter', this.onChange);
 			this.on('change:bpm', this.onChange);
-			this.onMuteChange();
+
+			this._timer.postMessage('start');
 		},
 
 		// Is used in view to check whether re-paint is necessary
@@ -106,6 +100,8 @@ $(document).ready(function() {
 		},
 
 		scheduler: function() {
+			if( this.unlocked === false) { return }
+
 			while( this._nextNoteTime < this.audioCtx.currentTime + this._scheduleAheadTime) {
         	this.schedulePlayback(this._nextNoteTime);
 				  this.nextPlayback();
@@ -121,7 +117,9 @@ $(document).ready(function() {
 		 * https://paulbakaus.com/tutorials/html5/web-audio-on-ios/
 		 */
 		unlock: function() {
-			console.log( 'unlock' );
+
+			$('#overlay').fadeTo(150, 0, function(){ $(this).hide(); });
+
 			var myContext = this.audioCtx;
 			var buffer = myContext.createBuffer(1, 1, 22050);
 			var source = myContext.createBufferSource();
@@ -130,6 +128,7 @@ $(document).ready(function() {
 			source.connect(myContext.destination);
 
 			source.noteOn(0);
+			this.unlocked = true;
 		},
 
 		schedulePlayback: function( time ) {
@@ -159,7 +158,10 @@ $(document).ready(function() {
 				gainNode.gain.value = .1;
 			}
 
-			clickSound.start( time );
+			if( !this.isMuted() ) {
+				clickSound.start( time );
+			}
+
 
 			if(this._quarterNoteCount >= this.get( 'meter' ) ) {
 				this._quarterNoteCount = 0;
@@ -175,7 +177,7 @@ $(document).ready(function() {
 			}
 
 			this.audioCtx = new AudioContext();
-			var bufferLoader = new BufferLoader( this.audioCtx, ['4d.wav'], this.finishedLoading.bind(this) );
+			var bufferLoader = new BufferLoader( this.audioCtx, ['audio/4d.wav'], this.finishedLoading.bind(this) );
 			bufferLoader.load();
 		},
 
@@ -183,14 +185,6 @@ $(document).ready(function() {
 			this._bufferList = bufferList;
 		},
 
-
-		onMuteChange: function() {
-			if(this.get('isMuted') === false ) {
-				this._timer.postMessage('start');
-			} else {
-				this._timer.postMessage('stop');
-			}
-		},
 
 		toggleMute: function() {
 			this.set('isMuted', !this.get('isMuted'));
@@ -205,7 +199,6 @@ $(document).ready(function() {
 				this.set({
 					meter: meter,
 				});
-				bardebug( "Updated meter to " + this.get('meter') );
 			}
 
 			return this.get('meter')
@@ -349,8 +342,7 @@ $(document).ready(function() {
 
 	var MetronomeControlsView = Backbone.View.extend({
 		events: {
-			'click #js-btn-mute': 'onMute',
-			'touchend #js-btn-mute': 'onMute',
+			'click #js-btn-toggle-mute': 'onMute',
 
 			'input #js-input-bpm': 'onInputBpm',
 			'click #js-increment-bpm': 'onIncrementBpm',

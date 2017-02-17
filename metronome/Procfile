@@ -1,2 +1,2 @@
-watch: sass --watch style.sass:style.css
-compile: sass --style=compressed style.sass:style.css
+watch: sass --watch —style:compressed style/core.sass:style/core.css
+
