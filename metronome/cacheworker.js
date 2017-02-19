@@ -1,5 +1,4 @@
-var RELEASE_VERSION = "1.0";
-
+var RELEASE_VERSION = "1.0rc-1";
 var dataCacheName = 'swissMetronomeData-' +  RELEASE_VERSION;
 var cacheName = 'swissMetronome-' + RELEASE_VERSION;
 var filesToCache = [
@@ -24,6 +23,7 @@ var filesToCache = [
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
+  console.log("[ServiceWorker] Release", RELEASE_VERSION);  
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       console.log('[ServiceWorker] Caching app shell');
@@ -58,34 +58,21 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = 'https://query.yahooapis.com/v1/public/yql';
-  if (e.request.url.indexOf(dataUrl) > -1) {
-    /*
-     * When the request URL contains dataUrl, the app is asking for fresh
-     * weather data. In this case, the service worker always goes to the
-     * network and then caches the response. This is called the "Cache then
-     * network" strategy:
-     * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
-     */
-    e.respondWith(
-      caches.open(dataCacheName).then(function(cache) {
-        return fetch(e.request).then(function(response){
-          cache.put(e.request.url, response.clone());
-          return response;
-        });
-      })
-    );
-  } else {
-    /*
-     * The app is asking for app shell files. In this scenario the app uses the
-     * "Cache, falling back to the network" offline strategy:
-     * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
-     */
-    e.respondWith(
-      caches.match(e.request).then(function(response) {
-        return response || fetch(e.request);
-      })
-    );
-  }
+	/*
+	 * The app is asking for app shell files. In this scenario the app uses the
+	 * "Cache, falling back to the network" offline strategy:
+	 * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
+	 */
+	e.respondWith(
+	  caches.match(e.request).then(function(response) {
+	  
+		if( response ) {
+			console.log("[Service Worker] Cache hit", e.request.url);
+			return response
+		} else {
+			console.log("[Service Worker] Cache miss", e.request.url);
+			return fetch(e.request);			
+		}
+	  })
+	);
 });
