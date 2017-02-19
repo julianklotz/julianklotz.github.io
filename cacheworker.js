@@ -5,7 +5,7 @@ var filesToCache = [
   	'/',
   	'/index.html',
   	
-  	'/manifest.json',
+  	'/meta/manifest.json',
   
     'js/vendor/zepto.min.js',
     'js/vendor/fx.js',
