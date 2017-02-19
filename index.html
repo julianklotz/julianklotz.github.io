@@ -8,14 +8,14 @@
 		<script src="js/vendor/fx_methods.js"></script>
 		<script src="js/vendor/underscore-min.js"></script>
 		<script src="js/vendor/backbone-min.js"></script>
-		
+
 		<meta charset="utf-8" />
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1" />
 		<meta name="description" content="The Swiss Metronome" />
 		<meta name="author" content="Julian Klotz" />
-		
+
   		<link rel="manifest" href="meta/manifest.json">
-  		
+
   		<!-- Add to home screen for Safari on iOS -->
   		<meta name="apple-mobile-web-app-capable" content="yes">
   		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -24,7 +24,7 @@
 		<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
 		<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
 		<link rel="manifest" href="/manifest.json">
-	
+
 		<meta name="theme-color" content="#ebebe8">
 
 		<link rel="stylesheet" href="style/core.css"></link>
@@ -62,6 +62,7 @@
 				<label class="">bpm</label><br />
 
 				<input
+				 	onClick="this.setSelectionRange(0, this.value.length)"
 					class="form-control"
 					id="js-input-bpm"
 					type="number"
@@ -78,6 +79,7 @@
 				<label class="">meter</label><br />
 
 				<input
+					onClick="this.setSelectionRange(0, this.value.length)"
 					class="form-control"
 					id="js-input-meter"
 					type="number"
@@ -105,15 +107,15 @@
 		<p class="speed-trainer-headline">speed trainer</p>
 		<div class="fl">
 			<label class="label-small">from</label><br />
-			<input id="js-speedtrainer-from" type="number" value="<%= from %>" />
+			<input  onClick="this.setSelectionRange(0, this.value.length)"  id="js-speedtrainer-from" type="number" value="<%= from %>" />
 		</div>
 		<div class="fl">
 			<label class="label-small">to</label><br />
-			<input id="js-speedtrainer-to" type="number" value="<%= to %>"/>
+			<input  onClick="this.setSelectionRange(0, this.value.length)"  id="js-speedtrainer-to" type="number" value="<%= to %>"/>
 		</div>
 		<div class="fl">
 			<label class="label-small">step</label><br />
-			<input id="js-speedtrainer-stepsize" type="number" value="<%= stepSize %>" />
+			<input id="js-speedtrainer-stepsize" type="number"  onClick="this.setSelectionRange(0, this.value.length)"  value="<%= stepSize %>" />
 		</div>
 
 		<div class="fl">
