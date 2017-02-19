@@ -54,7 +54,7 @@ $(document).ready(function() {
 		defaults: {
 			"bpm":  120,
 			"meter": 4,
-			"isMuted": false,
+			"isMuted": true,
 			"bpmMax": 240,
 			"bpmMin": 30,
 		},
@@ -118,7 +118,7 @@ $(document).ready(function() {
 		 */
 		unlock: function() {
 
-			$('#overlay').fadeTo(150, 0, function(){ $(this).hide(); });
+			$('#overlay').fadeTo(150, 0, function(){ $(this).hide();});
 
 			var myContext = this.audioCtx;
 			var buffer = myContext.createBuffer(1, 1, 22050);
@@ -127,8 +127,9 @@ $(document).ready(function() {
 
 			source.connect(myContext.destination);
 
-			source.noteOn(0);
+			source.start(0);
 			this.unlocked = true;
+			this.set( 'isMuted', false );
 		},
 
 		schedulePlayback: function( time ) {
