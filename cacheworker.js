@@ -1,4 +1,4 @@
-var RELEASE_VERSION = "1.0rc-1";
+var RELEASE_VERSION = "1.0rc-2";
 var dataCacheName = 'swissMetronomeData-' +  RELEASE_VERSION;
 var cacheName = 'swissMetronome-' + RELEASE_VERSION;
 var filesToCache = [
