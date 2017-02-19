@@ -474,6 +474,11 @@ $(document).ready(function() {
 
 	});
 
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker
+			.register('./cacheworker.js')
+			.then(function() { console.log('Service Worker Registered'); });
+	}
 
 	var barModel = new BarModel();
 	window.barModel = barModel;
