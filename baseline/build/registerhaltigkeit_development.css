@@ -53,11 +53,23 @@ body {
 #wrapper {
   background-color: white; }
 
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
 .no-margin-top {
-  margin-top: 0; }
+  margin-top: 0 !important; }
 
 .no-margin-bottom {
   margin-bottom: 0; }
+
+.margin-bottom-dot5 {
+  margin-bottom: 11px; }
+
+.margin-bottom-2 {
+  margin-bottom: 44px; }
 
 .margin-top-dot5 {
   margin-top: 11px; }
@@ -67,6 +79,9 @@ body {
 
 .margin-top-1dot5 {
   margin-top: 33px; }
+
+.margin-top-2 {
+  margin-top: 44px; }
 
 html, input, option, select, textarea, button {
   font-family: "Alto Pro", Helvetica, Arial, sans-serif;
@@ -88,6 +103,15 @@ html, input, option, select, textarea, button {
 html, input, option, select, textarea, button {
   font-size: 16px;
   line-height: 22px; }
+
+.image-rounded-small {
+  max-width: 44px;
+  max-height: 44px;
+  border-radius: 50%;
+  background-color: #e7e7e7;
+  display: block;
+  float: left;
+  margin-right: 1em; }
 
 h1, .fake-h1 {
   font-size: 32px;
@@ -117,12 +141,17 @@ h5, .fake-h5 {
   margin: 22px 0 0 0; }
 
 sup {
-  font-size: 12.44444px; }
+  font-size: 12px; }
 
-h6, .fake-h6, .incredibly-small, .attribute {
-  font-size: 12.44444px;
+h6, .fake-h6, .incredibly-small, .attribute, .caps-label {
+  font-size: 12px;
   line-height: 22px;
   margin: 22px 0 0 0; }
+
+.caps-label {
+  text-transform: uppercase;
+  color: #6f6f6f;
+  letter-spacing: 0.5; }
 
 code {
   font-family: "Menlo", "Andale Mono", monospace;
@@ -209,7 +238,13 @@ fieldset + fieldset {
   margin-top: 8px;
   margin-bottom: 0px;
   border-radius: 3px;
-  border: 1px solid #cfcfcf; }
+  border: 1px solid #cfcfcf;
+  background-color: white; }
+
+.form-required {
+  color: #cc0000;
+  font-weight: normal;
+  float: right; }
 
 .help-block {
   margin-top: 11px;

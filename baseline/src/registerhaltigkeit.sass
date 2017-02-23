@@ -32,6 +32,15 @@ html, input, option, select, textarea, button
   font-size: $base-font-size
   line-height: $base-line-height
 
+.image-rounded-small
+  max-width: 2 * $base-line-height
+  max-height: 2 * $base-line-height
+  border-radius: 50%
+  background-color: #e7e7e7
+  display: block
+  float: left
+  margin-right: 1em
+
 h1, .fake-h1
   font-size: 2 * $base-font-size
   line-height: 2 * $base-line-height
@@ -56,17 +65,22 @@ h5, .fake-h5, small, .small
   font-size: 0.8888888889 * $base-font-size
   line-height: $base-line-height
 
-
 h5, .fake-h5
   margin: $base-line-height 0 0 0
 
 sup
-  font-size: 0.7777777778 * $base-font-size
+  font-size: 0.75 * $base-font-size
 
 h6, .fake-h6, .incredibly-small
-  font-size: 0.7777777778 * $base-font-size
+  font-size: 0.75 * $base-font-size
   line-height: $base-line-height
   margin: $base-line-height 0 0 0
+
+.caps-label
+  @extend .incredibly-small
+  text-transform: uppercase
+  color: #6f6f6f
+  letter-spacing: .5
 
 code
   font-family: "Menlo", "Andale Mono", monospace
@@ -166,6 +180,12 @@ fieldset + fieldset
 
   border-radius: 3px
   border: 1px solid #cfcfcf
+  background-color: white
+
+.form-required
+  color: darken(#ff0000, 10%)
+  font-weight: normal
+  float: right
 
 .help-block
   margin-top: $base-line-height / 2
@@ -225,6 +245,8 @@ textarea.form-control
   white-space: nowrap
   overflow: hidden
   vertical-align: middle
+
+
 
 @media screen and (max-width: 50em)
   .file-control + label strong
