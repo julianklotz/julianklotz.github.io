@@ -179,21 +179,15 @@ h6, .fake-h6, .incredibly-small, .attribute, .caps-label {
 
 code {
   font-family: Menlo, "Andale Mono", Courier, monospace;
+  font-size: 12px;
   background-color: #e7e7e7;
   border-radius: 2px;
-  padding: 2px 3px;
-  border: 1px solid #cfcfcf; }
+  padding: 2px 3px; }
 
 .caps-label {
   text-transform: uppercase;
   color: #6f6f6f;
   letter-spacing: 0.5; }
-
-code {
-  font-family: "Menlo", "Andale Mono", monospace;
-  font-size: 14.22222px;
-  line-height: 22px;
-  background-color: rgba(240, 240, 240, 0.5); }
 
 blockquote {
   padding-left: 0.5em;
