@@ -30,17 +30,49 @@
 		<a class="bar-item" href="#">Bearbeiten</a>
 	</div>
 
-	<h1>A little bit of a README</h1>
+	<h1>Prelude</h1>
 	<ol>
 		<li>The basic font size is 16px/22px
-		<li>The smallest possible unit is line-height / 2
+		<li>The smallest possible unit is line-height / 2, i.e. 11px
 		<li>Top and bottom values should be based on a multiple of half a line height
 		<li>Left and right values should be based on a multiple of half an em
 		<li>Text areas and input fields are layed out in a way that a one-line field is 36px in total, plus 8px margin-top to fix to keep the baseline
 	</ol>
 
+	<h2>Font sizing</h2>
+	<p>Font sizes are based on the basic size 16px/22px.</p>
+	<ul class="no-style">
+		<li>h1 is 2.25em, i.e. 36px/44px
+		<li>h2 is 1.5em, i.e. 24px/33px
+		<li>h3 is 1.125em, i.e. 18px/22px
+		<li><strong>h4 is 1em, i.e. 16px/22px</strong>
+		<li>h5 is 0.875em, i.e. 14px/22px
+		<li>h6 is 0,75em, i.e. 12px/22px
+	</ul>
 
-	<h1>The impressive Rocks of Quiraing</h1>
+	<p>This comes down to:</p>
+
+	<h1 class="margin-top-3">Headline h1, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h1>
+	<h2 class="margin-top-3">Headline h2, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h2>
+	<h3 class="margin-top-3">Headline h3, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h3>
+	<p class="large">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+	<h4 class="margin-top-3">Headline h4, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h4>
+	<p>Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+	<h5 class="margin-top-3">Headline h5, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h5>
+	<p class="small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+	<h6 class="margin-top-3">Headline h6, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h6>
+	<p class="incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+
+	<h2>Font coloring</h2>
+	<ul>
+		<li>Basic font color is <code>#272727</code> (contrast ratio of 14 on white bg, around 12 on <code>#e7e7e7</code>)
+			<li>The lightest readable font color is <code>#6f6f6f</code> (contrast ratio of 5 on white bg, ratio of 4.1 on <code>#e7e7e7</code>)
+				<li>Placeholders may be even lighter with <code>#9f9f9f</code> (inacceptable contrast ratio)
+	</ul>
+
+
+
+	<h1 class="margin-top-2">The impressive Rocks of Quiraing</h1>
 	<p><img class="cat-icon" src="https://res.oastatic.com/icons/alpstein/hiking/forest_green/hiking.square.png" />Hiking Trail · Scottish Highlands</p>
 
 	<div>
@@ -71,13 +103,29 @@
 	<small class="author-recommends-label">Editorial Advice</small>
 	<blockquote>Don’t forget to bring an umbrella and a towel.</blockquote>
 
+	<div class="margin-top-2 group">
+		<img src="https://img.oastatic.com/img2/21481185/200x-r/om-icon_1024x1024_02.png.png" class="image-rounded-small margin-top-dot5" />
+		<div class="fl" style="max-width: 80%">
+			<label class="no-margin-top caps-label">Source</label>
+			<p class="no-margin-top no-margin-bottom"><strong><a href="https://google.com">Outdooractive Redaktion</a></strong></p>
+		</div>
+	</div>
+
+	<div class="margin-top-2 group">
+		<img src="https://img.oastatic.com/img2/21481185/200x-r/om-icon_1024x1024_02.png.png" class="image-rounded-small margin-top-dot5" />
+		<div class="fl" style="max-width: 80%">
+			<label class="no-margin-top caps-label">Source</label>
+			<p class="no-margin-top no-margin-bottom"><strong>Outdooractive Redaktion</strong></p>
+		</div>
+	</div>
+
 	<div class="margin-bottom-2 margin-top-2">
 		<img src="img/avatar.jpg" class="image-rounded-small margin-top-dot5" />
 
 		<div class="fl" style="max-width: 80%">
 			<label class="no-margin-top caps-label">The Author</label>
 			<p class="no-margin-top no-margin-bottom"><strong>Montgomery Pipeface</strong></p>
-			<p class="margin-top-dot5">Without, the night was cold and wet, but in the small parlor of Lakesnam Villa the blinds were drawn and the fire burned brightly. Father and son were at chess, the former, who possessed ideas about the game involving radical changes, putting his king into such sharp and unnecessary perils that it even provoked comment from the whitehaired old lady knitting placidly by the fire.</p>
+			<p class="margin-top-dot5">Without, the night was cold and wet, but in the small parlor of <a href="#">Lakesnam Villa</a> the blinds were drawn and the fire burned brightly. Father and son were at chess, the former, who possessed ideas about the game involving radical changes, putting his king into such sharp and unnecessary perils that it even provoked comment from the whitehaired old lady knitting placidly by the fire.</p>
 		</div>
 
 	</div>

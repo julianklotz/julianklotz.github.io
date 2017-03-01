@@ -32,6 +32,20 @@ html, input, option, select, textarea, button
   font-size: $base-font-size
   line-height: $base-line-height
 
+$blue-dark: #037199
+$blue-darker: darken(#035e80, 5%)
+a
+  color: $blue-dark
+  text-decoration: none
+
+  &:hover
+    color: $blue-dark
+    text-decoration: underline
+
+  &:active
+    color: $blue-darker
+    text-decoration: underline
+
 .image-rounded-small
   max-width: 2 * $base-line-height
   max-height: 2 * $base-line-height
@@ -42,17 +56,23 @@ html, input, option, select, textarea, button
   margin-right: 1em
 
 h1, .fake-h1
-  font-size: 2 * $base-font-size
+  font-size: 2.25 * $base-font-size
   line-height: 2 * $base-line-height
   margin: 2 * $base-line-height 0 $base-line-height 0
 
+@media screen and (max-width: 35.25em)
+  h1, .fake-h1
+    font-size: 1.5 * $base-font-size
+    line-height: 1.5 * $base-line-height
+
+
 h2, .fake-2
-  font-size: 1.33333333333 * $base-font-size
-  line-height: 2 * $base-line-height
+  font-size: 1.5 * $base-font-size
+  line-height: 1.5 * $base-line-height
   margin: $base-line-height 0
 
-h3, .fake-h3
-  font-size: 1.2 * $base-font-size
+h3, .fake-h3, .large
+  font-size: 1.125 * $base-font-size
   line-height: $base-line-height
   margin: $base-line-height 0
 
@@ -62,11 +82,15 @@ h4, .fake-h4
   margin: $base-line-height 0 0 0
 
 h5, .fake-h5, small, .small
-  font-size: 0.8888888889 * $base-font-size
+  font-size: 0.875 * $base-font-size
   line-height: $base-line-height
 
 h5, .fake-h5
   margin: $base-line-height 0 0 0
+
+h6, .fake-h6
+  font-size: 0.75 * $base-font-size
+  line-height: $base-line-height
 
 sup
   font-size: 0.75 * $base-font-size
@@ -75,6 +99,13 @@ h6, .fake-h6, .incredibly-small
   font-size: 0.75 * $base-font-size
   line-height: $base-line-height
   margin: $base-line-height 0 0 0
+
+code
+  font-family: Menlo, 'Andale Mono', Courier, monospace
+  background-color: #e7e7e7
+  border-radius: 2px
+  padding: 2px 3px
+  border: 1px solid #cfcfcf
 
 .caps-label
   @extend .incredibly-small
