@@ -41,7 +41,7 @@
 		<a class="bar-item" href="#">Bearbeiten</a>
 	</div>
 
-	<h1>Prelude</h1>
+	<h2>Prelude</h2>
 	<ol>
 		<li>The basic font size is 16px/22px
 		<li>The smallest possible unit is line-height ÷ 2, i.e. 11px
@@ -50,6 +50,7 @@
 		<li>Text areas and input fields are layed out in a way that a one-line field is 36px in total, plus 8px margin-top to fix to keep the baseline
 	</ol>
 
+	<h2>Font Sizes</h2>
 	<table>
 		<thead class="highlight-first-column">
 			<th>Role
@@ -89,13 +90,12 @@
 				<td class="text-code">h5, .text-small
 			</tr>
 			<tr>
-				<td>Small font size
+				<td>Incredibly small font size
 				<td class="text-code">0.75rem<br /> 12px
-				<td class="text-code">1.375rem<br />22px	
+				<td class="text-code">1.375rem<br />22px
 				<td class="text-code">h6, .text-incredibly-small
 			</tr>
 		</tbody>
-
 	</table>
 
 	<p>This comes down to:</p>
@@ -112,13 +112,38 @@
 	<p class="text-incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
 
 	<h2>Font Colors</h2>
-	<ul>
-		<li>Basic font color is <code>#272727</code> (contrast ratio of 14 on white bg, around 12 on <code>#e7e7e7</code>)
-			<li>The lightest well-readable font color is <code>#6f6f6f</code> (contrast ratio of 5 on white bg, ratio of 4.1 on <code>#e7e7e7</code>)
-				<li>Placeholders may be even lighter with <code>#9f9f9f</code> (inacceptable contrast ratio)
-	</ul>
 
+	<table>
+		<thead>
+			<th>Role
+			<th>Color Value
+			<th>Variable
+		</thead>
 
+		<tbody>
+			<tr>
+				<td>Default color
+				<td class="text-code">#272727
+				<td class="text-code">$grey100
+			</tr>
+			<tr>
+				<td>Light color
+				<td class="text-code">#6f6f6f
+				<td class="text-code">$grey70
+			</tr>
+			<tr>
+				<td>Placeholder color (very light and low contrast)
+				<td class="text-code">#9f9f9f
+				<td class="text-code">$grey70
+			</tr>
+			<tr>
+				<td>Link color
+				<td class="text-code">#0484b2
+				<td class="text-code">$link
+			</tr>
+
+		</tbody>
+	</table>
 
 	<h1 class="margin-top-2">The impressive Rocks of Quiraing</h1>
 	<p><img class="cat-icon" src="https://res.oastatic.com/icons/alpstein/hiking/forest_green/hiking.square.png" />Hiking Trail · Scottish Highlands</p>
