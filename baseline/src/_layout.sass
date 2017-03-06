@@ -2,10 +2,11 @@
 /* --- LAYOUT --- */
 
 .bar
-  background-color: rgba( 220, 220, 220, .6 )
+  background-color: #F2EEE7
   text-align: right
   border-radius: 4px
   margin: $base-line-height 0
+  padding: 0 $base-font-size
 
 .bar, .bar-item
   padding-top: $base-line-height / 2
@@ -14,15 +15,20 @@
 .bar-item
   padding: $base-line-height/2 .5rem
 
+  &:last-child
+    padding-right: 0
+
+
+
 .attribute
-  @extend .incredibly-small
+  @extend .text-incredibly-small
   border-width: 1px
   border-style: solid
   padding: .1rem .3rem
 
 .attribute-item
   @extend .tabular
-  @extend .small
+  @extend .text-small
   margin-right: .5rem
   display: block
   float: left
@@ -53,7 +59,7 @@
   clear: both
 
 body
-  background-color: #6f6f6f
+  background-color: #F2EEE7
 
 #wrapper
   background-color: white

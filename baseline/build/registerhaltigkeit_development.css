@@ -5,10 +5,11 @@
 
 /* --- LAYOUT --- */
 .bar {
-  background-color: rgba(220, 220, 220, 0.6);
+  background-color: #F2EEE7;
   text-align: right;
   border-radius: 4px;
-  margin: 22px 0; }
+  margin: 22px 0;
+  padding: 0 16px; }
 
 .bar, .bar-item {
   padding-top: 11px;
@@ -16,6 +17,8 @@
 
 .bar-item {
   padding: 11px 0.5rem; }
+  .bar-item:last-child {
+    padding-right: 0; }
 
 .attribute {
   border-width: 1px;
@@ -48,7 +51,7 @@
   clear: both; }
 
 body {
-  background-color: #6f6f6f; }
+  background-color: #F2EEE7; }
 
 #wrapper {
   background-color: white; }
@@ -99,7 +102,7 @@ html, input, option, select, textarea, button {
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
-  color: #3f3f3f;
+  color: #272727;
   -webkit-font-smoothing: subpixel-antialiased;
   font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
   -moz-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
@@ -148,7 +151,7 @@ h2, .fake-2 {
   line-height: 33px;
   margin: 22px 0; }
 
-h3, .fake-h3, .large {
+h3, .fake-h3, .text-large {
   font-size: 18px;
   line-height: 22px;
   margin: 22px 0; }
@@ -158,7 +161,7 @@ h4, .fake-h4 {
   line-height: 22px;
   margin: 22px 0 0 0; }
 
-h5, .fake-h5, small, .fieldset-headline, .help-block, .small, .attribute-item {
+h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item {
   font-size: 14px;
   line-height: 22px; }
 
@@ -172,17 +175,19 @@ h6, .fake-h6 {
 sup {
   font-size: 12px; }
 
-h6, .fake-h6, .incredibly-small, .attribute, .caps-label {
+h6, .fake-h6, .text-incredibly-small, .attribute, .caps-label {
   font-size: 12px;
   line-height: 22px;
   margin: 22px 0 0 0; }
 
-code {
+code, .text-code {
   font-family: Menlo, "Andale Mono", Courier, monospace;
   font-size: 12px;
-  background-color: #e7e7e7;
   border-radius: 2px;
   padding: 2px 3px; }
+
+code {
+  background-color: #e7e7e7; }
 
 .caps-label {
   text-transform: uppercase;
@@ -351,5 +356,20 @@ ol, ul {
     margin-left: 0; }
     ol.no-style li, ul.no-style li {
       list-style-type: none; }
+
+/* --- TABLE STYLING --- */
+table {
+  margin: 44px 0;
+  border-collapse: collapse; }
+  table.highlight-first-column tr td:first-child {
+    font-weight: bold; }
+
+td, th {
+  padding: 11px 2rem 11px 0;
+  border-bottom: 1px solid #cfcfcd; }
+
+th {
+  text-align: left;
+  border-bottom: 2px solid #cfcfcf; }
 
 /*# sourceMappingURL=registerhaltigkeit_development.css.map */

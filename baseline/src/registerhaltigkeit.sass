@@ -15,7 +15,7 @@ html, input, option, select, textarea, button
   -moz-text-size-adjust: none
   -ms-text-size-adjust: none
 
-  color: #3f3f3f
+  color: #272727
 
   -webkit-font-smoothing: subpixel-antialiased
   font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
@@ -23,6 +23,7 @@ html, input, option, select, textarea, button
   -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
   -ms-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
   -o-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
+
   -webkit-hyphens: auto
   -moz-hyphens: auto
   -ms-hyphens: auto
@@ -71,7 +72,7 @@ h2, .fake-2
   line-height: 1.5 * $base-line-height
   margin: $base-line-height 0
 
-h3, .fake-h3, .large
+h3, .fake-h3, .text-large
   font-size: 1.125 * $base-font-size
   line-height: $base-line-height
   margin: $base-line-height 0
@@ -81,7 +82,7 @@ h4, .fake-h4
   line-height: $base-line-height
   margin: $base-line-height 0 0 0
 
-h5, .fake-h5, small, .small
+h5, .fake-h5, small, .text-small
   font-size: 0.875 * $base-font-size
   line-height: $base-line-height
 
@@ -95,20 +96,23 @@ h6, .fake-h6
 sup
   font-size: 0.75 * $base-font-size
 
-h6, .fake-h6, .incredibly-small
+h6, .fake-h6, .text-incredibly-small
   font-size: 0.75 * $base-font-size
   line-height: $base-line-height
   margin: $base-line-height 0 0 0
 
-code
+code, .text-code
   font-family: Menlo, 'Andale Mono', Courier, monospace
   font-size: 0.75 * $base-font-size
-  background-color: #e7e7e7
   border-radius: 2px
   padding: 2px 3px
 
+code
+  background-color: #e7e7e7
+
+
 .caps-label
-  @extend .incredibly-small
+  @extend .text-incredibly-small
   text-transform: uppercase
   color: #6f6f6f
   letter-spacing: .5
@@ -159,7 +163,7 @@ button
     padding: 7px 1em
     margin: 4px 0
 
-  &.small
+  &.text-small
     $pad: 0
 
 
@@ -298,3 +302,21 @@ ol, ul
     li
       list-style-type: none
 
+/* --- TABLE STYLING --- */
+
+table
+  margin: 2 * $base-line-height 0
+  border-collapse: collapse
+
+  &.highlight-first-column tr td:first-child
+    font-weight: bold
+
+
+
+td, th
+  padding: $base-line-height / 2 2rem $base-line-height / 2 0
+  border-bottom: 1px solid #cfcfcd
+
+th
+  text-align: left
+  border-bottom: 2px solid #cfcfcf
