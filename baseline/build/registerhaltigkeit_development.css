@@ -359,7 +359,7 @@ ol, ul {
 
 /* --- TABLE STYLING --- */
 table {
-  margin: 44px 0;
+  margin: 22px 0;
   border-collapse: collapse; }
   table.highlight-first-column tr td:first-child {
     font-weight: bold; }
