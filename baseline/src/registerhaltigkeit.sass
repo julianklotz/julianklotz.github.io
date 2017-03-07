@@ -18,11 +18,13 @@ html, input, option, select, textarea, button
   color: #272727
 
   -webkit-font-smoothing: subpixel-antialiased
-  font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
-  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
-  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
-  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
-  -o-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum"
+  font-feature-settings: "kern" on, "liga" on, "calt" on
+  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on
+  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on
+  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on
+  -o-font-feature-settings: "kern" on, "liga" on, "calt" on
+
+  font-variant-numeric: oldstyle-nums
 
   -webkit-hyphens: auto
   -moz-hyphens: auto
@@ -70,7 +72,7 @@ h1, .fake-h1
 h2, .fake-2
   font-size: 1.5 * $base-font-size
   line-height: 1.5 * $base-line-height
-  margin: $base-line-height 0
+  margin: 2 * $base-line-height 0 $base-line-height 0
 
 h3, .fake-h3, .text-large
   font-size: 1.125 * $base-font-size
@@ -101,15 +103,11 @@ h6, .fake-h6, .text-incredibly-small
   line-height: $base-line-height
   margin: $base-line-height 0 0 0
 
-code, .text-code
+code, .text-code, pre
+  @extend .text-small
   font-family: Menlo, 'Andale Mono', Courier, monospace
-  font-size: 0.75 * $base-font-size
   border-radius: 2px
   padding: 2px 3px
-
-code
-  background-color: #e7e7e7
-
 
 .caps-label
   @extend .text-incredibly-small
@@ -307,6 +305,7 @@ ol, ul
 table
   margin: 1 * $base-line-height 0
   border-collapse: collapse
+  width: 100%
 
   &.highlight-first-column tr td:first-child
     font-weight: bold
@@ -314,9 +313,18 @@ table
 
 
 td, th
+  font-variant-numeric: tabular-nums
   padding: $base-line-height / 2 2rem $base-line-height / 2 0
   border-bottom: 1px solid #cfcfcd
 
+  &.num
+    text-align: right
+
+  &:last-child
+    padding-right: 0 !important
+
 th
+  @extend .text-small
   text-align: left
   border-bottom: 2px solid #cfcfcf
+  vertical-align: bottom

@@ -104,11 +104,12 @@ html, input, option, select, textarea, button {
   -ms-text-size-adjust: none;
   color: #272727;
   -webkit-font-smoothing: subpixel-antialiased;
-  font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
-  -o-font-feature-settings: "kern" on, "liga" on, "calt" on, "onum", "pnum";
+  font-feature-settings: "kern" on, "liga" on, "calt" on;
+  -moz-font-feature-settings: "kern" on, "liga" on, "calt" on;
+  -webkit-font-feature-settings: "kern" on, "liga" on, "calt" on;
+  -ms-font-feature-settings: "kern" on, "liga" on, "calt" on;
+  -o-font-feature-settings: "kern" on, "liga" on, "calt" on;
+  font-variant-numeric: oldstyle-nums;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
@@ -149,7 +150,7 @@ h1, .fake-h1 {
 h2, .fake-2 {
   font-size: 24px;
   line-height: 33px;
-  margin: 22px 0; }
+  margin: 44px 0 22px 0; }
 
 h3, .fake-h3, .text-large {
   font-size: 18px;
@@ -161,7 +162,7 @@ h4, .fake-h4 {
   line-height: 22px;
   margin: 22px 0 0 0; }
 
-h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item {
+h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item, code, .text-code, pre, th {
   font-size: 14px;
   line-height: 22px; }
 
@@ -180,14 +181,10 @@ h6, .fake-h6, .text-incredibly-small, .attribute, .caps-label {
   line-height: 22px;
   margin: 22px 0 0 0; }
 
-code, .text-code {
+code, .text-code, pre {
   font-family: Menlo, "Andale Mono", Courier, monospace;
-  font-size: 12px;
   border-radius: 2px;
   padding: 2px 3px; }
-
-code {
-  background-color: #e7e7e7; }
 
 .caps-label {
   text-transform: uppercase;
@@ -360,16 +357,23 @@ ol, ul {
 /* --- TABLE STYLING --- */
 table {
   margin: 22px 0;
-  border-collapse: collapse; }
+  border-collapse: collapse;
+  width: 100%; }
   table.highlight-first-column tr td:first-child {
     font-weight: bold; }
 
 td, th {
+  font-variant-numeric: tabular-nums;
   padding: 11px 2rem 11px 0;
   border-bottom: 1px solid #cfcfcd; }
+  td.num, th.num {
+    text-align: right; }
+  td:last-child, th:last-child {
+    padding-right: 0 !important; }
 
 th {
   text-align: left;
-  border-bottom: 2px solid #cfcfcf; }
+  border-bottom: 2px solid #cfcfcf;
+  vertical-align: bottom; }
 
 /*# sourceMappingURL=registerhaltigkeit_development.css.map */

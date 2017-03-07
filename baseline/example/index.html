@@ -10,14 +10,15 @@
 			body { margin: 0; padding: 0; }
 			#wrapper {
 				margin: 0 auto 0 auto;
-				max-width: 700px;
-				padding: 22px 1em; /* based on base font size */
+				max-width: 37rem; /* max text width */
+				padding: 1rem 1.25rem; /* based on base font size */
 			}
 
-			@media screen and (min-width: 35.25em) {
+			@media screen and (min-width: 35.25rem) {
 				#wrapper {
-					padding-left: 2em;
-					padding-right: 2em;
+					padding-left: 2rem;
+					padding-right: 2rem;
+
 				}
 			}
 
@@ -47,52 +48,102 @@
 		<li>The smallest possible unit is <code>line height ÷ 2</code>, i.e. 11px
 		<li>Vertical margins and paddings should be based on a multiple of half a line height
 		<li>Left and right margins and padding should be based on a multiple of half an em. This means: 8px (<code>16px ÷ 2</code>)
-		<li>Text areas and input fields are layed out in a way that a single-line input field is 36px high total, plus 8px margin-top to keep the baseline 
+		<li>Text areas and input fields are layed out in a way that a single-line input field is 36px high total, plus 8px margin-top to keep the baseline
 	</ol>
+
+	<h2>Layout</h2>
+
+	<p>Layouts should be provided at least for the smallest and for the largest design variant. The smallest supported width is 320px. The largest supported width is 1280px. Outer gutters are not only half of the gutter width, but the full gutter width. The smallest version does technically not use a grid – it’s just for layout purposes.</p>
+	<p>Body text should not be wider than 37rem (592px).
+
+	<table>
+		<thead class="highlight-first-column">
+			<th>Range
+			<th class="num">Larger than …<br />(artboard size)
+			<th class="num">Columns
+			<th class="num">Gutter
+			<th class="num">Column width
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Extra small
+				<td class="num">320px
+				<td class="num">1
+				<td class="num">1.25rem / 20px
+				<td class="num">280px
+			</tr>
+
+			<tr>
+				<td>Small
+				<td class="num">480px
+				<td class="num">1
+				<td class="num">1.25rem / 20px
+				<td class="num">440px
+			</tr>
+
+			<tr>
+				<td>Medium
+				<td class="num">816px <!-- DERIVED FROM 800px -->
+				<td class="num">12
+				<td class="num">1.5rem / 24px
+				<td class="num">42px
+			</tr>
+
+			<tr>
+				<td>Large
+				<td class="num">1136px
+				<td class="num">12
+				<td class="num">2rem / 32px
+				<td class="num">60px
+				</tr>
+		</tbody>
+	</table>
+
 
 	<h2>Font Sizes</h2>
 	<table>
 		<thead class="highlight-first-column">
 			<th>Role
-			<th>Font Size
-			<th>Line Height
+			<th class="num">Font Size
+			<th class="num">Line Height
 			<th>HTML/CSS
 		</thead>
 		<tbody>
 			<tr>
-				<td>Largest headline size, shrinks to h2 size on mobile devices
-					<td class="text-code">2.25rem<br />36px
-					<td class="text-code">2.75rem<br />44px
+				<td>Largest headline size<br /><small>shrinks to h2 size on mobile devices</small>
+					<td class="num">2.25rem<br />36px
+					<td class="num">2.75rem<br />44px
 				<td class="text-code">h1
 			</tr>
 			<tr>
 				<td>Second largest headline size
-					<td class="text-code">1.5rem<br />24px
-					<td class="text-code">2.0625rem<br />33px
+					<td class="num">1.5rem<br />24px
+					<td class="num">2.0625rem<br />33px
 				<td class="text-code">h2
 			</tr>
 			<tr>
 				<td>Large font size
-				<td class="text-code">1.125rem<br />18px
-				<td class="text-code">1.375rem<br />22px
+				<td class="num">1.125rem<br />18px
+				<td class="num">1.375rem<br />22px
 				<td class="text-code">h3, .text-large
 			</tr>
 			<tr>
 				<td>Base font size
-				<td class="text-code">1rem<br />16px
-				<td class="text-code">1.375rem<br />22px
+				<td class="num">1rem<br />16px
+				<td class="num">1.375rem<br />22px
 				<td class="text-code">h4, p
 			</tr>
 			<tr>
 				<td>Small font size
-				<td class="text-code">0.875rem<br />14px
-				<td class="text-code">1.375rem<br />22px
+				<td class="num">0.875rem<br />14px
+				<td class="num">1.375rem<br />22px
 				<td class="text-code">h5, .text-small
 			</tr>
 			<tr>
 				<td>Incredibly small font size
-				<td class="text-code">0.75rem<br /> 12px
-				<td class="text-code">1.375rem<br />22px
+				<td class="num">0.75rem<br /> 12px
+				<td class="num">1.375rem<br />22px
 				<td class="text-code">h6, .text-incredibly-small
 			</tr>
 		</tbody>
