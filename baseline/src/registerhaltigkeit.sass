@@ -1,7 +1,8 @@
-$base-font-size: 16px
-$base-line-height: 22px
+$base-font-size: 1rem
+$base-line-height: 1.375rem
 
 $base-bg-color: rgba(240, 240, 240, .5)
+$base-border-color: #cfcfcf
 
 @import 'debug'
 @import 'layout'
@@ -32,7 +33,7 @@ html, input, option, select, textarea, button
   hyphens: auto
 
 html, input, option, select, textarea, button
-  font-size: $base-font-size
+  font-size: 100%
   line-height: $base-line-height
 
 $blue-dark: #037199
@@ -206,7 +207,7 @@ fieldset + fieldset
   margin-bottom: 0px
 
   border-radius: 3px
-  border: 1px solid #cfcfcf
+  border: 1px solid $base-border-color
   background-color: white
 
 .form-required
@@ -225,7 +226,7 @@ input
   background-color: white
 
 textarea.form-control
-  height: 3 * ($base-line-height) + 2 * 6px
+  height: calc(3 * #{$base-line-height} + 2 * 6px)
   margin-top: 8px
   margin-bottom: 0
 
@@ -241,7 +242,7 @@ textarea.form-control
 
 .file-control + label
   line-height: $base-line-height
-  border: 1px solid #cfcfcf
+  border: 1px solid $base-border-color
   width: 100%
   text-align: left
   border-radius: 3px
@@ -303,7 +304,7 @@ ol, ul
 /* --- TABLE STYLING --- */
 
 table
-  margin: 1 * $base-line-height 0
+  margin: 2 * $base-line-height 0
   border-collapse: collapse
   width: 100%
 
@@ -326,5 +327,6 @@ td, th
 th
   @extend .text-small
   text-align: left
-  border-bottom: 2px solid #cfcfcf
+  border-bottom: 2px solid $base-border-color
+  border-top: 2px solid $base-border-color
   vertical-align: bottom
