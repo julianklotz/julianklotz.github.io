@@ -10,7 +10,7 @@
 			body { margin: 0; padding: 0; }
 			#wrapper {
 				margin: 0 auto 0 auto;
-				max-width: 37rem; /* max text width */
+				max-width: 50rem;
 				padding: 22px 1.25rem; /* based on base font size */
 			}
 
@@ -56,7 +56,9 @@
 	<table>
 		<thead class="highlight-first-column">
 			<th>Range
-			<th class="num">Larger than …<br />(layout size)
+			<th class="num">Layout width<br><small>(document size)</small>
+			<th class="num">Grid width<br><small>(without margins)</small>
+			<th class="num">Layout height<br><small>(above the fold)</small>				
 			<th class="num">Columns
 			<th class="num">Gutter
 			<th class="num">Column width
@@ -66,34 +68,52 @@
 			<tr>
 				<td>Extra small
 				<td class="num">320px
-				<td class="num">1
-				<td class="num">1.25rem / 20px
 				<td class="num">280px
+				<td class="num">440px<br />(40px chrome)
+				<td class="num">6
+				<td class="num">1.25rem / 20px
+				<td class="num">30px
 			</tr>
 
 			<tr>
 				<td>Small
 				<td class="num">480px
-				<td class="num">1
-				<td class="num">1.25rem / 20px
-				<td class="num">440px
+				<td class="num">432px
+				<td class="num">same as above
+				<td class="num">6
+				<td class="num">1.5rem / 24px
+				<td class="num">52px
 			</tr>
 
 			<tr>
 				<td>Medium
 				<td class="num">792px
+				<td class="num">744px
+				<td class="num">same as above				
 				<td class="num">12
 				<td class="num">1.5rem / 24px
 				<td class="num">40px
 			</tr>
 
 			<tr>
+				<td>Portal (just for reference)
+				<td class="num">1080px
+				<td class="num">1016px
+				<td class="num">668px<br />(100px chrome)
+				<td class="num">12
+				<td class="num">2rem / 32px
+				<td class="num">55px
+			</tr>
+
+			<tr>
 				<td>Large
 				<td class="num">1136px
+				<td class="num">1072px
+				<td class="num">same as above						
 				<td class="num">12
 				<td class="num">2rem / 32px
 				<td class="num">60px
-				</tr>
+			</tr>
 		</tbody>
 	</table>
 
@@ -153,9 +173,9 @@
 	<h3 class="margin-top-3">Headline h3, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h3>
 	<p class="text-large">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
 	<h4 class="margin-top-3">Headline h4, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h4>
-	<p>Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+	<p><span class="pro-label">Pro</span> Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
 	<h5 class="margin-top-3">Headline h5, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h5>
-	<p class="small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+	<p class="small"><span class="premium-label">Premium</span> Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
 	<h6 class="margin-top-3">Headline h6, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h6>
 	<p class="text-incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
 

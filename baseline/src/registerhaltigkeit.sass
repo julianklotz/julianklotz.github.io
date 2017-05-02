@@ -1,5 +1,6 @@
-$base-font-size: 1rem
-$base-line-height: 1.375rem
+$base-font-size: 16px
+//$base-line-height: 1.375rem
+$base-line-height: 22px
 
 $base-bg-color: rgba(240, 240, 240, .5)
 $base-border-color: #cfcfcf
@@ -33,7 +34,7 @@ html, input, option, select, textarea, button
   hyphens: auto
 
 html, input, option, select, textarea, button
-  font-size: 100%
+  font-size: $base-font-size
   line-height: $base-line-height
 
 $blue-dark: #037199
@@ -301,6 +302,7 @@ ol, ul
     li
       list-style-type: none
 
+
 /* --- TABLE STYLING --- */
 
 table
@@ -308,15 +310,11 @@ table
   border-collapse: collapse
   width: 100%
 
-  &.highlight-first-column tr td:first-child
-    font-weight: bold
-
-
-
 td, th
   font-variant-numeric: tabular-nums
   padding: $base-line-height / 2 2rem $base-line-height / 2 0
   border-bottom: 1px solid #cfcfcd
+
 
   &.num
     text-align: right
@@ -325,7 +323,6 @@ td, th
     padding-right: 0 !important
 
 th
-  @extend .text-small
   text-align: left
   border-bottom: 2px solid $base-border-color
   border-top: 2px solid $base-border-color

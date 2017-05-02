@@ -8,15 +8,15 @@
   background-color: #F2EEE7;
   text-align: right;
   border-radius: 4px;
-  margin: 1.375rem 0;
-  padding: 0 1rem; }
+  margin: 22px 0;
+  padding: 0 16px; }
 
 .bar, .bar-item {
-  padding-top: 0.6875rem;
-  padding-bottom: 0.6875rem; }
+  padding-top: 11px;
+  padding-bottom: 11px; }
 
 .bar-item {
-  padding: 0.6875rem 0.5rem; }
+  padding: 11px 0.5rem; }
   .bar-item:last-child {
     padding-right: 0; }
 
@@ -30,6 +30,19 @@
   display: block;
   float: left;
   min-width: 5rem; }
+
+.rounded-label, .pro-label, .premium-label {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-left: 8px;
+  padding-right: 8px; }
+
+.pro-label {
+  background-color: #c0cc56; }
+
+.premium-label {
+  color: white;
+  background-color: #036880; }
 
 .difficulty-medium {
   border-color: #e30613;
@@ -69,28 +82,28 @@ body {
   margin-bottom: 0; }
 
 .margin-bottom-dot5 {
-  margin-bottom: 0.6875rem; }
+  margin-bottom: 11px; }
 
 .margin-bottom-2 {
-  margin-bottom: 2.75rem; }
+  margin-bottom: 44px; }
 
 .margin-bottom-3 {
-  margin-bottom: 4.125rem; }
+  margin-bottom: 66px; }
 
 .margin-top-dot5 {
-  margin-top: 0.6875rem; }
+  margin-top: 11px; }
 
 .margin-top-1 {
-  margin-top: 1.375rem; }
+  margin-top: 22px; }
 
 .margin-top-1dot5 {
-  margin-top: 2.0625rem; }
+  margin-top: 33px; }
 
 .margin-top-2 {
-  margin-top: 2.75rem; }
+  margin-top: 44px; }
 
 .margin-top-3 {
-  margin-top: 4.125rem; }
+  margin-top: 66px; }
 
 .group:after {
   content: "";
@@ -116,8 +129,8 @@ html, input, option, select, textarea, button {
   hyphens: auto; }
 
 html, input, option, select, textarea, button {
-  font-size: 100%;
-  line-height: 1.375rem; }
+  font-size: 16px;
+  line-height: 22px; }
 
 a {
   color: #037199;
@@ -130,8 +143,8 @@ a {
     text-decoration: underline; }
 
 .image-rounded-small {
-  max-width: 2.75rem;
-  max-height: 2.75rem;
+  max-width: 44px;
+  max-height: 44px;
   border-radius: 50%;
   background-color: #e7e7e7;
   display: block;
@@ -139,47 +152,47 @@ a {
   margin-right: 1em; }
 
 h1, .fake-h1 {
-  font-size: 2.25rem;
-  line-height: 2.75rem;
-  margin: 2.75rem 0 1.375rem 0; }
+  font-size: 36px;
+  line-height: 44px;
+  margin: 44px 0 22px 0; }
 
 @media screen and (max-width: 35.25em) {
   h1, .fake-h1 {
-    font-size: 1.5rem;
-    line-height: 2.0625rem; } }
+    font-size: 24px;
+    line-height: 33px; } }
 h2, .fake-2 {
-  font-size: 1.5rem;
-  line-height: 2.0625rem;
-  margin: 2.75rem 0 1.375rem 0; }
+  font-size: 24px;
+  line-height: 33px;
+  margin: 44px 0 22px 0; }
 
 h3, .fake-h3, .text-large {
-  font-size: 1.125rem;
-  line-height: 1.375rem;
-  margin: 1.375rem 0; }
+  font-size: 18px;
+  line-height: 22px;
+  margin: 22px 0; }
 
 h4, .fake-h4 {
-  font-size: 1rem;
-  line-height: 1.375rem;
-  margin: 1.375rem 0 0 0; }
+  font-size: 16px;
+  line-height: 22px;
+  margin: 22px 0 0 0; }
 
-h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item, code, .text-code, pre, th {
-  font-size: 0.875rem;
-  line-height: 1.375rem; }
+h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item, code, .text-code, pre {
+  font-size: 14px;
+  line-height: 22px; }
 
 h5, .fake-h5 {
-  margin: 1.375rem 0 0 0; }
+  margin: 22px 0 0 0; }
 
 h6, .fake-h6 {
-  font-size: 0.75rem;
-  line-height: 1.375rem; }
+  font-size: 12px;
+  line-height: 22px; }
 
 sup {
-  font-size: 0.75rem; }
+  font-size: 12px; }
 
-h6, .fake-h6, .text-incredibly-small, .attribute, .caps-label {
-  font-size: 0.75rem;
-  line-height: 1.375rem;
-  margin: 1.375rem 0 0 0; }
+h6, .fake-h6, .text-incredibly-small, .attribute, .rounded-label, .pro-label, .premium-label, .caps-label {
+  font-size: 12px;
+  line-height: 22px;
+  margin: 22px 0 0 0; }
 
 code, .text-code, pre {
   font-family: Menlo, "Andale Mono", Courier, monospace;
@@ -194,31 +207,31 @@ code, .text-code, pre {
 blockquote {
   padding-left: 0.5em;
   border-left: 4px solid #e7e7e7;
-  margin: 0 0 1.375rem 0; }
+  margin: 0 0 22px 0; }
 
 p {
-  margin: 1.375rem 0; }
+  margin: 22px 0; }
 
 li + li {
-  margin-top: 0.6875rem; }
+  margin-top: 11px; }
 
 ul, ol {
-  margin-top: 0.6875rem;
-  margin-bottom: 0.6875rem; }
+  margin-top: 11px;
+  margin-bottom: 11px; }
 
 label {
   display: inline-block;
   max-width: 100%;
   font-weight: 700;
-  font-size: 0.88889rem;
-  line-height: 1.375rem; }
+  font-size: 14.22222px;
+  line-height: 22px; }
   label.form-checkbox-label {
     font-weight: normal;
     display: block;
     padding: 11px 0; }
 
 button {
-  padding: 0.6875rem 1em;
+  padding: 11px 1em;
   margin: 0;
   background-color: #c0cc56;
   border-radius: 3px;
@@ -229,19 +242,19 @@ button::-moz-focus-inner {
   padding: 0; }
 
 button.medium {
-  margin: 0.22917rem 0;
+  margin: 3.66667px 0;
   padding: 7px 1em;
   margin: 4px 0; }
 
 form {
-  margin: 1.375rem -2em; }
+  margin: 22px -2em; }
 
 fieldset {
   background-color: rgba(240, 240, 240, 0.5);
   border: none;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
-  padding: 0.6875rem 2em;
+  padding: 11px 2em;
   margin: 0; }
 
 fieldset + fieldset {
@@ -250,16 +263,16 @@ fieldset + fieldset {
 .fieldset-headline {
   text-transform: uppercase;
   color: #6f6f6f;
-  letter-spacing: 0.05rem; }
+  letter-spacing: 0.8px; }
 
 .tabular, .attribute-item {
   font-feature-settings: "tnum"; }
 
 .form-group + .form-group {
-  margin-top: 2.0625rem; }
+  margin-top: 33px; }
 
 .form-group {
-  margin: 1.375rem 0; }
+  margin: 22px 0; }
 
 .form-control {
   display: block;
@@ -279,7 +292,7 @@ fieldset + fieldset {
   float: right; }
 
 .help-block {
-  margin-top: 0.6875rem;
+  margin-top: 11px;
   color: #6f6f6f; }
 
 input {
@@ -288,7 +301,7 @@ input {
   background-color: white; }
 
 textarea.form-control {
-  height: calc(3 * 1.375rem + 2 * 6px);
+  height: calc(3 * 22px + 2 * 6px);
   margin-top: 8px;
   margin-bottom: 0; }
 
@@ -302,7 +315,7 @@ textarea.form-control {
   z-index: -1; }
 
 .file-control + label {
-  line-height: 1.375rem;
+  line-height: 22px;
   border: 1px solid #cfcfcf;
   width: 100%;
   text-align: left;
@@ -356,15 +369,13 @@ ol, ul {
 
 /* --- TABLE STYLING --- */
 table {
-  margin: 2.75rem 0;
+  margin: 44px 0;
   border-collapse: collapse;
   width: 100%; }
-  table.highlight-first-column tr td:first-child {
-    font-weight: bold; }
 
 td, th {
   font-variant-numeric: tabular-nums;
-  padding: 0.6875rem 2rem 0.6875rem 0;
+  padding: 11px 2rem 11px 0;
   border-bottom: 1px solid #cfcfcd; }
   td.num, th.num {
     text-align: right; }
