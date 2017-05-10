@@ -1,9 +1,43 @@
+@charset "UTF-8";
 /* --- DEBUGGING --- */
 .show-left-lines h1, .show-left-lines h2, .show-left-lines h3, .show-left-lines h4, .show-left-lines h5, .show-left-lines h6, .show-left-lines li, .show-left-lines p, .show-left-lines dd, .show-left-lines dt, .show-left-lines small, .show-left-lines .fieldset-headline, .show-left-lines .help-block, .show-left-lines blockquote, .show-left-lines ul, .show-left-lines ol, .show-left-lines div, .show-left-lines section, .show-left-lines article {
   border-left: 1px dotted rgba(134, 0, 0, 0.8);
   padding-left: 1px; }
 
 /* --- LAYOUT --- */
+body.js-enabled .collapse-wrap {
+  max-height: 0; }
+body.js-enabled .collapse-toggle:before {
+  content: "⌄";
+  font-size: 36px;
+  padding-right: 0.5rem;
+  transition: transform 0.2s linear;
+  display: inline-block; }
+
+.collapse-block {
+  border-top: 1px solid #cfcfcf; }
+  .collapse-block .collapse-toggle {
+    padding: 22px 0;
+    margin: 0;
+    cursor: pointer; }
+  .collapse-block .collapse-wrap {
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out; }
+  .collapse-block.js-open .collapse-toggle {
+    border-bottom: 1px solid #cfcfcf; }
+    .collapse-block.js-open .collapse-toggle:before {
+      transform: rotate(180deg); }
+  .collapse-block.js-open .collapse-wrap {
+    max-height: 1000px; }
+
+.collapse-toggle {
+  position: sticky;
+  background-color: white; }
+
+img {
+  max-width: 100%;
+  height: auto; }
+
 .bar {
   background-color: #F2EEE7;
   text-align: right;
@@ -55,7 +89,9 @@
 
 .cat-icon {
   vertical-align: middle;
-  margin: -12px 0 0 0; }
+  margin: -12px 0 0 0;
+  max-width: 1.5rem;
+  height: auto; }
 
 .author-recommends-label {
   font-weight: bold; }

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML SYSTEM>
+<html lang="en-EN">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="../build/registerhaltigkeit_development.css">
+		<link rel="stylesheet" href="https://corporate.outdooractive.com/wireframes/webfont/outdooractive/style.css">
+
+		<style>
+			body { margin: 0; padding: 0; }
+			#wrapper {
+				margin: 0 auto 0 auto;
+				max-width: 50rem;
+				padding: 22px 1.25rem; /* based on base font size */
+			}
+
+			@media screen and (min-width: 35.25rem) {
+				#wrapper {
+					padding-left: 2rem;
+					padding-right: 2rem;
+
+				}
+			}
+
+			.show-grid #wrapper{
+				background-image: url('img/bg.png');
+				background-repeat: repeat;
+				background-color: #ffffd9;
+			}
+
+		</style>
+	</head>
+<body>
+	<div id="wrapper">
+		<div class="bar">
+			<button id="btn-grid-toggle">Grundlinien</button>
+			<button class="medium" id="btn-left-line-toggle">Randlinien</button>
+		</div>
+		<div class="bar">
+			<a class="bar-item" href="#">Drucken</a>
+			<a class="bar-item" href="#">Teilen</a>
+			<a class="bar-item" href="#">Bearbeiten</a>
+		</div>
+		
+		
+		<h1>Ravensburger Hütte, 1.948 m</h1>
+		
+		<p class="small"><img src="https://res.oastatic.com/icons/alpstein/staffedLodge/forest_green/staffedLodge.square_vector.svg" class="cat-icon" alt="Bewirtschaftete Hütte" /> Bewirtschaftete Hütte • Lechquellen-Gebirge • Deutscher Alpenverein (DAV)</p>
+		
+		
+		<div>
+			<img src="https://img.oastatic.com/img2/16119588/834x417r/t.jpg " />
+		</div>
+		
+		<div class="description-text">
+			<img src="https://img.oastatic.com/img2/21290540/140x150s/logo-alpenvereinshuette.jpg" alt="Logo Alpenvereinshütte" class="fr" width="140" height="34">
+			<p>Herzlich willkommen auf dieser Hütte!
+			<p>Hier haben wir alle wichtigen Informationen für den Besuch bei uns zusammengestellt. Jeder Reiter hält weitere Details zur Ausstattung, Anreise und Zustieg sowie Touren-Vorschläge bereit.<br />
+Sollten Sie dennoch weitere Fragen haben, setzen Sie sich bitte direkt mit uns in Verbindung. Wir freuen uns auf Ihren Besuch!
+Wenn Sie Hüttenaufenthalte mit Hunden planen, bitten wir Sie, dies im Vorfeld mit uns abzuklären.
+2017: ab 10. Juni geöffnet, am 17. Juni Saisoneröffnungsfest		
+		</div>
+
+		<div class="collapse-block">
+			<h3 class="collapse-toggle">Details</h3>
+		
+		</div>
+		<div class="collapse-block">
+			<h3 class="collapse-toggle">Anreise</h3>
+			
+			<div class="collapse-wrap">
+				<h4>Koordinaten</h4>
+				<p>Geogr.:47.168050 N 10.091667 E<br />
+				UTM:32T 582733 5224417</p>
+
+				<h4>Öffentliche Verkehrsmittel</h4>
+				<p>Anreise per Zug / Bahnhof: Wald am Arlberg<br />
+				Anreise per Bus / Bushaltestelle: Zug bei Lech
+				</p>
+				<h4>Anfahrt</h4>
+				<p>Zug, Mautstraße bis Spullersee (8-16.30 gesp.)<br />
+				<button>Anfahrtsplaner</button>
+			
+				<h4>Zustiege zur Hütte</h4>
+				
+				
+			</div>
+		
+		</div>
+		<div class="collapse-block">
+			<h3 class="collapse-toggle">Touren</h3>
+		
+		</div>		
+
+
+
+
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
+ 
+
+	<script>
+	var body = document.getElementsByTagName( 'body' )[0],
+			gridBtn = document.getElementById( 'btn-grid-toggle'),
+			leftLineBtn = document.getElementById( 'btn-left-line-toggle');
+
+	gridBtn.addEventListener( 'click', function() {
+		body.classList.toggle( 'show-grid' );
+	});
+	leftLineBtn.addEventListener( 'click', function() {
+		body.classList.toggle( 'show-left-lines' );
+	});
+
+	</script>
+
+	<script type="text/javascript" src="../src/form.js"></script>
+
+
+	</body>
+</html>

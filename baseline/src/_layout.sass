@@ -1,6 +1,52 @@
 
 /* --- LAYOUT --- */
 
+
+
+body.js-enabled 
+  .collapse-wrap
+    max-height: 0
+    
+  .collapse-toggle
+    &:before
+      content: "⌄"
+      font-size: 36px
+      padding-right: .5rem
+      transition: transform .2s linear
+      display: inline-block
+  
+.collapse-block
+
+  border-top: 1px solid #cfcfcf
+
+  .collapse-toggle
+    padding: $base-line-height 0
+    margin: 0
+    cursor: pointer
+    
+  .collapse-wrap
+    overflow: hidden
+    transition: max-height .3s ease-in-out
+  
+  &.js-open
+    .collapse-toggle
+      border-bottom: 1px solid #cfcfcf
+      
+      &:before
+        transform: rotate(180deg)
+    
+    .collapse-wrap 
+      max-height: 1000px
+
+
+.collapse-toggle
+  position: sticky
+  background-color: white
+
+img
+  max-width: 100%
+  height: auto
+
 .bar
   background-color: #F2EEE7
   text-align: right
@@ -63,6 +109,8 @@
 .cat-icon
   vertical-align: middle
   margin: -12px 0 0 0
+  max-width: 1.5rem
+  height: auto
 
 
 .author-recommends-label
