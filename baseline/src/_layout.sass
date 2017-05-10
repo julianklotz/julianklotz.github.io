@@ -18,15 +18,17 @@
 body.js-enabled 
   .collapse-wrap
     max-height: 0
+    
+.collapse-block
+  border-top: 1px solid #cfcfcf
+  border-bottom: 1px solid #cfcfcf
 
+
+.collapse-block + .collapse-block
+  border-top: none
   
 .collapse-block
-
-  border-top: 1px solid #cfcfcf
-
   .collapse-toggle
-    
-  
     span
       background: url('../example/img/caret.png') 100% 50% no-repeat
       background-size: 2em
