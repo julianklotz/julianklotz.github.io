@@ -212,7 +212,7 @@ h2, .fake-2 {
 h3, .fake-h3, .text-large {
   font-size: 18px;
   line-height: 22px;
-  margin: 22px 0; }
+  margin: 33px 0 0 0; }
 
 h4, .fake-h4 {
   font-size: 16px;
