@@ -27,6 +27,7 @@ body.js-enabled .collapse-wrap {
     margin: 0;
     cursor: pointer;
     position: sticky;
+    -webkit-position: sticky;
     top: 0; }
     .collapse-block .collapse-toggle span {
       background: url("../example/img/caret.png") 100% 50% no-repeat;
