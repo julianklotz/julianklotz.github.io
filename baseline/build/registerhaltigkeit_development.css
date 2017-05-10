@@ -5,6 +5,14 @@
   padding-left: 1px; }
 
 /* --- LAYOUT --- */
+.btn-getting-there-wrap {
+  border-top: 1px solid #cfcfcf;
+  padding: 22px 0;
+  text-align: center; }
+  .btn-getting-there-wrap button {
+    width: 100%;
+    max-width: 480px; }
+
 body.js-enabled .collapse-wrap {
   max-height: 0; }
 body.js-enabled .collapse-toggle:before {
@@ -209,7 +217,7 @@ h3, .fake-h3, .text-large {
 h4, .fake-h4 {
   font-size: 16px;
   line-height: 22px;
-  margin: 22px 0 0 0; }
+  margin: 33px 0 0 0; }
 
 h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item, code, .text-code, pre {
   font-size: 14px;
