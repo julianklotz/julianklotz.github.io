@@ -1,6 +1,20 @@
 
 /* --- LAYOUT --- */
 
+.snippet
+  border: 1px solid #cfcfcf
+  background-color: white
+  min-height: 150px
+  margin: 0 0 $base-line-height 0 
+  
+  &:last-child
+    margin-bottom: 0
+  
+.snippet-wrapper
+  margin: $base-line-height 0
+  padding: $base-font-size
+  background-color: #e7e7e7
+
 .relative
   position: relative
   padding-left: 2.5rem
@@ -59,7 +73,7 @@ body.js-enabled
         transform: scaleY(-1)
 
     .collapse-wrap 
-      max-height: 1000px
+      max-height: none
 
 
 .collapse-toggle

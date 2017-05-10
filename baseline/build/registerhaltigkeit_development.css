@@ -5,6 +5,19 @@
   padding-left: 1px; }
 
 /* --- LAYOUT --- */
+.snippet {
+  border: 1px solid #cfcfcf;
+  background-color: white;
+  min-height: 150px;
+  margin: 0 0 22px 0; }
+  .snippet:last-child {
+    margin-bottom: 0; }
+
+.snippet-wrapper {
+  margin: 22px 0;
+  padding: 16px;
+  background-color: #e7e7e7; }
+
 .relative {
   position: relative;
   padding-left: 2.5rem; }
@@ -52,7 +65,7 @@ body.js-enabled .collapse-wrap {
   .collapse-block.js-open .collapse-toggle span {
     transform: scaleY(-1); }
 .collapse-block.js-open .collapse-wrap {
-  max-height: 1000px; }
+  max-height: none; }
 
 .collapse-toggle {
   position: sticky;
