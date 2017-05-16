@@ -461,4 +461,7 @@ th {
   border-top: 2px solid #cfcfcf;
   vertical-align: bottom; }
 
+table.highlight-first-column tr td:first-child {
+  font-weight: bold; }
+
 /*# sourceMappingURL=registerhaltigkeit_development.css.map */
