@@ -47,8 +47,8 @@
 	<p><strong>Vertical spacing.</strong> Vertical spacing is based on the line height of 1.375rem (or 22px, considering a font size of 16px). The smallest possible unit is half a line height, i.e. 0.6875rem (11px). <em>All vertical margins, paddings and line heights should be a multiple of half a line height.</em><br />Text areas and input fields are layed out in a way that a single-line input field is 36px high total, plus 8px margin-top to keep the baseline.</p>
 	<p><strong>Horizontal spacing.</strong> Horizontal spacing is based on one “rem”, in our case 1rem equals 16px. Gutters, horizontal margins and paddings are based on this unit. Quarter steps may be used, e.g. 1.25rem (20px) is an acceptable horizontal spacing.</p>
 	<p><a href="https://css-tricks.com/the-lengths-of-css/#article-header-id-7" target="_blank">Explanation of the “rem” unit</a></p>
-	
-	
+
+
 
 
 
@@ -62,7 +62,7 @@
 			<th>Range
 			<th class="num">Layout width<br><small>(document size)</small>
 			<th class="num">Grid width<br><small>(without margins)</small>
-			<th class="num">Layout height<br><small>(above the fold)</small>				
+			<th class="num">Layout height<br><small>(above the fold)</small>
 			<th class="num">Columns
 			<th class="num">Gutter
 			<th class="num">Column width
@@ -93,7 +93,7 @@
 				<td>Medium
 				<td class="num">792px
 				<td class="num">744px
-				<td class="num">same as above				
+				<td class="num">same as above
 				<td class="num">12
 				<td class="num">1.5rem / 24px
 				<td class="num">40px
@@ -113,7 +113,7 @@
 				<td>Large
 				<td class="num">1136px
 				<td class="num">1072px
-				<td class="num">same as above						
+				<td class="num">same as above
 				<td class="num">12
 				<td class="num">2rem / 32px
 				<td class="num">60px
@@ -172,16 +172,21 @@
 
 	<p>This comes down to:</p>
 
-	<h1 class="margin-top-3">Headline h1, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h1>
-	<h2 class="margin-top-3">Headline h2, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h2>
-	<h3 class="margin-top-3">Headline h3, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h3>
-	<p class="text-large">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
-	<h4 class="margin-top-3">Headline h4, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h4>
-	<p><span class="pro-label">Pro</span> Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
-	<h5 class="margin-top-3">Headline h5, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h5>
-	<p class="small"><span class="premium-label">Premium</span> Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
-	<h6 class="margin-top-3">Headline h6, Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen.</h6>
-	<p class="text-incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab.</p>
+	<style>
+		.color-pro { color: #9f9f9f;}
+		/*.color-pro-mini { color: #272727;}*/
+	</style>
+
+	<h1 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen, h1 <span class="oax-icon-pro color-pro"></span></h1>
+	<h2 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen, h2 <span class="oax-icon-pro color-pro"></span></h2>
+	<h3 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen, h3 <span class="oax-icon-pro-mini color-pro-mini"></span></h3>
+	<p class="text-large">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab, large text</p>
+	<h4 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen, h4 <span class="oax-icon-pro-mini color-pro-mini"></span></h4>
+	<p>Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab, default text</p>
+	<h5 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen, h5 <span class="oax-icon-pro-mini color-pro-mini"></span></h5>
+	<p class="small"><span class="premium-label">Premium</span> Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab, small text</p>
+	<h6 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen, h6 <span class="oax-icon-pro-mini color-pro-mini"></span></h6>
+	<p class="text-incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab, incredibly small text</p>
 
 
 	<h2>Colors</h2>
@@ -190,16 +195,16 @@
 		<thead>
 			<th>Color
 			<th>Description
-			<th class="num">Hex			
+			<th class="num">Hex
 			<th>&nbsp;
-	
-		</thead>	
-		
+
+		</thead>
+
 		<tbody>
 			<tr>
 				<td>Default color
 				<td>The very basic font color
-				
+
 				<td class="num mono">#272727
 				<td class="color-background" style="background-color: #272727;">
 			</tr>
@@ -208,37 +213,37 @@
 				<td>Light gray font color, acceptable contrast ratio
 
 				<td class="num mono">#6f6f6f
-				<td class="color-background" style="background-color: #6f6f6f;">				
-			</tr>			
+				<td class="color-background" style="background-color: #6f6f6f;">
+			</tr>
 			<tr>
 				<td>Placeholder color
 				<td>Light gray font color, inacceptable contrast ratio
 
 				<td class="num mono">#878787
-				<td class="color-background" style="background-color: #878787;">				
-			</tr>				
+				<td class="color-background" style="background-color: #878787;">
+			</tr>
 			<tr>
 				<td>Border color
 				<td>Default border color
 
 				<td class="num mono">#cfcfcf
-				<td class="color-background" style="background-color: #cfcfcf;">				
+				<td class="color-background" style="background-color: #cfcfcf;">
 			</tr>
 			<tr>
 				<td>Snippet background
 				<td>Darker background color, can only be used as background for snippets
 
 				<td class="num mono">#e7e7e7
-				<td class="color-background" style="background-color: #e7e7e7;">				
+				<td class="color-background" style="background-color: #e7e7e7;">
 			</tr>
-			
+
 			<tr>
 				<td>Default background
 				<td>Light-gray background color, can be used with type
 
 				<td class="num mono">#f3f3f3
-				<td class="color-background" style="background-color: #f3f3f3;">				
-			</tr>			
+				<td class="color-background" style="background-color: #f3f3f3;">
+			</tr>
 		</tbody>
 	</table>
 
@@ -331,24 +336,7 @@
 			</div>
 			<div class="form-group">
 				<label>Über mich</label>
-				<textarea class="form-control" maxlength="1500" placeholder="Deine Biografie">
-				Aktuelle Bedingung: Friedberger Klettersteig begehbar (nordseitig noch Schneefelder)
-Der Friedberger Klettersteig samt des Schartschrofen und der Roten Flüh sind einwandfrei begehbar. Einzig der Anstieg auf die Rote Flüh über die Judenscharte ist auf den letzten 50 steilen Metern noch verschneit, auf der anderen Seite sind die nordseitigen Querungen in Höhe der Läuferspitze noch unter einer ca. 50 cm tiefen Schneedecke begraben. Begehbar ist die kette allerdings auf alle Fälle.
-Gefahrenhinweis
-Nordseitig noch ca. 50 cm tiefe Schneefelder die gequert werden müssen.
-Wetter
-war sonnig am SamstagAktuelle Bedingung: Friedberger Klettersteig begehbar (nordseitig noch Schneefelder)
-Der Friedberger Klettersteig samt des Schartschrofen und der Roten Flüh sind einwandfrei begehbar. Einzig der Anstieg auf die Rote Flüh über die Judenscharte ist auf den letzten 50 steilen Metern noch verschneit, auf der anderen Seite sind die nordseitigen Querungen in Höhe der Läuferspitze noch unter einer ca. 50 cm tiefen Schneedecke begraben. Begehbar ist die kette allerdings auf alle Fälle.
-Gefahrenhinweis
-Nordseitig noch ca. 50 cm tiefe Schneefelder die gequert werden müssen.
-Wetter
-war sonnig am SamstagAktuelle Bedingung: Friedberger Klettersteig begehbar (nordseitig noch Schneefelder)
-Der Friedberger Klettersteig samt des Schartschrofen und der Roten Flüh sind einwandfrei begehbar. Einzig der Anstieg auf die Rote Flüh über die Judenscharte ist auf den letzten 50 steilen Metern noch verschneit, auf der anderen Seite sind die nordseitigen Querungen in Höhe der Läuferspitze noch unter einer ca. 50 cm tiefen Schneedecke begraben. Begehbar ist die kette allerdings auf alle Fälle.
-Gefahrenhinweis
-Nordseitig noch ca. 50 cm tiefe Schneefelder die gequert werden müssen.
-Wetter
-war sonnig am Samstag
-				</textarea>
+				<textarea class="form-control" maxlength="1500" placeholder="Deine Biografie"></textarea>
 			</div>
 			<div class="form-group">
 				<label>Some more</label>
