@@ -230,7 +230,7 @@ h1, .fake-h1 {
 
 @media screen and (max-width: 35.25em) {
   h1, .fake-h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 2.0625rem; } }
 h2, .fake-2 {
   font-size: 1.5rem;
