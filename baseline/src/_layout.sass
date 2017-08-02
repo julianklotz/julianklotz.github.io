@@ -5,11 +5,11 @@
   border: 1px solid #cfcfcf
   background-color: white
   min-height: 150px
-  margin: 0 0 $base-line-height 0 
-  
+  margin: 0 0 $base-line-height 0
+
   &:last-child
     margin-bottom: 0
-  
+
 .snippet-wrapper
   margin: $base-line-height 0
   padding: $base-font-size
@@ -23,16 +23,16 @@
   border-top: 1px solid #cfcfcf
   padding: $base-line-height 0
   text-align: center
-  
+
   button
     width: 100%
     max-width: 30 * $base-font-size
 
 
-body.js-enabled 
+body.js-enabled
   .collapse-wrap
     max-height: 0
-    
+
 .collapse-block
   border-top: 1px solid #cfcfcf
   border-bottom: 1px solid #cfcfcf
@@ -40,7 +40,7 @@ body.js-enabled
 
 .collapse-block + .collapse-block
   border-top: none
-  
+
 .collapse-block
   .collapse-toggle
     span
@@ -53,26 +53,26 @@ body.js-enabled
       transition: transform .3s
       width: 2em
       z-index: 10
-  
+
     padding: $base-line-height 0
     margin: 0
     cursor: pointer
     position: sticky
     position: -webkit-sticky
     top: 0
-    
+
   .collapse-wrap
     overflow: hidden
     transition: max-height .3s ease-in-out
-  
+
   &.js-open
     .collapse-toggle
       border-bottom: 1px solid #cfcfcf
-      
+
       span
         transform: scaleY(-1)
 
-    .collapse-wrap 
+    .collapse-wrap
       max-height: none
 
 
@@ -202,6 +202,47 @@ body
   content: ""
   display: table
   clear: both
+
+.breadcrumb-bar
+  @extend .text-small
+
+.oax_breadcrumb
+  font-style: italic
+
+.breadcrumb-bar
+  margin-top: 2 * $base-line-height
+
+  text-overflow: ellipsis
+  width: 100%
+  white-space: nowrap
+  overflow: hidden
+
+
+a.oax_breadcrumb
+  padding: $base-line-height / 2 0
+
+.oax_breadcrumb + .oax_breadcrumb
+  &:before
+    content: "→"
+    padding: 0 .5rem
+
+    &:hover
+      text-decoration: none
+      color: #272727
+
+a.oax_breadcrumb
+  display: none
+
+  &:first-child, &:last-of-type
+    display: inline
+
+@media screen and (min-width: 640px)
+  a.oax_breadcrumb
+    display: inline
+
+
+
+
 
 
 

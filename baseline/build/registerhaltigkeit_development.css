@@ -182,6 +182,34 @@ body {
   display: table;
   clear: both; }
 
+.oax_breadcrumb {
+  font-style: italic; }
+
+.breadcrumb-bar {
+  margin-top: 2.75rem;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden; }
+
+a.oax_breadcrumb {
+  padding: 0.6875rem 0; }
+
+.oax_breadcrumb + .oax_breadcrumb:before {
+  content: "→";
+  padding: 0 0.5rem; }
+  .oax_breadcrumb + .oax_breadcrumb:before:hover {
+    text-decoration: none;
+    color: #272727; }
+
+a.oax_breadcrumb {
+  display: none; }
+  a.oax_breadcrumb:first-child, a.oax_breadcrumb:last-of-type {
+    display: inline; }
+
+@media screen and (min-width: 640px) {
+  a.oax_breadcrumb {
+    display: inline; } }
 html, input, option, select, textarea, button {
   font-family: "Alto Pro", -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: none;
@@ -247,7 +275,7 @@ h4, .fake-h4 {
   line-height: 1.375rem;
   margin: 2.0625rem 0 0 0; }
 
-h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item, code, .text-code, pre {
+h5, .fake-h5, small, .fieldset-headline, .help-block, .text-small, .attribute-item, .breadcrumb-bar, code, .text-code, pre {
   font-size: 0.875rem;
   line-height: 1.375rem; }
 
