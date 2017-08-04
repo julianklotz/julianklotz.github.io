@@ -266,7 +266,7 @@ a.oax_breadcrumb
   padding: 0 1rem
   margin: 0 -2rem
 
-  .teaser--icon, .teaser--text
+  .teaser--header, .teaser--text
     height: 2 * $base-line-height
     padding: $base-line-height 0
     text-align: center
@@ -274,7 +274,7 @@ a.oax_breadcrumb
     align-items: center
     justify-content: center
 
-  .teaser--icon
+  .teaser--header
     font-size: 2 * $base-font-size
     //animation: wobble 5s infinite
 
@@ -292,11 +292,28 @@ a.oax_breadcrumb
     box-shadow: 0 2px 5px rgba(0,0,0,0.15)
 
 
-.app-teaser
+.pro-teaser
   background-color: #2657AF
 
+
   .teaser--button
-    background-color: #2D6BD4
+    padding-right: 2rem
+    padding-left: 2rem
+    background-color: #4568d9
+
+.app-teaser
+  .teaser--header
+    font-weight: bold
+    @extend .text-large
+
+  .teaser--button
+    animation: initial
+    padding: 0
+    line-height: 0
+    background-color: transparent
+    box-shadow: initial
+    width: auto
+    height: 66px
 
 
 

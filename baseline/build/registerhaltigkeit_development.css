@@ -228,14 +228,14 @@ a.oax_breadcrumb {
   background-color: #3f3f3f;
   padding: 0 1rem;
   margin: 0 -2rem; }
-  .teaser .teaser--icon, .teaser .teaser--text {
+  .teaser .teaser--header, .teaser .teaser--text {
     height: 2.75rem;
     padding: 1.375rem 0;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center; }
-  .teaser .teaser--icon {
+  .teaser .teaser--header {
     font-size: 2rem; }
   .teaser .teaser--button {
     text-transform: uppercase;
@@ -250,10 +250,23 @@ a.oax_breadcrumb {
     color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); }
 
-.app-teaser {
+.pro-teaser {
   background-color: #2657AF; }
-  .app-teaser .teaser--button {
-    background-color: #2D6BD4; }
+  .pro-teaser .teaser--button {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    background-color: #4568d9; }
+
+.app-teaser .teaser--header {
+  font-weight: bold; }
+.app-teaser .teaser--button {
+  animation: initial;
+  padding: 0;
+  line-height: 0;
+  background-color: transparent;
+  box-shadow: initial;
+  width: auto;
+  height: 66px; }
 
 html, input, option, select, textarea, button {
   font-family: "Alto Pro", -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif;
@@ -310,7 +323,7 @@ h2, .fake-2 {
   line-height: 2.0625rem;
   margin: 2.75rem 0 1.375rem 0; }
 
-h3, .fake-h3, .text-large {
+h3, .fake-h3, .text-large, .app-teaser .teaser--header {
   font-size: 1.125rem;
   line-height: 1.375rem;
   margin: 2.0625rem 0 0 0; }
