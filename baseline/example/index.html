@@ -196,6 +196,27 @@
 	<h6 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen <span class="oax-icon-pro-mini color-pro-mini"></span></h6>
 	<p class="text-incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab, incredibly small text</p>
 	<p style="max-width: 240px;" class="incredibly-small-label">Labels können eine reduzierte Zeilenhöhe haben, trotzdem aber mehrzeilig werden
+	
+	<h2>Special Spaces</h2>
+	
+	<table class="">
+		<thead>
+			<th>Space
+			<th>Example
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>Thin Space
+				<td><span style="background-color: #c0cc56;">&#x202f;</span> is used to separate e.g. values and units: 25&#x202f;cm.  Duration: 2&#x202f;h&nbsp;56&#x202f;min. Temperature: 14&#x202f;°C | 21&#x202f;°C oder 14 | 21&#x202f;°C 
+			</tr>
+			<tr>
+				<td>Normal space
+				<td><span style="background-color: #c0cc56;">&nbsp;</span> is used to seperate e.g. imperial values and units: 25&nbsp;in.
+			</tr>			
+		</tbody>
+	</table>
+
 
 	<h2>Colors</h2>
 	<style> .color-background { border: 4px solid none; } .mono { font-family: Menlo, "Andale Mono", monospace; }  </style>
@@ -342,6 +363,24 @@
 					<option>unbestimmt</option>
 				</select>
 			</div>
+			<div class="form-group">
+				<label style="float: left;">Umkreis</label>
+				<label style="float: right" id="range-value" class="range-value"></label>
+				<input class="form-control" id="range-slider" type="range" min="0" step="5" max="50" />
+				
+				
+				<script>
+					var sl = document.getElementById('range-slider');
+					var valueField = document.getElementById('range-value');
+									
+					var onChange = function(evt) {
+						valueField.innerHTML =sl.value + " km";
+					}
+
+					sl.addEventListener('input', onChange);
+					onChange();
+				</script>
+			</div>			
 			<div class="form-group">
 				<label>Über mich</label>
 				<textarea class="form-control" maxlength="1500" placeholder="Deine Biografie"></textarea>
