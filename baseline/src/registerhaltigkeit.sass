@@ -1,11 +1,15 @@
 $base-font-size: 1rem
-$base-line-height: 1.375rem
+$base-line-height: 22px
+$grid-height: $base-line-height / 2
 
 $base-bg-color: rgba(240, 240, 240, .5)
 $base-border-color: #cfcfcf
 
 @import 'debug'
 @import 'layout'
+@import 'plumber'
+
+@include plumber-set-defaults($grid-height: $grid-height,  $baseline: 0.184,  $font-size: 2 * 0.72727272,  $line-height: 2,  $leading-top: 0,  $leading-bottom: 0)
 
 
 html, input, option, select, textarea, button
@@ -33,8 +37,8 @@ html, input, option, select, textarea, button
   hyphens: auto
 
 html, input, option, select, textarea, button
-  font-size: $base-font-size
-  line-height: $base-line-height
+  @include plumber( $baseline: 0.184 )
+
 
 $blue-dark: #037199
 $blue-darker: darken(#035e80, 5%)
@@ -60,34 +64,29 @@ a
   margin-right: 1em
 
 h1, .fake-h1
-  font-size: 2.25 * $base-font-size
-  line-height: 2 * $base-line-height
-  margin: 2 * $base-line-height 0 $base-line-height 0
+  @include plumber( $font-size: 3.2727272727, $line-height: 4, $leading-top: 3, $leading-bottom: 2 )
+  // font-size: 2.25 * $base-font-size
+  //line-height: 2 * $base-line-height
+  //margin: 2 * $base-line-height 0 $base-line-height 0
 
 @media screen and (max-width: 35.25em)
   h1, .fake-h1
+    @include plumber( $font-size: 2.54545454, $line-height: 3, $leading-top: 3, $leading-bottom: 2 )
     font-size: 1.75 * $base-font-size
     line-height: 1.5 * $base-line-height
 
 
 h2, .fake-2
-  font-size: 1.5 * $base-font-size
-  line-height: 1.5 * $base-line-height
-  margin: 2 * $base-line-height 0 $base-line-height 0
+  @include plumber( $font-size: 2.1818181818, $line-height: 2, $leading-top: 3, $leading-bottom: 2 )
 
 h3, .fake-h3, .text-large
-  font-size: 1.125 * $base-font-size
-  line-height: $base-line-height
-  margin: 1.5 * $base-line-height 0 0 0
+  @include plumber( $font-size: 1.6363636363, $line-height: 2, $leading-top: 3, $leading-bottom: 2 )
 
 h4, .fake-h4
-  font-size: $base-font-size
-  line-height: $base-line-height
-  margin: 1.5 * $base-line-height 0 0 0
+  @include plumber( $font-size: 1.4545454545, $line-height: 2, $leading-top: 2, $leading-bottom: 1 )
 
 h5, .fake-h5, small, .text-small
-  font-size: 0.875 * $base-font-size
-  line-height: $base-line-height
+  @include plumber( $font-size: 1.272727, $line-height: 2, $leading-top: 2, $leading-bottom: 1 )
 
 h5, .fake-h5
   margin: $base-line-height 0 0 0
@@ -130,6 +129,7 @@ blockquote
   margin: 0 0 $base-line-height 0
 
 p
+  @include plumber()
   margin: $base-line-height 0
 
 li + li

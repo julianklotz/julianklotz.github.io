@@ -16,8 +16,8 @@
 
 			@media screen and (min-width: 35.25rem) {
 				#wrapper {
-					padding-left: 2rem;
-					padding-right: 2rem;
+					padding-left: 12rem;
+					padding-right: 12rem;
 
 				}
 			}
@@ -196,9 +196,9 @@
 	<h6 class="margin-top-3">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen <span class="oax-icon-pro-mini color-pro-mini"></span></h6>
 	<p class="text-incredibly-small">Die 2553m hohe Namloser Wetterspitze ist ein Gipfel in den Lechtaler Alpen. Der Gipfel liegt zwischen Hahntennjoch und Namlos in den Namloser Bergen. Der Aufstieg auf den 2553m hohen Berg erfolgt von Bschlabs oder von Namlos aus. Der hier beschriebene Aufstieg erfolgte von Namlos über Fallerschein. Etwa 2km vor Namlos zweigt eine schmale Straße Richtung Fallerschein ab, incredibly small text</p>
 	<p style="max-width: 240px;" class="incredibly-small-label">Labels können eine reduzierte Zeilenhöhe haben, trotzdem aber mehrzeilig werden
-	
+
 	<h2>Special Spaces</h2>
-	
+
 	<table class="">
 		<thead>
 			<th>Space
@@ -208,12 +208,12 @@
 		<tbody>
 			<tr>
 				<td>Thin Space
-				<td><span style="background-color: #c0cc56;">&#x202f;</span> is used to separate e.g. values and units: 25&#x202f;cm.  Duration: 2&#x202f;h&nbsp;56&#x202f;min. Temperature: 14&#x202f;°C | 21&#x202f;°C oder 14 | 21&#x202f;°C 
+				<td><span style="background-color: #c0cc56;">&#x202f;</span> is used to separate e.g. values and units: 25&#x202f;cm.  Duration: 2&#x202f;h&nbsp;56&#x202f;min. Temperature: 14&#x202f;°C | 21&#x202f;°C oder 14 | 21&#x202f;°C
 			</tr>
 			<tr>
 				<td>Normal space
 				<td><span style="background-color: #c0cc56;">&nbsp;</span> is used to seperate e.g. imperial values and units: 25&nbsp;in.
-			</tr>			
+			</tr>
 		</tbody>
 	</table>
 
@@ -334,6 +334,14 @@
 		</div>
 
 	</div>
+	
+	<div style="clear: both;"></div>	
+	<div class="">
+		<h3 style="text-align: center; font-size: 18px; margin: 22px 0 11px 0;">Unterstütze uns bei der Weiterentwicklung von Outdooractive</h3>
+		<p style="text-align: center; margin: 11px 0 22px 0;">Um die Website und die App von Outdooractive weiterzuentwickeln, testen wir regelmäßig Neuentwicklungen. Wenn du uns dabei unterstützen möchtest, kannst du dich hier eintragen, um künftig zu Online-Tests eingeladen zu werden.</p>
+		<a style="font-size: 16px; background-color: #c0cc56; color: #272727; line-height: 22px; padding: 7px 24px; text-decoration: none; border-radius: 3px; text-align: center; display: block; width: 200px; margin: 0 auto;" href="https://de.research.net/r/GZWFKFL">Jetzt Beta-Tester werden</a>
+	
+	</div>
 
 
 
@@ -367,12 +375,12 @@
 				<label style="float: left;">Umkreis</label>
 				<label style="float: right" id="range-value" class="range-value"></label>
 				<input class="form-control" id="range-slider" type="range" min="0" step="5" max="50" />
-				
-				
+
+
 				<script>
 					var sl = document.getElementById('range-slider');
 					var valueField = document.getElementById('range-value');
-									
+
 					var onChange = function(evt) {
 						valueField.innerHTML =sl.value + " km";
 					}
@@ -380,7 +388,7 @@
 					sl.addEventListener('input', onChange);
 					onChange();
 				</script>
-			</div>			
+			</div>
 			<div class="form-group">
 				<label>Über mich</label>
 				<textarea class="form-control" maxlength="1500" placeholder="Deine Biografie"></textarea>
@@ -442,6 +450,132 @@
 
 
 	</form>
+
+	<form class="scoped-search group">
+		<div class="scoped-search--scope truncate">Allgäu, Tannheimer Tal</div>
+		<div class="scoped-search--input-wrap">
+			<input class="truncate scoped-search--input" placeholder="Suche nach Orten, Regionen, …" />
+			<label class="scoped-search--input-label">
+				<input class="screen-reader-text scoped-search--submit" type="submit" value="Search" />
+				<span class="oax-icon-magnifier"></span>
+			</label>
+			<label class="scoped-search--reset-label">
+				<input class="screen-reader-text scoped-search--reset" type="reset" value="Reset" />
+				<span class="oax-icon-close"></span>
+			</label>
+		</div>
+	</form>
+
+	<script>
+	var scopedSearchForm = document.getElementsByClassName('scoped-search')[0];
+	var searchInput = document.getElementsByClassName('scoped-search--input')[0];
+
+	function onFormSubmit(evt) {
+		evt.preventDefault();
+		scopedSearchForm.classList.add('js-form-submitted');
+		return false
+	}
+
+	function onFormReset(evt) {
+		evt.preventDefault();
+		scopedSearchForm.classList.remove('js-form-submitted');
+		searchInput.value = "";
+		return false
+	}
+	function onKeydown(evt) {
+		if (evt.keyCode == 8 && searchInput.value == "") {
+			scopedSearchForm.classList.add('js-no-scope');
+		}
+	}
+	searchInput.addEventListener( 'keydown', onKeydown);
+	scopedSearchForm.addEventListener( 'submit', onFormSubmit );
+	scopedSearchForm.addEventListener( 'reset', onFormReset );
+
+
+	</script>
+
+	<style>
+		input:focus{
+					outline: none;
+		}
+
+		.scoped-search {
+			background-color: white;
+			border: 1px solid #cfcfcf;
+			border-radius: 3px;
+			height: 24px;
+			padding: 6px 4px;
+			display: inline-block;
+		}
+
+		.scoped-search--reset-label {
+			display: none;
+		}
+
+		.js-form-submitted .scoped-search--reset-label {
+			display: initial;
+		}
+		.js-form-submitted .scoped-search--input-label {
+			display: none;
+		}
+
+		.js-no-scope .scoped-search--scope {
+			display: none;
+		}
+
+		.scoped-search--input-label, .scoped-search--reset-label {
+			margin
+			padding: 0px 8px;
+			line-height: 22px;
+			color: #9f9f9f;
+			font-size: 16px;
+		}
+		.scoped-search--scope, .scoped-search--input-wrap {
+			float: left;
+		}
+		input::placeholder {
+			  color: #9f9f9f;
+		}
+		.truncate {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.scoped-search--scope {
+			background-color: #037199;
+			color: white;
+			max-width: 120px;
+			border-radius: 2px;
+			line-height: 22px;
+			padding: 1px 4px;
+			font-size: 14px;
+
+		}
+		.scoped-search--input-wrap {
+		}
+		.scoped-search--input {
+			width: calc(100% - 2rem);
+			max-width: 280px;
+			padding: 7px 8px 7px 8px;
+			border: none;
+			margin-top: -6px;
+		}
+		.scoped-search--submit {
+			border: none;
+		}
+		.scoped-search--clear {
+		}
+
+		.screen-reader-text {
+			clip: rect(1px, 1px, 1px, 1px);
+			height: 1px;
+			overflow: hidden;
+			position: absolute !important;
+			width: 1px;
+			word-wrap: normal !important;
+		}
+	</style>
 
 	<div id="section-teaser" class="teaser pro-teaser">
 		<div class="teaser--header">
