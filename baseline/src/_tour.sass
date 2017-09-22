@@ -1,0 +1,73 @@
+@media screen and (min-width: 48rem)
+  .dp-tour
+    .main
+      display: grid
+      grid-template-columns: unquote('repeat(11, [col-start] 1fr)')
+      grid-gap: 2rem
+      grid-template-rows: unquote( '[map-header] 240px [content-area] auto [images-area] auto' )
+      padding: 0 !important
+
+
+
+.dp-tour
+  .header-bar
+    width: 100%
+    height: $base-line-height * 3
+    background-color: #3f3f3f
+
+  .banner-monster
+    margin: $base-line-height 0
+    text-align: center
+
+  .main
+    max-width: 1250px
+    margin: 0 auto
+    background-color: white
+    padding: $base-line-height / 2 1.25rem
+
+  #general-info
+    grid-column-start: 4
+    grid-column-end: 9
+    grid-col
+
+  .map
+    height: 144px
+    grid-row-start: map-header
+    grid-row-end: content-area
+    grid-column-start: 1
+    grid-column-end: 12
+    background-color: #e7e7e7
+
+  .tour-header
+    grid-row-start: content-area
+    grid-column-start: 4
+    grid-column-end: 9
+
+  .tour-images
+    grid-column-start: 3
+    grid-column-end: 10
+    grid-row-start: images-area
+
+  .menu-in-page
+    position: sticky
+    position: -webkit-sticky
+    top: 0
+    border-bottom: 4px solid #efefef
+    text-align: center
+    padding: $base-line-height 0
+    ul
+      @extend .no-style
+      display: inline
+      list-style-type: none
+
+      li
+        padding: $base-line-height 0
+        line-height: 1.5 * $base-line-height
+        display: inline
+        list-style-type: none
+
+      li + li
+        padding-left: 1.5rem
+
+
+

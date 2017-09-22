@@ -8,6 +8,7 @@ $base-border-color: #cfcfcf
 @import 'debug'
 @import 'layout'
 @import 'plumber'
+@import 'tour'
 
 @include plumber-set-defaults($grid-height: $grid-height,  $baseline: 0.184,  $font-size: 2 * 0.72727272,  $line-height: 2,  $leading-top: 0,  $leading-bottom: 0)
 
@@ -62,6 +63,10 @@ a
   display: block
   float: left
   margin-right: 1em
+
+menu
+  padding: 0
+  margin: 0
 
 h1, .fake-h1
   @include plumber( $font-size: 3.2727272727, $line-height: 4, $leading-top: 3, $leading-bottom: 2 )
@@ -170,7 +175,7 @@ button
     padding: 7px 1em
     margin: 4px 0
 
-  &.text-small
+  &.small
     $pad: 0
 
 
