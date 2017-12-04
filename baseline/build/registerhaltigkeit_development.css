@@ -274,23 +274,27 @@ a.oax_breadcrumb {
     grid-template-columns: repeat(11, [col-start] 1fr);
     grid-gap: 2rem;
     grid-template-rows: [map-header] 240px [content-area] auto [images-area] auto;
-    padding: 0 !important; } }
+    padding: 0 !important; }
+  .dp-tour .map {
+    margin: 0 !important;
+    height: initial !important; } }
 .dp-tour .header-bar {
   width: 100%;
   height: 66px;
   background-color: #3f3f3f; }
 .dp-tour .banner-monster {
-  margin: 22px 0;
+  margin: 11px 0;
   text-align: center; }
 .dp-tour .main {
   max-width: 1250px;
   margin: 0 auto;
   background-color: white;
-  padding: 11px 1.25rem; }
+  padding: 0 1.25rem; }
 .dp-tour #general-info {
   grid-column-start: 4;
   grid-column-end: 9; }
 .dp-tour .map {
+  margin: 0 -1.25rem;
   height: 144px;
   grid-row-start: map-header;
   grid-row-end: content-area;
@@ -323,8 +327,23 @@ a.oax_breadcrumb {
     .dp-tour .menu-in-page ul li + li {
       padding-left: 1.5rem; }
 
+/** General styles */
+.btn-circular {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #575757;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  line-height: 0;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(183, 183, 183, 0.5);
+  display: table-cell;
+  vertical-align: middle; }
+
 html, input, option, select, textarea, button {
-  font-family: "Alto Pro", -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
@@ -372,6 +391,28 @@ menu {
   padding: 0;
   margin: 0; }
 
+.display-xxl {
+  font-size: 72px;
+  line-height: 55px;
+  margin-top: 66px;
+  padding-top: 4.75px;
+  padding-bottom: 6.25px;
+  margin-bottom: 33px;
+  font-size: 4.5rem;
+  line-height: 110px;
+  font-weight: bold; }
+
+.display-xl {
+  font-size: 48px;
+  line-height: 66px;
+  margin-top: 33px;
+  padding-top: 6.75px;
+  padding-bottom: 4.25px;
+  margin-bottom: 33px;
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 66px; }
+
 h1, .fake-h1 {
   font-size: 36px;
   line-height: 44px;
@@ -383,20 +424,20 @@ h1, .fake-h1 {
 @media screen and (max-width: 35.25em) {
   h1, .fake-h1 {
     font-size: 28px;
-    line-height: 33px;
-    margin-top: 22px;
-    padding-top: 7.75px;
-    padding-bottom: 3.25px;
-    margin-bottom: 22px;
+    line-height: 44px;
+    margin-top: 33px;
+    padding-top: 2.25px;
+    padding-bottom: 8.75px;
+    margin-bottom: 11px;
     font-size: 1.75rem;
-    line-height: 33px; } }
+    line-height: 44px; } }
 h2, .fake-2 {
   font-size: 24px;
-  line-height: 22px;
-  margin-top: 33px;
-  padding-top: 3.5px;
-  padding-bottom: 7.5px;
-  margin-bottom: 11px; }
+  line-height: 33px;
+  margin-top: 22px;
+  padding-top: 9px;
+  padding-bottom: 2px;
+  margin-bottom: 22px; }
 
 h3, .fake-h3, .text-large, .app-teaser .teaser--header {
   font-size: 18px;

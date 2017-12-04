@@ -7,6 +7,10 @@
       grid-template-rows: unquote( '[map-header] 240px [content-area] auto [images-area] auto' )
       padding: 0 !important
 
+    .map
+      margin: 0 !important
+      height: initial !important
+
 
 
 .dp-tour
@@ -16,14 +20,14 @@
     background-color: #3f3f3f
 
   .banner-monster
-    margin: $base-line-height 0
+    margin: $base-line-height / 2 0
     text-align: center
 
   .main
     max-width: 1250px
     margin: 0 auto
     background-color: white
-    padding: $base-line-height / 2 1.25rem
+    padding: 0 1.25rem
 
   #general-info
     grid-column-start: 4
@@ -31,6 +35,7 @@
     grid-col
 
   .map
+    margin: 0 -1.25rem
     height: 144px
     grid-row-start: map-header
     grid-row-end: content-area
@@ -70,4 +75,18 @@
         padding-left: 1.5rem
 
 
+/** General styles **/
+.btn-circular
+  width: 55px
+  height: 55px
+  border-radius: 50%
+  background-color: #575757
+  font-size: 24px
+  color: white
+  text-align: center
+  line-height: 0
+  padding: 0
+  box-shadow: 0 2px 5px rgba(183, 183, 183, 0.5)
+  display: table-cell
+  vertical-align: middle
 
