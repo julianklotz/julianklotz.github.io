@@ -393,13 +393,11 @@ menu {
 
 .display-xxl {
   font-size: 72px;
-  line-height: 55px;
-  margin-top: 66px;
-  padding-top: 4.75px;
-  padding-bottom: 6.25px;
-  margin-bottom: 33px;
-  font-size: 4.5rem;
-  line-height: 110px;
+  line-height: 88px;
+  margin-top: 55px;
+  padding-top: 10.25px;
+  padding-bottom: 0.75px;
+  margin-bottom: 44px;
   font-weight: bold; }
 
 .display-xl {
@@ -409,9 +407,7 @@ menu {
   padding-top: 6.75px;
   padding-bottom: 4.25px;
   margin-bottom: 33px;
-  font-weight: bold;
-  font-size: 3rem;
-  line-height: 66px; }
+  font-weight: bold; }
 
 h1, .fake-h1 {
   font-size: 36px;
