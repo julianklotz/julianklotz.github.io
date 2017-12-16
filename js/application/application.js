@@ -75,12 +75,13 @@ $(document).ready(function() {
 			this._timer = new Worker("js/application/metronomeworker.js");
 			this._timer.postMessage({ "interval": this._lookahead });
 			this._timer.onmessage = this.onTimerMessage.bind(this);
+			_.bindAll(this, 'unlock');
 
 			this.initAudioContext();
 
-			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchstart', this.unlock.bind(this), false);
-			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchend', this.unlock.bind(this), false);
-			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('click', this.unlock.bind(this), false);
+			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchstart', this.unlock, false);
+			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchend', this.unlock, false);
+			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('click', this.unlock, false);
 
 			this.on('change:meter', this.onChange);
 			this.on('change:bpm', this.onChange);
@@ -123,13 +124,33 @@ $(document).ready(function() {
 			var myContext = this.audioCtx;
 			var buffer = myContext.createBuffer(1, 1, 22050);
 			var source = myContext.createBufferSource();
+
 			source.buffer = buffer;
-
 			source.connect(myContext.destination);
-
 			source.start(0);
+
+			var cb = (function() {
+				var that = this;
+				var src = source;
+
+				debugger
+
+				return (function() {
+					if((src.playbackState === src.PLAYING_STATE || src.playbackState === src.FINISHED_STATE)) {
+						that.unlocked = true;
+						that.set( 'isMuted', false );
+
+						document.getElementsByClassName('js-hide-overlay')[0].removeEventListener('touchstart', that.unlock);
+						document.getElementsByClassName('js-hide-overlay')[0].removeEventListener('touchend', that.unlock);
+						document.getElementsByClassName('js-hide-overlay')[0].removeEventListener('click', that.unlock);
+					}
+				})
+			})();
+
+			setTimeout(cb, 0);
+
+
 			this.unlocked = true;
-			this.set( 'isMuted', false );
 		},
 
 		schedulePlayback: function( time ) {
