@@ -141,3 +141,8 @@ and (max-device-width : 480px) {
 		line-height: 1.2em;
 	}
 }
+
+.character-count-1,
+.character-count-2 {
+	font-size: 2rem;
+}
