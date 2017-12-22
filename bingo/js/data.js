@@ -33,7 +33,7 @@ var JSONBingo = {"squares": [
         {"square": "funnel"},
         {"square": "🎄"},
         {"square": "🎅"},
-        {"square": "digital"},
+        {"square": "widget"},
         {"square": "WebApp"},
         {"square": "content strategy"},
         {"square": "workshop"},
