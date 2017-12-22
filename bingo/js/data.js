@@ -39,11 +39,11 @@ var JSONBingo = {"squares": [
         {"square": "workshop"},
         {"square": "brand"},        
 	
-        {"square": "☃"},        	
-        {"square": "twenty six"},
-        {"square": "twenty seven"},
-        {"square": "twenty eight"},
-        {"square": "twenty nine"},
-        {"square": "thirty"}
+        {"square": "marker"},        	
+        {"square": "master category tree"},
+        {"square": "activity network"},
+        {"square": "outdoor"},
+        {"square": "points of interest"},
+        {"square": "Ausflugsziele"}
     ]
 };
