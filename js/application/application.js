@@ -273,7 +273,7 @@ $(document).ready(function() {
 
 	var Tappr = Backbone.Model.extend({
 
-		MAX_TAP_BUFFER_SIZE: 4,
+		MAX_TAP_BUFFER_SIZE: 2,
 		tapBuffer: undefined,
 		timer: undefined,
 
