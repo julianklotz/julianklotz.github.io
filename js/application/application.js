@@ -1,3 +1,14 @@
+var rootAudioContext = ( function() {
+	var Ctor = window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
+
+	if( !Ctor ) {
+		alert("Sorry, your browser does not support playing sound using the Web Audio API.");
+	}
+
+	return new Ctor()
+} )();
+
+
 function BufferLoader(context, urlList, callback) {
 	this.context = context;
 	this.urlList = urlList;
@@ -54,7 +65,7 @@ $(document).ready(function() {
 		defaults: {
 			"bpm":  120,
 			"meter": 4,
-			"isMuted": true,
+			"isMuted": false,
 			"bpmMax": 240,
 			"bpmMin": 30,
 		},
@@ -82,6 +93,7 @@ $(document).ready(function() {
 			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchstart', this.unlock, false);
 			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('touchend', this.unlock, false);
 			document.getElementsByClassName('js-hide-overlay')[0].addEventListener('click', this.unlock, false);
+
 
 			this.on('change:meter', this.onChange);
 			this.on('change:bpm', this.onChange);
@@ -133,8 +145,6 @@ $(document).ready(function() {
 				var that = this;
 				var src = source;
 
-				debugger
-
 				return (function() {
 					if((src.playbackState === src.PLAYING_STATE || src.playbackState === src.FINISHED_STATE)) {
 						that.unlocked = true;
@@ -147,8 +157,7 @@ $(document).ready(function() {
 				})
 			})();
 
-			setTimeout(cb, 0);
-
+			setTimeout( _.bind( cb, this ), 0 );
 
 			this.unlocked = true;
 		},
@@ -192,13 +201,7 @@ $(document).ready(function() {
 		},
 
 		initAudioContext: function() {
-			window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
-
-			if(!window.AudioContext) {
-				alert("Sorry, your browser does not support playing sound using the Web Audio API.");
-			}
-
-			this.audioCtx = new AudioContext();
+			this.audioCtx = rootAudioContext;
 			var bufferLoader = new BufferLoader( this.audioCtx, ['audio/4d.wav'], this.finishedLoading.bind(this) );
 			bufferLoader.load();
 		},
@@ -268,6 +271,54 @@ $(document).ready(function() {
 		},
 	});
 
+	var Tappr = Backbone.Model.extend({
+
+		MAX_TAP_BUFFER_SIZE: 4,
+		tapBuffer: undefined,
+		timer: undefined,
+
+		initialize: function( options ) {
+			this.audioContext = options.audioContext;
+			this.metronome = options.model;
+			this.tapBuffer = [];
+		},
+
+		tap: function() {
+			// Make sure the buffer doesn't exceed it’s maximum size
+			if( this.tapBuffer.length >= this.MAX_TAP_BUFFER_SIZE ) {
+				this.tapBuffer.pop();
+			}
+
+			// Add current tap
+			var time = this.audioContext.currentTime;
+			this.tapBuffer.unshift( time );
+
+			// We need at least two taps to determine a time
+			if( this.tapBuffer.length < 2 ) {
+				return
+			}
+
+			var timeBetweenTaps = ( this.tapBuffer[0] - this.tapBuffer[ this.tapBuffer.length - 1 ]) / this.tapBuffer.length;
+			var bpm = Math.round( 60 / timeBetweenTaps / 2);
+
+			this.metronome.setBpm( bpm );
+
+			// Init timeout
+			if( this.timer ) {
+				window.clearTimeout( this.timer );
+			}
+			this.timer = window.setTimeout( _.bind( this.clearBuffer, this ), 1000 );
+		},
+
+		clearBuffer: function() {
+			console.log("Clearing buffer.");
+			this.tapBuffer = [];
+			this.timer = undefined;
+		},
+
+	});
+
+
 	var SpeedTrainer = Backbone.Model.extend({
 		defaults: {
 			from: 120,
@@ -318,6 +369,20 @@ $(document).ready(function() {
 			}
 		},
 
+		getSteps: function() {
+			var f = this.get( 'from' );
+			var t = this.get( 'to' );
+			var steps = [];
+			var current = f;
+
+			while( current <= t ) {
+				steps.push( current );
+				current += this.get('stepSize');
+			}
+
+			return steps
+		},
+
 		start: function() {
 			this.metronome.on("LAST_BEAT", this.onBeatLast);
 			this.set({ 'isRunning': true, 'currentSpeed': this.get('from')} );
@@ -350,11 +415,10 @@ $(document).ready(function() {
 		render: function() {
 			this.$el.html(this.template( this.model.attributes ));
 
-			console.log( this.$('.animation-node'));
-
 			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
 			this.$('.animation-node').html( this.animationView.render().el );
 			this.$('.metronome-controls-node').html( this.metronomeControlsView.render().el );
+
 			this.speedTrainerView.delegateEvents();
 
 			return this
@@ -373,6 +437,7 @@ $(document).ready(function() {
 			'input #js-input-meter': 'onInputMeter',
 			'click #js-increment-meter': 'onIncrementMeter',
 			'click #js-decrement-meter': 'onDecrementMeter',
+			'click #js-tap-button': 'onTapButton',
 
 		},
 
@@ -384,8 +449,18 @@ $(document).ready(function() {
 			this.$inputMeter = this.$('#js-input-meter');
 			this.$incMeter = this.$('#js-increment-meter');
 			this.$decMeter = this.$('#js-decrement-meter');
+			this.$tapBtn = this.$('#js-tap-button');
 
+
+			this.tappr = new Tappr( { audioContext: rootAudioContext, model: this.model } );
 			this.model.on('change', this.render.bind(this));
+		},
+
+		onTapButton: function(evt) {
+			evt.preventDefault();
+			this.tappr.tap();
+
+			return false
 		},
 
 		onMute: function(evt) {
@@ -489,7 +564,10 @@ $(document).ready(function() {
 		},
 
 		render: function() {
-			this.$el.html(this.template( this.model.attributes ));
+			var params = this.model.toJSON()
+			params.steps = this.model.getSteps();
+			console.log( params.steps );
+			this.$el.html(this.template( params ));
 			return this
 		}
 

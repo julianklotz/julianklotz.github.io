@@ -8,6 +8,7 @@
 		<script src="js/vendor/fx_methods.js"></script>
 		<script src="js/vendor/underscore-min.js"></script>
 		<script src="js/vendor/backbone-min.js"></script>
+		<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1" />
@@ -70,14 +71,10 @@
 					value="<%= bpm %>"
 					min="<%= bpmMin %>"
 					max="<%= bpmMax %>" />
-			<!--
-				<span class="input-group-addon stepper" id="js-decrement-bpm">-</span>
-				<span class="input-group-addon stepper" id="js-increment-bpm">+</span>-->
 			</div>
 
 			<div class="fl">
 				<label class="">meter</label><br />
-
 				<input
 					onClick="this.setSelectionRange(0, this.value.length)"
 					class="form-control"
@@ -87,17 +84,15 @@
 					value="<%= meter %>"
 					min="1"
 					max="10" />
-				<!--
-				<span class="input-group-addon stepper" id="js-decrement-meter">-</span>
-				<span id="js-increment-meter" class="stepper input-group-addon">+</span>
-
-				-->
 			</div>
 			<div class="fl">&nbsp;
 			</div>
 			<div class="fl">
-				<button id="js-btn-toggle-mute"><%= isMuted === true ? 'unmute' : 'mute' %></button>
+				<button id="js-tap-button">tap</button>
+				<button id="js-btn-toggle-mute" class="btn-mute"><span class=" fas <%= isMuted === true ? 'fa-volume-up' : 'fa-volume-off' %>"></span></button>
 			</div>
+
+
 			<div class="clear"></div>
 		</form>
 		</script>
@@ -121,9 +116,14 @@
 		<div class="fl">
 			<button id="js-btn-toggle-trainer"><%= isRunning === true ? 'stop' : 'start' %></button>
 		</div>
-		<div class="clear"></div>
+		<div class="clear" style="margin-bottom: 22px;"></div>
 		<% if( isRunning ) { %>
-			<p>speed trainer is running …</p>
+			<label class="label-small" style="width: initial; ">current speed</label><br />
+
+			<% for( var i = 0; i < steps.length; i++) { %>
+				<span class="speed-trainer--step <% if( steps[i] === currentSpeed) { %>  current <% } %>"><%= steps[i] %></span>
+
+			<% } %>
 		<% } %>
 
 
