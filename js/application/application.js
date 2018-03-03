@@ -1,3 +1,46 @@
+var storageBackend = (function() {
+
+	function supportsLocalStorage() {
+		var mod = '1-2-mic-check';
+		try {
+			localStorage.setItem(mod, mod);
+			localStorage.removeItem(mod);
+			return true;
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function saveSettings( settings ) {
+		if( supportsLocalStorage() ) {
+			// Do not store info like muted/unmuted – only meaningful settings
+			var params = {
+				'bpm': settings.bpm,
+				'meter': settings.meter
+			};
+			localStorage.setItem( 'settings',  JSON.stringify( params ) );
+		}
+	}
+
+	function loadSettings() {
+		if( supportsLocalStorage() ) {
+			var s = localStorage.getItem('settings');
+			if( s ) {
+				return JSON.parse( s )
+			}
+		}
+	}
+
+	var api = {
+		saveSettings: saveSettings,
+		loadSettings: loadSettings
+	};
+
+	return api
+
+})();
+
+
 var rootAudioContext = ( function() {
 	var Ctor = window.AudioContext = window.AudioContext || window.webkitAudioContext || false;
 
@@ -99,11 +142,17 @@ $(document).ready(function() {
 			this.on('change:bpm', this.onChange);
 
 			this._timer.postMessage('start');
+
+			var settings = storageBackend.loadSettings();
+			if( settings ) {
+				this.set( settings );
+			}
 		},
 
 		// Is used in view to check whether re-paint is necessary
 		onChange: function(e) {
 			this.dirty = true;
+			storageBackend.saveSettings( this.toJSON() );
 		},
 
 		onTimerMessage: function(e) {

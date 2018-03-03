@@ -1,12 +1,12 @@
-var RELEASE_VERSION = "1.0rc-2";
+var RELEASE_VERSION = "1.0rc-3";
 var dataCacheName = 'swissMetronomeData-' +  RELEASE_VERSION;
 var cacheName = 'swissMetronome-' + RELEASE_VERSION;
 var filesToCache = [
   	'/',
   	'/index.html',
-  	
+
   	'/meta/manifest.json',
-  
+
     'js/vendor/zepto.min.js',
     'js/vendor/fx.js',
     'js/vendor/fx_methods.js',
@@ -14,16 +14,16 @@ var filesToCache = [
     'js/vendor/backbone-min.js',
 
     'js/application/application.js',
-    'js/application/metronomeworker.js',    
-    
+    'js/application/metronomeworker.js',
+
     'audio/4d.wav',
-    
+
     'style/core.css',
 ];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
-  console.log("[ServiceWorker] Release", RELEASE_VERSION);  
+  console.log("[ServiceWorker] Release", RELEASE_VERSION);
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       console.log('[ServiceWorker] Caching app shell');
@@ -65,13 +65,13 @@ self.addEventListener('fetch', function(e) {
 	 */
 	e.respondWith(
 	  caches.match(e.request).then(function(response) {
-	  
+
 		if( response ) {
 			console.log("[Service Worker] Cache hit", e.request.url);
 			return response
 		} else {
 			console.log("[Service Worker] Cache miss", e.request.url);
-			return fetch(e.request);			
+			return fetch(e.request);
 		}
 	  })
 	);
