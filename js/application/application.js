@@ -273,7 +273,7 @@ $(document).ready(function() {
 
 	var Tappr = Backbone.Model.extend({
 
-		MAX_TAP_BUFFER_SIZE: 2,
+		MAX_TAP_BUFFER_SIZE: 4,
 		tapBuffer: undefined,
 		timer: undefined,
 
@@ -298,8 +298,8 @@ $(document).ready(function() {
 				return
 			}
 
-			var timeBetweenTaps = ( this.tapBuffer[0] - this.tapBuffer[ this.tapBuffer.length - 1 ]) / this.tapBuffer.length;
-			var bpm = Math.round( 60 / timeBetweenTaps / 2);
+			var timeBetweenTaps = ( this.tapBuffer[0] - this.tapBuffer[ this.tapBuffer.length - 1 ]) / (this.tapBuffer.length - 1);
+			var bpm = Math.round( 60 / timeBetweenTaps);
 
 			this.metronome.setBpm( bpm );
 
