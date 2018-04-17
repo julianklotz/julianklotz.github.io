@@ -1,0 +1,170 @@
+
+
+@import 'registerhaltigkeit'
+@import 'simple-grid'
+@import 'debug'
+@import 'layout'
+@import 'plumber'
+@import 'tour'
+@import 'hotel'
+
+
+
+.group::after
+	content: ""
+	display: table
+	clear: both
+
+
+.banner-monster
+	padding: $base-line-height / 2
+	text-align: center
+
+
+.page-container
+	background-color: white
+	padding: 0 2rem
+
+.entry-subhead
+
+
+.category-icon
+	width: auto
+	height: $base-line-height * 1.5
+	vertical-align: middle
+	padding-right: .5rem
+	margin-bottom: 5px
+	
+.entry-header-bar
+	position: sticky
+	position: -webkit-sticky
+	top: 0
+	background-color: white
+	z-index: 5
+
+.toolbar
+	text-align: right
+	margin-top: 10px
+	margin-bottom: 10px
+	
+
+
+.toolbar--item
+	margin-left: .5rem
+	display: inline-block
+	@extend button
+	@extend .small
+	@extend .ghost
+	
+.toolbar--icon, .toolbar--item
+
+.toolbar--icon
+	margin-right: .5rem
+	font-size: 16px
+
+
+.oax-icon-faved-star,
+.oax-icon-fav-star
+	color: #e6bc32
+	
+.sticky-sidebar
+	position: sticky
+	position: -webkit-sticky
+	top: calc( 55px + 5px + 22px )
+	
+.source-box
+	text-align: center
+	margin-top: 2 * $base-line-height
+
+	
+	.source-box--logo	
+		max-width: 140px
+		height: auto
+
+	.source-box--name
+		@extend .text-small
+
+.booking-box
+	padding: $base-line-height 2rem
+	margin-top: $base-line-height
+	
+	background-color: #f8f8f8
+	border: 1px solid #e7e7e7
+	
+	.booking-box--rating
+		@extend .text-small	
+
+	.booking-box--submit
+		width: 100%
+		margin: $base-line-height / 2 0 0 0
+	
+	.booking-box--price-value
+		font-size: 24px
+		font-variant-numeric: initial
+	
+		
+button.btn-back
+	background-color: #575757
+	color: white
+	margin: 10px 1rem 10px 0 !important
+	
+.flip-wrapper
+	position: relative
+	margin: 0
+	height: 2 * $base-line-height
+	
+.breadcrumb-bar
+	transform: scaleY(1)
+	transition: transform .1s ease-in-out
+
+.page-navigation
+	transform: scaleY(0)
+	transition: transform .1s ease-in-out	
+
+.breadcrumb-bar, .page-navigation
+	position: absolute
+	top: 0
+	left: 0
+	
+.js-show-content-nav	
+	.page-navigation
+		transform: scaleY(1)
+		
+	.breadcrumb-bar
+		transform: scaleY(0)		
+
+.header-bar-seperator
+	height: 5px
+	width: 96%
+	background-color: #e7e7e7
+	margin: 0 2%
+
+	
+.page-navigation
+		font-weight: normal
+		margin: 0
+
+		ul
+			@extend .no-style
+			display: inline
+			list-style-type: none
+			margin-top: 0
+
+			li
+				padding: $base-line-height/2 0
+				display: inline-block
+				list-style-type: none
+				margin: 0 
+				position: relative
+				
+				&.current:after
+					position: absolute
+					bottom: 0
+					height: 5px
+					left: 0
+					background-color: #c0cc56
+					width: 100%
+					
+
+			li + li
+				margin-left: 1.5rem

@@ -1,2 +1,2 @@
-watch: sass --watch src/registerhaltigkeit.sass:build/registerhaltigkeit_development.css; sass --watch --style compressed src/registerhaltigkeit.sass:build/registerhaltigkeit_release.css
-compile: sass --style compressed src/registerhaltigkeit.sass:build/registerhaltigkeit_release.css
+watch: sass --watch src/core.sass:build/core.css
+

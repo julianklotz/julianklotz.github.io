@@ -203,23 +203,14 @@ body
   display: table
   clear: both
 
-.breadcrumb-bar
-  @extend .text-small
-
 .oax_breadcrumb
   font-style: italic
 
-.breadcrumb-bar
-  margin-top: 2 * $base-line-height
-
-  text-overflow: ellipsis
-  width: 100%
-  white-space: nowrap
-  overflow: hidden
-
-
-a.oax_breadcrumb
+a.oax_breadcrumb, span.oax_breadcrumb
   padding: $base-line-height / 2 0
+  @extend .text-small
+  margin: 0 !important
+
 
 .oax_breadcrumb + .oax_breadcrumb
   &:before
@@ -234,11 +225,11 @@ a.oax_breadcrumb
   display: none
 
   &:first-child, &.parent-region
-    display: inline
+    display: inline-block
 
 @media screen and (min-width: 640px)
   a.oax_breadcrumb
-    display: inline
+    display: inline-block
 
 @keyframes wobble
   0%
