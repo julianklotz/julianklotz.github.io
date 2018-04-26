@@ -55,7 +55,7 @@ $breakpoint-large: 71em; // 960px
   width: $grid-width;
   float: left;
   margin: 0.5rem 2%;
-  min-height: 0.125rem;  
+  min-height: 0.125rem;
 }
 
 .col-1-sm { width:($grid-width / 12) - ($gutter * 11 / 12); }
@@ -85,7 +85,32 @@ $breakpoint-large: 71em; // 960px
   .col-11 { width: ($grid-width / (12 / 11)) - ($gutter * 1 / 12); }
   .col-12 { width: $grid-width; }
 
-  .hidden-sm {
+  .offset-1 { margin-left:($grid-width / 12) - ($gutter * 11 / 12); }
+  .offset-2 { margin-left: ($grid-width / 6) - ($gutter * 10 / 12); }
+  .offset-3 { margin-left: ($grid-width / 4) - ($gutter * 9 / 12); }
+  .offset-4 { margin-left: ($grid-width / 3) - ($gutter * 8 / 12); }
+  .offset-5 { margin-left: ($grid-width / (12 / 5)) - ($gutter * 7 / 12); }
+  .offset-6 { margin-left: ($grid-width / 2) - ($gutter * 6 / 12); }
+  .offset-7 { margin-left: ($grid-width / (12 / 7)) - ($gutter * 5 / 12); }
+  .offset-8 { margin-left: ($grid-width / (12 / 8)) - ($gutter * 4 / 12); }
+  .offset-9 { margin-left: ($grid-width / (12 / 9)) - ($gutter * 3 / 12); }
+  .offset-10 { margin-left: ($grid-width / (12 / 10)) - ($gutter * 2 / 12); }
+  .offset-11 { margin-left: ($grid-width / (12 / 11)) - ($gutter * 1 / 12); }
+  .offset-12 { margin-left: $grid-width; }
+
+  .offset-right-1 { margin-right:($grid-width / 12) - ($gutter * 11 / 12); }
+  .offset-right-2 { margin-right: ($grid-width / 6) - ($gutter * 10 / 12); }
+  .offset-right-3 { margin-right: ($grid-width / 4) - ($gutter * 9 / 12); }
+  .offset-right-4 { margin-right: ($grid-width / 3) - ($gutter * 8 / 12); }
+  .offset-right-5 { margin-right: ($grid-width / (12 / 5)) - ($gutter * 7 / 12); }
+  .offset-right-6 { margin-right: ($grid-width / 2) - ($gutter * 6 / 12); }
+  .offset-right-7 { margin-right: ($grid-width / (12 / 7)) - ($gutter * 5 / 12); }
+  .offset-right-8 { margin-right: ($grid-width / (12 / 8)) - ($gutter * 4 / 12); }
+  .offset-right-9 { margin-right: ($grid-width / (12 / 9)) - ($gutter * 3 / 12); }
+  .offset-right-10 { margin-right: ($grid-width / (12 / 10)) - ($gutter * 2 / 12); }
+  .offset-right-11 { margin-right: ($grid-width / (12 / 11)) - ($gutter * 1 / 12); }
+  .offset-right-12 { margin-right: $grid-width; }
+  .hidden-rightsm {
     display: block;
   }
 }
