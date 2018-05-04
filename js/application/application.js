@@ -21,12 +21,17 @@ var storageBackend = (function() {
 			localStorage.setItem( 'settings',  JSON.stringify( params ) );
 		}
 	}
+	
+	function loadPresets() {
+		return [];
+	},
+		
 
 	function loadSettings() {
 		if( supportsLocalStorage() ) {
 			var s = localStorage.getItem('settings');
 			if( s ) {
-				return JSON.parse( s )
+				return JSON.parse( s );
 			}
 		}
 	}
@@ -36,7 +41,7 @@ var storageBackend = (function() {
 		loadSettings: loadSettings
 	};
 
-	return api
+	return api;
 
 })();
 
@@ -48,7 +53,7 @@ var rootAudioContext = ( function() {
 		alert("Sorry, your browser does not support playing sound using the Web Audio API.");
 	}
 
-	return new Ctor()
+	return new Ctor();
 } )();
 
 
@@ -103,6 +108,30 @@ BufferLoader.prototype.load = function() {
 
 $(document).ready(function() {
 	"use strict";
+	
+	var Preset = Backbone.Model.extend({
+	        defaults: {
+			'name': undefined,
+			'bpm': undefined,
+			'meter': undefined
+		}
+		
+	});
+	
+	var PresetCollection = Backbone.Collection.extend({
+		model: Preset,
+		
+		fetch: function() {
+		  // TODO
+		},
+	});
+	
+	/*
+	  TODO
+	  
+	  var presets = new PresetCollection();
+	  presets.fetch();
+	*/
 
 	var BarModel = Backbone.Model.extend({
 		defaults: {
