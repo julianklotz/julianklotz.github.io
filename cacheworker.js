@@ -21,6 +21,9 @@ var filesToCache = [
     'style/core.css',
 ];
 
+// Development hack
+filesToCache = [];
+
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
   console.log("[ServiceWorker] Release", RELEASE_VERSION);

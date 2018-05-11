@@ -1,3 +1,16 @@
+const EVENT = {
+	'PRESET_CHANGED': 'PRESET_CHANGED'
+};
+
+
+var getUniqueId = function () {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
+};
+
+
 var storageBackend = (function() {
 
 	function supportsLocalStorage() {
@@ -21,11 +34,26 @@ var storageBackend = (function() {
 			localStorage.setItem( 'settings',  JSON.stringify( params ) );
 		}
 	}
-	
-	function loadPresets() {
-		return [];
-	},
-		
+
+	function loadPresets( completedCallback ) {
+		var demoPreset1 = {
+			bpm: 80,
+			meter: 5,
+			artist: "The Tallest Man on Earth",
+			name: "The Gardener",
+			id: getUniqueId()
+		}
+		var demoPreset2 = {
+			bpm: 134,
+			meter: 3,
+			artist: "Led Zeppelin",
+			name: "Good Times, Bad Times",
+			id: getUniqueId()
+		}
+
+		completedCallback( [ demoPreset1, demoPreset2 ] );
+	}
+
 
 	function loadSettings() {
 		if( supportsLocalStorage() ) {
@@ -38,8 +66,9 @@ var storageBackend = (function() {
 
 	var api = {
 		saveSettings: saveSettings,
-		loadSettings: loadSettings
-	};
+		loadSettings: loadSettings,
+		loadPresets: loadPresets
+	}
 
 	return api;
 
@@ -108,29 +137,62 @@ BufferLoader.prototype.load = function() {
 
 $(document).ready(function() {
 	"use strict";
-	
+
 	var Preset = Backbone.Model.extend({
-	        defaults: {
+		defaults: {
+			'id': undefined,
 			'name': undefined,
 			'bpm': undefined,
-			'meter': undefined
+			'meter': undefined,
+			'artist': undefined
 		}
-		
 	});
-	
+
 	var PresetCollection = Backbone.Collection.extend({
 		model: Preset,
-		
-		fetch: function() {
-		  // TODO
+
+		_currentPreset: undefined,
+
+		initialize: function() {
+			_.bindAll( this, 'fetch', 'onFetched', 'setCurrentPreset', 'getCurrentPreset' );
 		},
+
+		setCurrentPreset: function( preset ) {
+			if( this.currentPreset === preset) {
+				console.log("Not setting now preset – same as recent.");
+				return this.currentPreset
+			}
+
+			this._currentPreset = preset;
+			// Notify rest of application
+			this.trigger( EVENT.PRESET_CHANGED, this._currentPreset );
+
+			return this._currentPreset;
+		},
+
+		getCurrentPreset: function( preset ) {
+			return this._currentPreset;
+		},
+
+		fetch: function() {
+			storageBackend.loadPresets( this.onFetched );
+		},
+
+		// Presetdata: an array contain javascript objects
+		onFetched: function( presetData ) {
+			this.reset( presetData );
+		}
+
 	});
-	
+
+
 	/*
 	  TODO
-	  
+
 	  var presets = new PresetCollection();
 	  presets.fetch();
+		presets.setCurrentPreset( presets.first() );
+
 	*/
 
 	var BarModel = Backbone.Model.extend({
@@ -176,6 +238,12 @@ $(document).ready(function() {
 			if( settings ) {
 				this.set( settings );
 			}
+		},
+
+		setFromPreset: function( preset ) {
+			console.log("Setting from preset: ", preset.toJSON() );
+			this.setBpm( preset.get('bpm') );
+			this.setMeter( preset.get('meter') );
 		},
 
 		// Is used in view to check whether re-paint is necessary
@@ -481,12 +549,20 @@ $(document).ready(function() {
 		template: _.template( $('#metronome').html() ),
 
 
-		initialize: function() {
+		initialize: function(options) {
+
+			this.presetCollection = options.presetCollection;
 			this.speedTrainer = new SpeedTrainer({ metronome: this.model });
 			this.speedTrainerView = new SpeedTrainerView({ model: this.speedTrainer });
 			this.metronomeControlsView = new MetronomeControlsView({ model: this.model });
 			this.animationView = new CircleAnimationView({ model: this.model });
+			this.presetCollection.on( EVENT.PRESET_CHANGED, this.onPresetChanged, this );
+
 			this.render();
+		},
+
+		onPresetChanged: function( preset ) {
+			this.model.setFromPreset( preset );
 		},
 
 
@@ -659,6 +735,12 @@ $(document).ready(function() {
 
 	var barModel = new BarModel();
 	window.barModel = barModel;
-	var rootView = new MetronomeView( { model: barModel });
+
+	var presetCollection = new PresetCollection();
+	window.presetCollection = presetCollection;
+
+	var rootView = new MetronomeView( { model: barModel, presetCollection: presetCollection });
+
+	presetCollection.fetch();
 });
 
