@@ -1,6 +1,54 @@
+"use strict";
+
 const EVENT = {
 	'PRESET_CHANGED': 'PRESET_CHANGED'
 };
+
+
+var logger = (function() {
+	const LEVEL_DEBUG = 0;
+	const LEVEL_INFO = 1;
+	const LEVEL_WARN = 2;
+	const LEVEL_ERROR = 3;
+
+	var logLevel = LEVEL_ERROR;
+
+	function log(level, args ) {
+		if( level >= logLevel ) {
+			console.log( "[" + getLabel( level ) + "]", args );
+		}
+	}
+
+	function getLabel( level ) {
+		var labels = ["Debug", "Info", "Warning", "Error"];
+		return labels[level];
+	}
+
+	function setLogLevel(level) {
+		if( level === 1 || level === 2 || level === 3 || level === 0) {
+			logLevel = level;
+		} else {
+			log(LEVEL_WARN, 'Invalid log level: ' + level);
+		}
+	}
+
+	function getLogLevel() {
+		return logLevel;
+	}
+
+	return {
+		log: log,
+		getLogLevel: getLogLevel,
+		setLogLevel: setLogLevel,
+		WARN: LEVEL_WARN,
+		INFO: LEVEL_INFO,
+		ERROR: LEVEL_ERROR,
+		DEBUG: LEVEL_DEBUG
+	};
+})();
+
+logger.setLogLevel( 0 );
+
 
 
 var getUniqueId = function () {
@@ -12,6 +60,9 @@ var getUniqueId = function () {
 
 
 var storageBackend = (function() {
+
+	const SETTINGS = 'settings';
+	const PRESETS = 'presets';
 
 	function supportsLocalStorage() {
 		var mod = '1-2-mic-check';
@@ -31,43 +82,99 @@ var storageBackend = (function() {
 				'bpm': settings.bpm,
 				'meter': settings.meter
 			};
-			localStorage.setItem( 'settings',  JSON.stringify( params ) );
+			setItem( SETTINGS, params );
 		}
 	}
 
 	function loadPresets( completedCallback ) {
-		var demoPreset1 = {
-			bpm: 80,
-			meter: 5,
-			artist: "The Tallest Man on Earth",
-			name: "The Gardener",
-			id: getUniqueId()
+		var presets = getItem( PRESETS );
+		if( typeof presets !== 'undefined' || presets !== 'undefined' ) {
+			completedCallback( presets );
+		} else {
+			completedCallback( [] );
 		}
-		var demoPreset2 = {
-			bpm: 134,
-			meter: 3,
-			artist: "Led Zeppelin",
-			name: "Good Times, Bad Times",
-			id: getUniqueId()
-		}
-
-		completedCallback( [ demoPreset1, demoPreset2 ] );
 	}
 
+	function clearPresets() {
+		setItem( PRESETS, [] );
+	}
+
+	function getPresetById( id) {
+		// TODO: Implement using callback
+		var presets = loadPresets( PRESETS );
+		savedPreset = _.find( presets, function( preset ) {
+			return id === preset.id;
+		});
+		return undefined
+	}
+
+	function savePreset( presetData ) {
+		var presets = getItem( PRESETS );
+		if( presets ) {
+			// Find existing preset.
+			var savedPreset = _.find( presets, function( preset ) {
+				return presetData.id === preset.id;
+			});
+
+			// Existing preset found.
+			if( savedPreset ) {
+				savedPreset.id = presetData.id;
+				savedPreset.name = presetData.name;
+				savedPreset.bpm = presetData.bpm;
+				savedPreset.meter = presetData.meter;
+				savedPreset.artist = presetData.artist;
+				savedPreset.last_used = presetData.last_used;
+				logger.log( logger.INFO, "Updating preset settings …");
+
+			} else {
+				// Preset is new
+				logger.log( logger.INFO, "Creating new preset: " + presetData );
+				presets.push( presetData );
+			}
+		} else {
+			// Initialize preset list cause it doesn't exist
+			logger.log( logger.INFO, "No presets saved yet -- initializing" );
+			presets = [presetData];
+		}
+
+		// Save.
+		logger.log( logger.INFO, "Writing changes");
+		setItem( PRESETS, presets );
+	}
 
 	function loadSettings() {
+		return getItem( SETTINGS );
+	}
+
+	function getItem( itemName ) {
 		if( supportsLocalStorage() ) {
-			var s = localStorage.getItem('settings');
-			if( s ) {
+			var s = localStorage.getItem( itemName );
+			if( s !== 'undefined' && typeof s !== 'undefined' ) {
 				return JSON.parse( s );
+			} else {
+				return undefined;
 			}
+
+		} else {
+			logger.log(logger.ERROR, "Local storage is not supported – while trying to get: " + itemName);
+		}
+	}
+
+	// data: native JavaScript data structure
+	function setItem( itemName, data ) {
+		if( supportsLocalStorage() ) {
+			localStorage.setItem( itemName, JSON.stringify(data) );
+		} else {
+			logger.log(logger.ERROR, "Local storage is not supported – while trying to set: " + itemName);
 		}
 	}
 
 	var api = {
 		saveSettings: saveSettings,
 		loadSettings: loadSettings,
-		loadPresets: loadPresets
+		loadPresets: loadPresets,
+		savePreset: savePreset,
+		clearPresets: clearPresets
 	}
 
 	return api;
@@ -144,12 +251,42 @@ $(document).ready(function() {
 			'name': undefined,
 			'bpm': undefined,
 			'meter': undefined,
-			'artist': undefined
+			'artist': undefined,
+			'last_used': undefined
+		},
+
+		updateLastUsed: function(options) {
+			this.set( 'last_used', Date.now(), options );
+		},
+
+		save: function() {
+			if( this.isNew() ) {
+				this.set( 'id', getUniqueId(), { silent: true } );
+			}
+
+			if( typeof this.get('last_used') !== 'number' ) {
+				this.updateLastUsed( { silent: true } );
+			}
+
+			storageBackend.savePreset( this.toJSON() );
 		}
 	});
 
 	var PresetCollection = Backbone.Collection.extend({
 		model: Preset,
+
+		comparator: function(a, b) {
+			var aLastUsed = a.get('last_used'),
+				bLastUsed = b.get('last_used');
+
+			if( aLastUsed > bLastUsed ) {
+				return -1;
+			} else if( aLastUsed === bLastUsed) {
+				return 0;
+			} else {
+				return 1;
+			}
+		},
 
 		_currentPreset: undefined,
 
@@ -157,9 +294,10 @@ $(document).ready(function() {
 			_.bindAll( this, 'fetch', 'onFetched', 'setCurrentPreset', 'getCurrentPreset' );
 		},
 
+
 		setCurrentPreset: function( preset ) {
 			if( this.currentPreset === preset) {
-				console.log("Not setting now preset – same as recent.");
+				logger.log(logger.INFO, "Not setting now preset – same as recent.");
 				return this.currentPreset
 			}
 
@@ -241,7 +379,7 @@ $(document).ready(function() {
 		},
 
 		setFromPreset: function( preset ) {
-			console.log("Setting from preset: ", preset.toJSON() );
+			logger.log(logger.INFO, "Setting from preset: " + preset.toJSON() );
 			this.setBpm( preset.get('bpm') );
 			this.setMeter( preset.get('meter') );
 		},
@@ -375,6 +513,10 @@ $(document).ready(function() {
 			return this.get('meter')
 		},
 
+		getMeter: function() {
+			return this.get( 'meter' );
+		},
+
 		setBpm: function( speed ) {
 			if( typeof speed == 'number') {
 				if( speed > this.get('bpmMin') && speed < this.get('bpmMax') ) {
@@ -384,6 +526,10 @@ $(document).ready(function() {
 				}
 			}
 
+			return this.get('bpm');
+		},
+
+		getBpm: function() {
 			return this.get('bpm');
 		},
 
@@ -543,6 +689,116 @@ $(document).ready(function() {
 
 	});
 
+	var PresetCollectionView = Backbone.View.extend({
+		template: _.template( $('#preset-controls').html() ),
+		events: {
+			'click #btn-update-preset-settings': 'updatePresetSettings',
+			'click #btn-create-preset': 'createPreset'
+		},
+
+		initialize: function(options) {
+			_.bindAll(this, 'addAll', 'addOne', 'render', 'updatePresetSettings');
+
+			this.metronome = options.metronome;
+			this.collection = options.collection;
+			this.collection.on('reset', this.addAll);
+			this.collection.on('change', this.render);
+			this.collection.on('add', this.render);
+
+			// Make sure there's some HTML to populate
+			this.render();
+			this.collection.fetch();
+		},
+
+		createPreset: function(evt) {
+			var presetName = null,
+					preset;
+
+			presetName = window.prompt("Please enter a preset name");
+
+			if( presetName === null ) {
+				return
+			}
+
+			preset = new Preset({
+				'name': presetName,
+				'bpm': this.metronome.getBpm(),
+				'meter': this.metronome.getMeter(),
+				'artist': 'artist not implemented'
+			});
+
+			preset.save();
+			this.collection.add( preset );
+		},
+
+		updatePresetSettings: function(evt) {
+			var currentPreset = this.collection.getCurrentPreset();
+			if( currentPreset ) {
+				currentPreset.set({
+					'bpm': this.metronome.getBpm(),
+					'meter': this.metronome.getMeter()
+				});
+
+				currentPreset.save();
+			} else {
+				console.error( 'Current preset should be present, but couldn’t be found.' );
+			}
+		},
+
+		addAll: function() {
+			this.presetListNode.html('');
+			this.collection.each( this.addOne, this );
+		},
+
+		addOne: function(preset) {
+			var view = new PresetView({ model: preset, collection: this.collection });
+			this.presetListNode.append( view.render().el );
+		},
+
+		render: function(evt) {
+			console.log("Collection repaint triggered", evt );
+
+			var currentPreset = this.collection.getCurrentPreset();
+
+			if( currentPreset ) {
+				this.$el.html( this.template( { 'currentPreset': this.collection.getCurrentPreset().attributes } ) );
+			} else {
+				this.$el.html( this.template( { 'currentPreset': false} ) );
+			}
+			this.presetListNode = this.$( '#preset-list-node' );
+			this.addAll();
+
+			return this
+		}
+	});
+
+	var PresetView = Backbone.View.extend({
+		tagName: 'li',
+		template: _.template( $('#preset-single').html() ),
+		events: {
+			'click': 'onPresetClicked'
+		},
+
+		initialize: function(options) {
+			_.bindAll(this, 'onPresetClicked');
+			this.collection = options.collection;
+		},
+
+		onPresetClicked: function(evt) {
+			evt.preventDefault();
+			this.collection.setCurrentPreset( this.model );
+			this.model.updateLastUsed();
+			this.model.save();
+			return false;
+		},
+
+		render: function() {
+			this.$el.html( this.template( this.model.attributes ) );
+			return this;
+		}
+	});
+
+
 	var MetronomeView = Backbone.View.extend({
 		className: 'wrap-center',
 		el: '#root',
@@ -557,6 +813,7 @@ $(document).ready(function() {
 			this.metronomeControlsView = new MetronomeControlsView({ model: this.model });
 			this.animationView = new CircleAnimationView({ model: this.model });
 			this.presetCollection.on( EVENT.PRESET_CHANGED, this.onPresetChanged, this );
+			this.presetCollectionView = new PresetCollectionView({collection: this.presetCollection, metronome: this.model});
 
 			this.render();
 		},
@@ -572,6 +829,7 @@ $(document).ready(function() {
 			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
 			this.$('.animation-node').html( this.animationView.render().el );
 			this.$('.metronome-controls-node').html( this.metronomeControlsView.render().el );
+			this.$('.preset-collection-node').html( this.presetCollectionView.render().el );
 
 			this.speedTrainerView.delegateEvents();
 
@@ -743,4 +1001,37 @@ $(document).ready(function() {
 
 	presetCollection.fetch();
 });
+
+function test() {
+	var demoPreset1 = {
+		bpm: 80,
+		meter: 5,
+		artist: "The Tallest Man on Earth",
+		name: "The Gardener",
+		id: 'the-gardener'
+	}
+	var demoPreset2 = {
+		bpm: 134,
+		meter: 3,
+		artist: "Led Zeppelin",
+		name: "Good Times, Bad Times",
+		id: 'good-times-bad-times'
+	}
+
+	function testStorageBackend() {
+		storageBackend.clearPresets();
+		storageBackend.savePreset( demoPreset1 );
+		storageBackend.savePreset( demoPreset2 );
+		presets = storageBackend.loadPresets(
+			function(presets) {
+				if( presets.length !== 2 ) {
+					console.error("There should be two presets, but length is ", presets.length );
+				}
+			}
+		);
+	}
+
+	testStorageBackend();
+}
+
 

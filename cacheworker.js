@@ -3,7 +3,7 @@ var dataCacheName = 'swissMetronomeData-' +  RELEASE_VERSION;
 var cacheName = 'swissMetronome-' + RELEASE_VERSION;
 var filesToCache = [
   	'/',
-  	'/index.html',
+  	//'/index.html',
 
   	'/meta/manifest.json',
 
@@ -13,7 +13,7 @@ var filesToCache = [
     'js/vendor/underscore-min.js',
     'js/vendor/backbone-min.js',
 
-    'js/application/application.js',
+    // 'js/application/application.js',
     'js/application/metronomeworker.js',
 
     'audio/4d.wav',
@@ -22,7 +22,7 @@ var filesToCache = [
 ];
 
 // Development hack
-filesToCache = [];
+//filesToCache = [];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');
