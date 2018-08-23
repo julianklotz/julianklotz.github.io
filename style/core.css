@@ -50,11 +50,11 @@ label {
   float: left;
   width: 25%; }
 
-body, button, input {
+body, button, input, p {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 18px;
+  font-size: 100%;
   line-height: 24px; }
 
 body {
@@ -168,5 +168,46 @@ button {
 
 .speed-trainer--step.current {
   font-weight: bold; }
+
+#preset-list-node {
+  margin: 22px 0 !important;
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.preset--link {
+  text-decoration: none;
+  color: #272727; }
+  .preset--link:hover {
+    text-decoration: none;
+    color: #272727; }
+
+.preset--name {
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0; }
+
+.preset--subtitle {
+  font-size: 0.8rem;
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.preset {
+  margin-left: -24px;
+  padding: 11px 16px;
+  border-left: 8px solid transparent; }
+
+.preset.js-active {
+  border-color: #DAD3CC; }
+
+#btn-update-preset-settings, #btn-create-preset {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  float: left;
+  margin-right: 1rem; }
+
+.preset-collection-node {
+  margin-top: 44px; }
 
 /*# sourceMappingURL=core.css.map */

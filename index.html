@@ -131,24 +131,25 @@
 		</script>
 
 		<script type="text/template" id="preset-single">
-			<a href="#">
+			<a href="#" class="preset--link">
 				<p class="preset--name">
 					<%= name %>
 				</p>
 				<p class="preset--subtitle">
-					<!--<%= artist %>--> <span class="preset--settings"><%= bpm %> bpm, <%= meter %>/4</span>
+					<!--<%= artist %>--> <span class="preset--settings"><%= bpm %> bpm, <%= meter %>/4</span> | <button class="preset--delete">Delete</span>
 				</p>
 			</a>
 		</script>
 
 		<script type="text/template" id="preset-controls">
 			<% if( currentPreset !== false) { %>
-			<p>Current preset: <%= currentPreset.name %></p>
-
-			<button id="btn-update-preset-settings">Update with new settings</button>
+				<button class="" id="btn-update-preset-settings">update with new settings</button>
 			<% } %>
-			<button id="btn-create-preset">Save new preset</button>
-			<ul id="preset-list-node">
+			<button class="" id="btn-create-preset">save new preset</button>
+
+			<div class="clear"></div>
+
+			<ul id="preset-list-node" >
 
 			</ul>
 		</script>

@@ -108,6 +108,23 @@ var storageBackend = (function() {
 		return undefined
 	}
 
+	function removePreset( id ) {
+		var presets = getItem( PRESETS );
+		if( presets ) {
+			// Find existing preset.
+			var idx = _.findIndex( presets, function( preset ) {
+				return id === preset.id;
+			});
+
+			if( idx === -1 ) {
+				logger.log( logger.ERROR, "Cannot delete preset with id " + id + " since it couldn't be found. Fuck.");
+			} else {
+				presets.splice( idx, 1 );
+				setItem( PRESETS, presets );
+			}
+		}
+	}
+
 	function savePreset( presetData ) {
 		var presets = getItem( PRESETS );
 		if( presets ) {
@@ -174,7 +191,8 @@ var storageBackend = (function() {
 		loadSettings: loadSettings,
 		loadPresets: loadPresets,
 		savePreset: savePreset,
-		clearPresets: clearPresets
+		clearPresets: clearPresets,
+		removePreset: removePreset
 	}
 
 	return api;
@@ -269,6 +287,11 @@ $(document).ready(function() {
 			}
 
 			storageBackend.savePreset( this.toJSON() );
+		},
+
+		destroy: function() {
+			storageBackend.removePreset( this.get('id') );
+			this.constructor.__super__.destroy.call(this);
 		}
 	});
 
@@ -296,6 +319,11 @@ $(document).ready(function() {
 
 
 		setCurrentPreset: function( preset ) {
+			if( !preset ) {
+				logger.log(logger.ERROR, "Not setting now preset – new preset is null. Use unserCurrentPreset() instead.");
+				return false
+			}
+
 			if( this.currentPreset === preset) {
 				logger.log(logger.INFO, "Not setting now preset – same as recent.");
 				return this.currentPreset
@@ -303,9 +331,13 @@ $(document).ready(function() {
 
 			this._currentPreset = preset;
 			// Notify rest of application
-			this.trigger( EVENT.PRESET_CHANGED, this._currentPreset );
+			this.trigger( EVENT.PRESET_CHANGED, this._currentPrese );
 
 			return this._currentPreset;
+		},
+
+		unsetCurrentPreset: function() {
+			this._currentPreset = undefined;
 		},
 
 		getCurrentPreset: function( preset ) {
@@ -704,6 +736,7 @@ $(document).ready(function() {
 			this.collection.on('reset', this.addAll);
 			this.collection.on('change', this.render);
 			this.collection.on('add', this.render);
+			this.collection.on('destroy', this.render);
 
 			// Make sure there's some HTML to populate
 			this.render();
@@ -728,6 +761,7 @@ $(document).ready(function() {
 			});
 
 			preset.save();
+			this.collection.setCurrentPreset( preset );
 			this.collection.add( preset );
 		},
 
@@ -775,13 +809,16 @@ $(document).ready(function() {
 	var PresetView = Backbone.View.extend({
 		tagName: 'li',
 		template: _.template( $('#preset-single').html() ),
+		className: 'preset',
 		events: {
-			'click': 'onPresetClicked'
+			'click': 'onPresetClicked',
+			'click .preset--delete': 'onDeleteClicked'
 		},
 
 		initialize: function(options) {
-			_.bindAll(this, 'onPresetClicked');
+			_.bindAll(this, 'onPresetClicked', 'render', 'onDeleteClicked');
 			this.collection = options.collection;
+			this.model.on( 'change', this.render ) ;
 		},
 
 		onPresetClicked: function(evt) {
@@ -792,8 +829,19 @@ $(document).ready(function() {
 			return false;
 		},
 
+		onDeleteClicked: function( evt ) {
+			evt.stopPropagation();
+			this.collection.unsetCurrentPreset();
+			this.model.destroy();
+			return false
+		},
+
 		render: function() {
+			var params = this.model.attributes;
+			params.activeClass = (this.collection.getCurrentPreset() == this.model ? 'js-active' : '' );
+
 			this.$el.html( this.template( this.model.attributes ) );
+			this.$el.addClass( params.activeClass );
 			return this;
 		}
 	});
@@ -1034,4 +1082,4 @@ function test() {
 	testStorageBackend();
 }
 
-
+// test();
