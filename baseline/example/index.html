@@ -424,22 +424,88 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label style="float: left;">Umkreis</label>
-				<label style="float: right" id="range-value" class="range-value"></label>
-				<input class="form-control" id="range-slider" type="range" min="0" step="5" max="50" />
+				<label style="">Strecke</label><br />
+				<input class="form-control range-slider" type="range" list="distance-list" />
+				<datalist id="distance-list">
+					<option value="0" label="0 km" />
+					<option value="2" />
+					<option value="4" />
+					<option value="6" />
+					<option value="8" />					
+					<option value="10" label="10 km" />					
+					<option value="15" />	
+					<option value="20" />					
+					<option value="25" />	
+					<option value="30" label="30 km" />
+					<option value="35" />
+					<option value="40" />
+					<option value="50" />
+					<option value="60" label="60 km" />
+					<option value="70" />
+					<option value="80" />
+					<option value="90" />																									
+					<option value="100" label="100 km" />
+				</datalist>
+				
+				<label style="">Dauer</label><br />
+				<input class="form-control range-slider" type="range" list="duration-list" step="30" max="540" />
+				<datalist id="duration-list">
+					<option value="0" />
+					<option value="30" />
+					<option value="60" />
+					<option value="90" />
+					<option value="120" />					
+					<option value="150" />					
+					<option value="180" />	
+					<option value="210" />					
+					<option value="240" />	
+					<option value="300" />
+					<option value="360" />
+					<option value="420" />
+					<option value="480" />
+					<option value="540" />
+				</datalist>
+				
+				<label style="">Aufstieg</label><br />
+				<input class="form-control range-slider" type="range" min="0" step="200" max="2000" list="ascent-list" />
+				<datalist id="ascent-list">
+					<option value="0" />
+					<option value="200" />
+					<option value="400" />
+					<option value="600" />
+					<option value="800" />					
+					<option value="900" />					
+					<option value="1000" />	
+					<option value="1100" />					
+					<option value="1200" />	
+					<option value="1300" />
+					<option value="1400" />
+					<option value="1500" />
+					<option value="1600" />
+					<option value="1800" />
+					<option value="1900" />
+					<option value="2000" />					
+				</datalist>
+				
+				<label style="float: right" id="range-value" class="range-value">DEFAULT</label>
 
-
-				<script>
-					var sl = document.getElementById('range-slider');
-					var valueField = document.getElementById('range-value');
+				<script>	
+					var sl = document.getElementsByClassName('range-slider');
 
 					var onChange = function(evt) {
-						valueField.innerHTML =sl.value + " km";
+						valueField.innerHTML = evt.target.value;
 					}
+					
+					for( var i = 0; i < sl.length; i++) {
+						console.log('Attaching listener');
+						sl[i].addEventListener('input', onChange);
+					}
+					var valueField = document.getElementById('range-value');
 
-					sl.addEventListener('input', onChange);
-					onChange();
+
+				
 				</script>
+				
 			</div>
 			<div class="form-group">
 				<label>Über mich</label>

@@ -774,6 +774,7 @@ $(document).ready(function() {
 
 	var PresetView = Backbone.View.extend({
 		tagName: 'li',
+		className: 'preset',
 		template: _.template( $('#preset-single').html() ),
 		events: {
 			'click': 'onPresetClicked'

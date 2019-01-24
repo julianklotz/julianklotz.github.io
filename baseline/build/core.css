@@ -3,6 +3,9 @@
 .show-left-lines h1, .show-left-lines h2, .show-left-lines h3, .show-left-lines h4, .show-left-lines h5, .show-left-lines h6, .show-left-lines li, .show-left-lines p, .show-left-lines dd, .show-left-lines dt, .show-left-lines small, .show-left-lines .fieldset-headline, .show-left-lines .help-block, .show-left-lines blockquote, .show-left-lines ul, .show-left-lines ol, .show-left-lines div, .show-left-lines section, .show-left-lines article, .show-left-lines td, .show-left-lines th {
   box-shadow: 0px 0px 0px 1px rgba(134, 0, 0, 0.8) inset; }
 
+.range-slider {
+  max-width: 280px !important; }
+
 /* --- LAYOUT --- */
 .snippet {
   border: 1px solid #cfcfcf;
@@ -875,6 +878,9 @@ table.highlight-first-column tr td:first-child {
 .show-left-lines h1, .show-left-lines h2, .show-left-lines h3, .show-left-lines h4, .show-left-lines h5, .show-left-lines h6, .show-left-lines li, .show-left-lines p, .show-left-lines dd, .show-left-lines dt, .show-left-lines small, .show-left-lines .fieldset-headline, .show-left-lines .help-block, .show-left-lines blockquote, .show-left-lines ul, .show-left-lines ol, .show-left-lines div, .show-left-lines section, .show-left-lines article, .show-left-lines td, .show-left-lines th {
   box-shadow: 0px 0px 0px 1px rgba(134, 0, 0, 0.8) inset; }
 
+.range-slider {
+  max-width: 280px !important; }
+
 /* --- LAYOUT --- */
 .snippet {
   border: 1px solid #cfcfcf;
@@ -1315,5 +1321,12 @@ button.btn-back, .btn-back.toolbar--item {
         width: 100%; }
     .page-navigation ul li + li {
       margin-left: 1.5rem; }
+
+.preset--name, .preset--subtitle {
+  color: #272727;
+  text-decoration: none; }
+  .preset--name:hover, .preset--subtitle:hover {
+    color: #272727;
+    text-decoration: none; }
 
 /*# sourceMappingURL=core.css.map */
