@@ -814,7 +814,7 @@ $(document).ready(function() {
 			this.metronomeControlsView = new MetronomeControlsView({ model: this.model });
 			this.animationView = new CircleAnimationView({ model: this.model });
 			this.presetCollection.on( EVENT.PRESET_CHANGED, this.onPresetChanged, this );
-			this.presetCollectionView = new PresetCollectionView({collection: this.presetCollection, metronome: this.model});
+			// this.presetCollectionView = new PresetCollectionView({collection: this.presetCollection, metronome: this.model});
 
 			this.render();
 		},
