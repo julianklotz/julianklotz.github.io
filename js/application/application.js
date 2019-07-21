@@ -830,7 +830,7 @@ $(document).ready(function() {
 			this.$('.speed-trainer-node').html( this.speedTrainerView.render().el );
 			this.$('.animation-node').html( this.animationView.render().el );
 			this.$('.metronome-controls-node').html( this.metronomeControlsView.render().el );
-			this.$('.preset-collection-node').html( this.presetCollectionView.render().el );
+			// this.$('.preset-collection-node').html( this.presetCollectionView.render().el );
 
 			this.speedTrainerView.delegateEvents();
 
