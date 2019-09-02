@@ -34,7 +34,7 @@
 	vertical-align: middle
 	padding-right: .5rem
 	margin-bottom: 5px
-	
+
 .entry-header-bar
 	position: sticky
 	position: -webkit-sticky
@@ -46,8 +46,10 @@
 	text-align: right
 	margin-top: 10px
 	margin-bottom: 10px
-	
 
+
+.button-transparent
+  @extend button
 
 .toolbar--item
 	margin-left: .5rem
@@ -55,7 +57,7 @@
 	@extend button
 	@extend .small
 	@extend .ghost
-	
+
 .toolbar--icon, .toolbar--item
 
 .toolbar--icon
@@ -66,18 +68,18 @@
 .oax-icon-faved-star,
 .oax-icon-fav-star
 	color: #e6bc32
-	
+
 .sticky-sidebar
 	position: sticky
 	position: -webkit-sticky
 	top: calc( 55px + 5px + 22px )
-	
+
 .source-box
 	text-align: center
 	margin-top: 2 * $base-line-height
 
-	
-	.source-box--logo	
+
+	.source-box--logo
 		max-width: 140px
 		height: auto
 
@@ -87,51 +89,51 @@
 .booking-box
 	padding: $base-line-height 2rem
 	margin-top: $base-line-height
-	
+
 	background-color: #f8f8f8
 	border: 1px solid #e7e7e7
-	
+
 	.booking-box--rating
-		@extend .text-small	
+		@extend .text-small
 
 	.booking-box--submit
 		width: 100%
 		margin: $base-line-height / 2 0 0 0
-	
+
 	.booking-box--price-value
 		font-size: 24px
 		font-variant-numeric: initial
-	
-		
+
+
 button.btn-back
 	background-color: #575757
 	color: white
 	margin: 10px 1rem 10px 0 !important
-	
+
 .flip-wrapper
 	position: relative
 	margin: 0
 	height: 2 * $base-line-height
-	
+
 .breadcrumb-bar
 	transform: scaleY(1)
 	transition: transform .1s ease-in-out
 
 .page-navigation
 	transform: scaleY(0)
-	transition: transform .1s ease-in-out	
+	transition: transform .1s ease-in-out
 
 .breadcrumb-bar, .page-navigation
 	position: absolute
 	top: 0
 	left: 0
-	
-.js-show-content-nav	
+
+.js-show-content-nav
 	.page-navigation
 		transform: scaleY(1)
-		
+
 	.breadcrumb-bar
-		transform: scaleY(0)		
+		transform: scaleY(0)
 
 .header-bar-seperator
 	height: 5px
@@ -139,7 +141,7 @@ button.btn-back
 	background-color: #e7e7e7
 	margin: 0 2%
 
-	
+
 .page-navigation
 		font-weight: normal
 		margin: 0
@@ -154,9 +156,9 @@ button.btn-back
 				padding: $base-line-height/2 0
 				display: inline-block
 				list-style-type: none
-				margin: 0 
+				margin: 0
 				position: relative
-				
+
 				&.current:after
 					position: absolute
 					bottom: 0
@@ -164,7 +166,21 @@ button.btn-back
 					left: 0
 					background-color: #c0cc56
 					width: 100%
-					
+
 
 			li + li
-				margin-left: 1.5rem
+        margin-left: 1.5rem
+
+
+
+// --- PRESETS ---
+
+.preset--name, .preset--subtitle
+	color: #272727
+	text-decoration: none
+
+	&:hover
+		color: #272727
+		text-decoration: none
+
+

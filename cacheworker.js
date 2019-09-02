@@ -18,11 +18,11 @@ var filesToCache = [
 
     'audio/4d.wav',
 
-    'style/core.css',
+    //'style/core.css',
 ];
 
 // Development hack
-//filesToCache = [];
+filesToCache = [];
 
 self.addEventListener('install', function(e) {
   console.log('[ServiceWorker] Install');

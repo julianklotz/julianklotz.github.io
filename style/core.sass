@@ -8,6 +8,7 @@ input::-webkit-inner-spin-button
   margin: 0
 
 
+
 .btn-mute
   background-color: transparent
   border: 1px solid #272727
@@ -63,18 +64,19 @@ label
   width: 25%
 
 
-body, button, input, p
+body, button, input
   font-family: "Helvetica Neue", "Helvetica", sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  font-size: 100%
+  font-size: 18px
   line-height: 24px
 
 
 body
   background-color: $bg
-  padding: 0
-  margin: 48px 0 0 0
+  padding: 48px 0 0 0
+  margin: 0 0 0 0
+  position: relative
 
 
 input
@@ -239,56 +241,56 @@ $minradius: 70
 // --- PRESETS ---
 
 #preset-list-node
-  margin: 22px 0 !important
   list-style-type: none
   margin: 0
   padding: 0
 
+// --- AUTO SUGGEST ---
 
-.preset--link
-  text-decoration: none
-  color: #272727
+.auto-suggest
+  margin: 0 auto
+  max-width: 480px
+  background-color: $bg
+  border-radius: 8px
+  padding: 22px 0
+  box-shadow: 4px 4px 8px 0 rgba(0,0,0,0.15), 0 0 2px 0 rgba(0,0,0,0.15)
+  height: 480px
+  position: relative
+  top: 50%
+  transform: translateY(-50%)
 
-  &:hover
-    text-decoration: none
-    color: #272727
+.auto-suggest--formfield-title
+    line-height: 22px
+    padding: 11px 1rem
+    width: calc(100% - 2rem)
+    background: white
 
-.preset--name
-  font-weight: bold
-  margin-bottom: 0
-  margin-top: 0
+.auto-suggest--list
+  margin: 0
+  padding: 0
 
+.auto-suggest--item
+  list-style-type: none
+  padding: 11px 1rem
+  border-top: 1px solid $bg
+  background-color: white
 
-.preset--subtitle
-  font-size: .8rem
-  margin-top: 0
-  margin-bottom: 0
+.auto-suggest--item.current
+  background-color: #f8f8f8
 
-.preset
-  margin-left: -24px
-  padding: 11px 16px
-  border-left: 8px solid transparent
+.auto-suggest--title
+  margin: 0
+  font-size: 1rem
 
+.auto-suggest--subline
+  margin: 0
+  font-size: 0.875rem
 
-
-
-.preset.js-active
-  border-color: #DAD3CC
-
-#btn-update-preset-settings, #btn-create-preset
-  width: auto
-  padding-left: 1rem
-  padding-right: 1rem
-  float: left
-  margin-right: 1rem
-
-.preset-collection-node
-  margin-top: 44px
-
-
-
-
-  // @extend .text-small
-
-
-
+.auto-suggest-overlay
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  background-color: rgba( 0, 0, 0, .25 )
+  height: 100%
