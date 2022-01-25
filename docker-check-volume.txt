@@ -5,7 +5,7 @@ Here’s a note on how to check the contents of a docker volume:
 ```
 docker run -it --rm -v my_volume:/app busybox
 ```
-This run a container that will be auto-removed on exist, mounting my_volume in `/app`
+This runs a container that will be auto-removed on exist, mounting my_volume in `/app`
 
 
 ## Case 2: Mount all volumes from a running container
