@@ -1,7 +1,7 @@
 More things I didn’t know: cURL can connect to UNIX sockets by using `--unix-socket`.
 
 ```
-curl --unix-socket /var/run/docker.sock http://localhost/images/json```
+curl --unix-socket /var/run/docker.sock http://localhost/images/json
 ```
 
 If you happen to run Docker on a Linux machine, this command will list all Docker images.
