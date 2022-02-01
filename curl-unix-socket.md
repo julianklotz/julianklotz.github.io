@@ -11,5 +11,6 @@ By the way – Daniel, one of cURLs makers posted about how a big company inquir
 [LogJ4 Security Inquiry – Response Required](https://daniel.haxx.se/blog/2022/01/24/logj4-security-inquiry-response-required/)
 
 --
+
 Further reading:
-cURL man page: https://curl.se/docs/manpage.html#--unix-socket
+* cURL man page: https://curl.se/docs/manpage.html#--unix-socket
