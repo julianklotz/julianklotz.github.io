@@ -17,3 +17,8 @@ The `$(…)` interpolation passes the list of commits to search for grep.
 ## Can’t I just use `git grep`, without `rev-list`?
   
 Sure you can, but when using `git grep` without arguments, it will only search the current working tree. If the piece of code you are looking for is no longer present, you won’t find anything.
+
+--
+Further reading:
+git rev-list manual: https://git-scm.com/docs/git-rev-list
+git grep manual: https://git-scm.com/docs/git-grep
