@@ -20,8 +20,12 @@ $side-margin: 1rem;
 	--extra-large-line-height: calc(var(--base-line-height) * 2);
 	
 	--almost-black: #333735;
+	--almost-white: #FFFFFF;
+	
+	--light-gray: #F8F8F8;
 	--mid-gray: #878787;
-	--almost-white: #FBFAF4;
+	--dark-gray: #666666;
+
 	
 	--blue: #6992A5; // #527889;
 	--yellow: #F4EFD7; //#ECE8CA;
@@ -29,6 +33,9 @@ $side-margin: 1rem;
 	
 	--color-background: var(--almost-white);
 	--color-background-inverse: var(--almost-black);
+	
+	--color-background-highlight: var(--light-gray);
+	
 	--color-text: var(--almost-black);
 	--color-text-inverse: var(--almost-white);	
 	--color-text-mid: var(--mid-gray);
@@ -40,11 +47,14 @@ $side-margin: 1rem;
 	--color-text: var(--almost-white);
 	--color-text-inverse: var(--almost-black);
 	--color-background-inverse: var(--almost-white);
+	--color-background-highlight: var(--dark-gray);	
   }
 }
 
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html {
@@ -64,14 +74,24 @@ body {
 code, pre {
 	font-family: var(--mono);
 	font-size: 90%;
-	background: var(--color-background-inverse);
-	color: var(--color-text-inverse);
-	padding: .15rem .25rem;
-	border-radius: .25rem;
+	background: var(--color-background-highlight);	
 }
 
 pre {
 	overflow-x: auto;
+	margin: 0 -.5rem;
+	padding: .15rem .5rem;
+	border-radius: .5rem;	
+}
+
+h2 + * {
+	margin-top: calc(var(--base-line-height) / 2) !important;
+}
+
+
+p {
+	margin-top: var(--base-line-height);
+	margin-bottom: var(--base-line-height);
 }
 
 a {
@@ -118,7 +138,7 @@ a {
 
 h1, .style-h1 {
 	@include headline;
-	@include size-default;
+	@include size-large;
 	font-weight: 400;
 	margin-top: calc(var(--base-line-height) * 1);
 	margin-bottom: 0;
@@ -126,9 +146,9 @@ h1, .style-h1 {
 
 h2, .style-h2 {
 	@include headline;
-	@include size-default;
-	margin-top: calc(var(--base-line-height) * 2);
-	margin-bottom: calc(var(--base-line-height) * 1);
+	@include size-large;
+	margin-top: calc(var(--base-line-height) * 1);
+	//margin-bottom: var(--base-line-height);
 }
 
 h3, .style-h3 {
@@ -144,7 +164,6 @@ h4, .style-h4 {
 	margin-top: calc(var(--base-line-height) * 1);
 	margin-bottom: calc(var(--base-line-height) * 1);
 }
-
 
 .layout {
 	&-page-header {
