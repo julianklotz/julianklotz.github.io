@@ -3,7 +3,7 @@ There’s a model for blog posts named <code>Post</code>. The posts are tagged b
 To build an API that is reasonably fast, all related tags should be queried along with their slug (to build a nice URL) and their title.</p><p>The options you have are using <a href="https://docs.djangoproject.com/en/4.1/ref/models/querysets/#prefetch-related"><code>prefetch_related</code></a>,
 which will pre-fetch the related tag model instances. This isn’t necessary in our simple case. Array aggregations can be used to collect (several)
 values from related tables for each record. This can be used to fetch all tag <code>titles</code>, but not <code>titles</code> and <code>slugs</code>.
-Defining a custom array function, it’s possible to collect more than one related field from a different table.</p><pre><code>from django.db import models
+Defining a custom array function, it’s possible to collect more than one related field from a different table.</p><p>Bonus: To filter the related tags (e.g. if you use more than one taxonomy), pass <code>filter=models.Q(...)</code> to <code>ArrayAgg</code>. <a href="https://www.crunchydata.com/blog/using-postgres-filter">More on using Postgres <code>FILTER</code> on crunchydata</a>.</p><pre><code>from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
