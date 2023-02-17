@@ -1,0 +1,60 @@
+<html><head></head><body><p>Here’s a quick note for a problem that I’ve been struggling with for quite some time:
+There’s a model for blog posts named <code>Post</code>. The posts are tagged by topic.
+To build an API that is reasonably fast, all related tags should be queried along with their slug (to build a nice URL) and their title.</p><p>The options you have are using <a href="https://docs.djangoproject.com/en/4.1/ref/models/querysets/#prefetch-related"><code>prefetch_related</code></a>,
+which will pre-fetch the related tag model instances. This isn’t necessary in our simple case. Array aggregations can be used to collect (several)
+values from related tables for each record. This can be used to fetch all tag <code>titles</code>, but not <code>titles</code> and <code>slugs</code>.
+Defining a custom array function, it’s possible to collect more than one related field from a different table.</p><pre><code>from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    tags = models.ManyToManyField("Tag", blank=True)
+
+
+class Tag(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField()
+</code></pre><p>Now, create some instances:</p><pre><code>&gt;&gt;&gt; from myapp.models import Post, Tag
+&gt;&gt;&gt; Post.objects.create(title="Are bananas or apples better?")
+&gt;&gt;&gt; Tag.objects.create(title="Everday knowledge", slug="everyday-knowledge")
+&gt;&gt;&gt; Tag.objects.create(title="Fruits", slug="fruits")
+&gt;&gt;&gt; Post.objects.first().tags.add(Tag.objects.get(slug="everday-knowledge"))
+&gt;&gt;&gt; Post.objects.first().tags.add(Tag.objects.get(slug="fruits"))
+</code></pre><p>Let’s build a query!</p><pre><code># The code that backs the API
+from django.contrib.postgres.aggregates.general import ArrayAgg
+from django.contrib.postgres.fields import ArrayField
+from django.db.models import F
+from django.db.models.expressions import Func
+from django.db.models.fields import CharField
+
+from myapp.models import Post, Tag
+
+class ArrayFunc(Func):
+	template = '%(function)s[%(expressions)s]'
+	function = 'ARRAY'
+
+output_field = ArrayField(CharField(max_length=200))
+
+tags_annotation = &amp;#123;
+	'related_tags': ArrayAgg(
+		ArrayFunc(
+			F('tags__slug'), F('tags__title'), output_field=output_field
+		),
+		distinct=True
+	)
+}
+
+posts = Post.objects.all().annotate(**tags_annotation)
+print(posts.first().related_tags)
+&gt; [['everyday-knowledge', 'Everday knowledge'], ['fruits', 'Fruits']]
+</code></pre><p>There we go! Each post now has a field with <code>related_tags</code>, all in a single query.</p><p>The resulting SQL looks like:</p><pre><code> SELECT         "myapp_post"."id",
+                "myapp_post"."title",
+                "myapp_post"."body",
+                array_agg(DISTINCT array["myapp_tag"."slug", "myapp_tag"."title"] ) AS "related_tags"
+FROM            "myapp_post"
+LEFT OUTER JOIN "myapp_post_tags"
+ON              ("myapp_post"."id" = "myapp_post_tags"."post_id")
+LEFT OUTER JOIN "myapp_tag"
+ON              ("myapp_post_tags"."tag_id" = "myapp_tag"."id")
+GROUP BY        "myapp_post"."id"
+</code></pre></body></html>
