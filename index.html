@@ -1,28 +1,25 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/_astro/common-Z1Nooeq.css" type="text/css"><title>Old/New</title><meta name="title" content="Old/New"><meta name="description" content=""><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Spartan:wght@600;700&amp;display=swap" rel="stylesheet"></head><body><header class="layout-page-header"><div class="layout-page-header__inner grid"><div class="layout-page-header__menu"><a href="/">Julian’s Blog</a></div></div></header><main><section class="grid"><div class="span-6"><p>Hi! I’m Julian, a UX designer and fullstack developer from Germany. I care deeply about usable and appealing websites. Over the years, I’ve designed and built interactive tools, static websites, search interfaces and app prototypes. Some of the technologies I enjoy working with are Python/Django, React, ElasticSearch, Postgres and (quite exotically) Linked Data graphs.</p></div></section><div style="width: 100%; height: 200px;" id="gfx"></div><script type="module">
-			import * as THREE from 'https://cdn.skypack.dev/three';
-    		const renderNode = document.getElementById('gfx');
-    		const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize( renderNode.offsetWidth, renderNode.offsetHeight );
-			renderNode.appendChild( renderer.domElement );
-			
-			const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
-			
-			const points = [];
-			points.push( new THREE.Vector3( - 10, 0, 0 ) );
-			points.push( new THREE.Vector3( 0, 10, 0 ) );
-			points.push( new THREE.Vector3( 10, 0, 0 ) );
-			const geometry = new THREE.BufferGeometry().setFromPoints( points );
-			const line = new THREE.Line( geometry, material );
-			scene.add( line );
-
-			camera.position.z = 5;
-			
-			function animate() {
-				requestAnimationFrame( animate );
-				renderer.render( scene, camera );
-			}
-			animate();
-		</script><hr><section><div class="grid"><h2 class="latest span-7">Notes</h2></div><article class="post-preview grid"><div class="post-preview__date">8/18/2022</div><div class="col-2-6"><a class="post-preview__link" href="/notes/associate-time-machine"><h2 class="post-preview__title">Using Time Machine to backup and restore external disks</h2></a><p class="post-preview__body"><span>Backup &amp; Restore, MacOS</span></p></div></article><article class="post-preview grid"><div class="post-preview__date">8/11/2022</div><div class="col-2-6"><a class="post-preview__link" href="/notes/mounting-flask-app-path"><h2 class="post-preview__title">Serving a Flask app with a URL prefix</h2></a><p class="post-preview__body"><span>flask</span></p></div></article><article class="post-preview grid"><div class="post-preview__date">1/22/2022</div><div class="col-2-6"><a class="post-preview__link" href="/notes/curl-unix-socket"><h2 class="post-preview__title">Using cURL to connect to a UNIX socket</h2></a><p class="post-preview__body"><span>cURL, Linux, Unix</span></p></div></article><article class="post-preview grid"><div class="post-preview__date">Invalid Date</div><div class="col-2-6"><a class="post-preview__link" href="/notes/django-array-aggregations"><h2 class="post-preview__title"></h2></a><p class="post-preview__body"></p></div></article><article class="post-preview grid"><div class="post-preview__date">2/2/2022</div><div class="col-2-6"><a class="post-preview__link" href="/notes/git-grep"><h2 class="post-preview__title">Finding code in git history</h2></a><p class="post-preview__body"><span>git</span></p></div></article><article class="post-preview grid"><div class="post-preview__date">1/29/2022</div><div class="col-2-6"><a class="post-preview__link" href="/notes/docker-check-volume"><h2 class="post-preview__title">Checking the contents of a Docker volume</h2></a><p class="post-preview__body"><span>Docker</span></p></div></article><article class="post-preview grid"><div class="post-preview__date">8/18/2021</div><div class="col-2-6"><a class="post-preview__link" href="/notes/letencrypt-different-domain"><h2 class="post-preview__title">Using EFF’s certbot to create SSL certificates on a different machine/domain</h2></a><p class="post-preview__body"><span>Certbot, SSL, TLS</span></p></div></article></section></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="generator" content="Astro v2.0.14">
+        <link rel="stylesheet" type="text/css" href="/css/goudy.css">
+		<title>Julian Klotz · Product Management × Design</title>
+	<link rel="stylesheet" href="/_astro/index.90ed120d.css" /></head>
+	<body class="Root">
+        <div class="Root__content">
+		    <header class="Index__header astro-J7PV25F6">
+		<h1 class="Index__headline astro-J7PV25F6">Julian Klotz</h1>
+		<p class="Index__kicker astro-J7PV25F6">Product Management × Design</p>
+	</header><main class="astro-J7PV25F6">
+		<p class="astro-J7PV25F6">
+		For over 10 years, I have helped companies build effective digital products. Having worked in different roles, the intersection of product management and design matters most to me.
+		</p>
+		<p class="astro-J7PV25F6">I help develop digital strategies, doing research and benchmarking, evaluating and improving existing products, identifying talent and building teams, implementing habitual human-centered design processes in organizations</p>
+		<p class="sans astro-J7PV25F6">
+			<a href="https://linkedin.com/in/julian-klotz-b05966203" class="astro-J7PV25F6">LinkedIn</a> · <a href="mailto:julien.klotz@googlemail.com" class="astro-J7PV25F6">E-Mail</a><br class="astro-J7PV25F6">
+		</p>
+	</main>
+        </div>
+	</body></html>
